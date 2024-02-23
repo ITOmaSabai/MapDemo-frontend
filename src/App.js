@@ -9,7 +9,7 @@ export default function App() {
   return (
       <div >
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
-          <MarkerPostComponent zoom={8} position={position} ></MarkerPostComponent>
+          <MarkerPostComponent zoom={8} position={position} />
           {/* <MapComponent zoom={9} position={position} ></MapComponent> */}
         </APIProvider>
       </div>

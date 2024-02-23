@@ -6,12 +6,12 @@ const MarkerPostComponent = ({ zoom, position }) => {
   const [markers, setMarkers] = useState([]);
 
   const handleMapClick = (event) => {
-    const lat = event.detail.latLng.lat;
-    const lng = event.detail.latLng.lng;
+    const lat = parseFloat(event.detail.latLng.lat);
+    const lng = parseFloat(event.detail.latLng.lng);
     setMarkers([...markers, { lat, lng }]);
     // console.log({lat, lng})
     // console.log(event)
-    console.log(markers)
+    // console.log(markers)
   };
 
   return (
