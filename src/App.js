@@ -2,6 +2,7 @@
 import './App.css';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import MarkerPostComponent from './components/MarkerPostComponent';
+import PostSpotForm from './components/PostSpotForm';
 
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
           <MarkerPostComponent zoom={8} position={position} />
           {/* <MapComponent zoom={9} position={position} ></MapComponent> */}
+          <PostSpotForm />
         </APIProvider>
       </div>
   );
