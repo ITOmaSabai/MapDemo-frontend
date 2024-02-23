@@ -9,8 +9,9 @@ const MarkerPostComponent = ({ zoom, position }) => {
     const lat = event.detail.latLng.lat;
     const lng = event.detail.latLng.lng;
     setMarkers([...markers, { lat, lng }]);
-    console.log({lat, lng})
-    console.log(event)
+    // console.log({lat, lng})
+    // console.log(event)
+    console.log(markers)
   };
 
   return (
