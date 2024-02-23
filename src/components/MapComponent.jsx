@@ -1,12 +1,14 @@
 import React from 'react';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
-const MapComponent = ({ position, zoom }) => {
+const MapComponent = ({ zoom, center, onClick }) => {
+  const handleMapOnClick = (e) => {
+    onClick(e);
+  }
   return (
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
       <div style={{ height: "100vh", width: "100%" }}>
-        <Map zoom={zoom} center={position}>
-        </Map>
+        <Map zoom={zoom} center={center} onClick={handleMapOnClick} />
       </div>
     </APIProvider>
   );
