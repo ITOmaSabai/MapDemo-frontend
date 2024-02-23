@@ -1,25 +1,16 @@
-import logo from './logo.svg';
+"use client";
 import './App.css';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
-function App() {
+
+export default function App() {
+  const position = { lat: 53.54, lng: 10 }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} >
+      <div style={ {height: "100vh"} }>
+        <Map zoom={9} center={position}>
+        </Map>
+      </div>
+    </APIProvider>
   );
 }
-
-export default App;
