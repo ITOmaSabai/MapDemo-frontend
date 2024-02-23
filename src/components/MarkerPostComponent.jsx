@@ -6,18 +6,20 @@ const MarkerPostComponent = ({ zoom, position }) => {
   const [markers, setMarkers] = useState([]);
 
   const handleMapClick = (event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
+    const lat = event.detail.latLng.lat;
+    const lng = event.detail.latLng.lng;
     setMarkers([...markers, { lat, lng }]);
-    console.log(LatLng)
+    console.log({lat, lng})
+    console.log(event)
   };
 
   return (
     <div>
-      <MapComponent zoom={zoom} center={position} onClick={handleMapClick} />
+      <MapComponent zoom={zoom} center={position} onClick={handleMapClick} >
       {markers.map((marker, index) => (
         <MarkerComponent key={index} position={marker} />
       ))}
+      </MapComponent>
     </div>
   );
 };
