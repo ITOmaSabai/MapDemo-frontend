@@ -3,7 +3,6 @@ import { Map, Marker } from '@vis.gl/react-google-maps';
 import SpotContext from '../contexts/SpotContext';
 
 const MapComponent = ({ zoom, center, onClick }) => {
-  // const [markers, setMarkers] = useState();
   const {markers, setMarkers} = useContext(SpotContext);
 
   const handleMapOnClick = (e) => {
@@ -14,7 +13,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
   }
   return (
       <div style={{ height: "100vh", width: "100%" }}>
-        <Map zoom={zoom} center={center} onClick={handleMapOnClick} >
+        <Map defaultZoom={zoom} defaultCenter={center} onClick={handleMapOnClick} >
         {markers && <Marker position={markers} />} {/* マーカーがある場合のみ描画 */}
         </Map>
       </div>

@@ -5,13 +5,10 @@ import MarkerComponent from "./MarkerComponent";
 const MarkerPostComponent = ({ zoom, position }) => {
   const [markers, setMarkers] = useState([]);
 
-  const handleMapClick = (event) => {
-    const lat = parseFloat(event.detail.latLng.lat);
-    const lng = parseFloat(event.detail.latLng.lng);
+  const handleMapClick = (e) => {
+    const lat = parseFloat(e.detail.latLng.lat);
+    const lng = parseFloat(e.detail.latLng.lng);
     setMarkers([...markers, { lat, lng }]);
-    // console.log({lat, lng})
-    // console.log(event)
-    // console.log(markers)
   };
 
   return (
