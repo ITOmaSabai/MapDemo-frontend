@@ -17,9 +17,9 @@ const MarkerPostComponent = ({ zoom, position }) => {
   return (
     <div>
       <MapComponent zoom={zoom} center={position} onClick={handleMapClick} >
-      {markers.map((marker, index) => (
-        <MarkerComponent key={index} position={marker} />
-      ))}
+      {/* {markers.map((marker, index) => ( */}
+        {/* // <MarkerComponent key={index} position={marker} /> */}
+      {/* // ))} */}
       </MapComponent>
     </div>
   );

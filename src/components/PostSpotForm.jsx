@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import SpotContext from '../contexts/SpotContext';
 
 const PostSpotForm = ({ onSubmit }) => {
+  const { markers } = useContext(SpotContext);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState(markers ? markers.lat : '');
+  const [longitude, setLongitude] = useState(markers ? markers.lng : '');
+
+  // markersが変更されたときに実行される
+  useEffect(() => {
+    if (markers) {
+      setLatitude(markers.lat);
+      setLongitude(markers.lng);
+      console.log(markers)
+    }
+  }, [markers]); // 依存配列にmarkersを入れて、markersが変更されたときだけこのeffectを実行する
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,19 +48,19 @@ const PostSpotForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        <label>緯度:</label>
+        {/* <label>緯度:</label> */}
         <input
-          type="text"
+          type="hidden"
           value={latitude}
-          onChange={(e) => setLatitude(e.target.value)}
+          name="latitude"
         />
       </div>
       <div>
-        <label>経度:</label>
+        {/* <label>経度:</label> */}
         <input
-          type="text"
+          type="hidden"
           value={longitude}
-          onChange={(e) => setLongitude(e.target.value)}
+          name="longitude"
         />
       </div>
       <button type="submit">ピンを追加</button>
