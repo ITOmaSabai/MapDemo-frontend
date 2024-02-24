@@ -17,17 +17,28 @@ const PostSpotForm = ({ onSubmit }) => {
     }
   }, [markers]); // 依存配列にmarkersを入れて、markersが変更されたときだけこのeffectを実行する
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 送信するピンのデータを準備
-    const pinData = { name, description, latitude, longitude };
-    // 親コンポーネントのonSubmitハンドラーを呼び出し、ピンのデータを渡す
-    onSubmit(pinData);
-    // フォームをリセット
-    setName('');
-    setDescription('');
-    setLatitude('');
-    setLongitude('');
+    await postSpotData(name, description, latitude, longitude);
+  };
+
+  const postSpotData = async (name, description, latitude, longitude) => {
+    try {
+      const response = await fetch('/api/v1/maps', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ map: {name: name, description: description, lat: latitude, lng: longitude } }),
+      });
+      if (!response.ok) {
+        throw new Error('データの送信に失敗しました');
+      }
+      const data = await response.json();
+      console.log('保存成功:', data);
+    } catch (error) {
+      console.error('エラー:', error);
+    }
   };
 
   return (
