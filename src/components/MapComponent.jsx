@@ -13,8 +13,8 @@ const MapComponent = ({ zoom, center, onClick }) => {
   }
   return (
       <div style={{ height: "100vh", width: "100%" }}>
-        <Map defaultZoom={zoom} defaultCenter={center} onClick={handleMapOnClick} >
-        {markers && <Marker position={markers} />} {/* マーカーがある場合のみ描画 */}
+        <Map defaultZoom={zoom} defaultCenter={center} onClick={handleMapOnClick} clickableIcons={false} >
+        {markers && <Marker position={markers} />}
         </Map>
       </div>
   );
