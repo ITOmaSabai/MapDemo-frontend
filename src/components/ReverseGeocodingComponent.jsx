@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const ReverseGeocodingComponent = (lat, lng) => {
+const ReverseGeocodingComponent = ({ lat, lng }) => {
   const [address, setAddress] = useState('');
-  console.log({lat, lng})
 
   useEffect(() => {
     if (lat && lng) {

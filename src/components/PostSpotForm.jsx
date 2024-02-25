@@ -14,7 +14,6 @@ const PostSpotForm = ({ onSubmit }) => {
     if (markers) {
       setLatitude(markers.lat);
       setLongitude(markers.lng);
-      console.log(markers)
     }
   }, [markers]); // 依存配列にmarkersを入れて、markersが変更されたときだけこのeffectを実行する
 
@@ -44,7 +43,7 @@ const PostSpotForm = ({ onSubmit }) => {
 
   return (
     <div>
-    <ReverseGeocodingComponent lat={{latitude}} lng={longitude}></ReverseGeocodingComponent>
+    <ReverseGeocodingComponent lat={latitude} lng={longitude}></ReverseGeocodingComponent>
 
     <form onSubmit={handleSubmit}>
       <div>
