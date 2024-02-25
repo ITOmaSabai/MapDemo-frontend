@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SpotContext from '../contexts/SpotContext';
+import ReverseGeocodingComponent from './ReverseGeocodingComponent';
 
 const PostSpotForm = ({ onSubmit }) => {
   const { markers } = useContext(SpotContext);
@@ -42,6 +43,9 @@ const PostSpotForm = ({ onSubmit }) => {
   };
 
   return (
+    <div>
+    <ReverseGeocodingComponent lat={{latitude}} lng={longitude}></ReverseGeocodingComponent>
+
     <form onSubmit={handleSubmit}>
       <div>
         <label>スポット名:</label>
@@ -76,6 +80,8 @@ const PostSpotForm = ({ onSubmit }) => {
       </div>
       <button type="submit">ピンを追加</button>
     </form>
+
+    </div>
   );
 }
 
