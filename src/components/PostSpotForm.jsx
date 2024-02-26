@@ -9,6 +9,7 @@ const PostSpotForm = ({ onSubmit }) => {
   const [latitude, setLatitude] = useState(markers ? markers.lat : '');
   const [longitude, setLongitude] = useState(markers ? markers.lng : '');
   const [addressComponents, setAddressComponents] = useState('');
+  const [formattedAddres, setFormattedAddres] = useState('');
 
   // markersが変更されたときに実行される
   useEffect(() => {
@@ -20,10 +21,10 @@ const PostSpotForm = ({ onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postSpotData(name, description, latitude, longitude, addressComponents);
+    await postSpotData(name, description, latitude, longitude, addressComponents, formattedAddres );
   };
 
-  const postSpotData = async (name, description, latitude, longitude, addressComponents) => {
+  const postSpotData = async (name, description, latitude, longitude, addressComponents, formattedAddres) => {
     try {
       const response = await fetch('/api/v1/maps', {
         method: 'POST',
@@ -35,7 +36,8 @@ const PostSpotForm = ({ onSubmit }) => {
           description: description, 
           lat: latitude, 
           lng: longitude,
-          addressComponents: addressComponents
+          address_components: addressComponents,
+          formatted_addres: formattedAddres
         } }),
       });
       if (!response.ok) {
@@ -53,7 +55,8 @@ const PostSpotForm = ({ onSubmit }) => {
       <ReverseGeocodingComponent
         lat={latitude}
         lng={longitude}
-        onAddressComponentsChange={setAddressComponents}
+        onSetAddressComponentsChange={setAddressComponents}
+        onSetFormattedAddressChange={setFormattedAddres}
       >
       </ReverseGeocodingComponent>
 

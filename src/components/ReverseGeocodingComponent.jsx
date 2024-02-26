@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ReverseGeocodingComponent = ({ lat, lng, onAddressComponentsChange }) => {
+const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onSetFormattedAddressChange }) => {
   const [address, setAddress] = useState('');
 
   useEffect(() => {
@@ -14,7 +14,8 @@ const ReverseGeocodingComponent = ({ lat, lng, onAddressComponentsChange }) => {
       const geocoder = new window.google.maps.Geocoder();
       const response = await geocoder.geocode({ location: { lat, lng } });
       setAddress(response.results[0]);
-      onAddressComponentsChange(response.results[0].address_components);
+      onSetAddressComponentsChange(response.results[0].address_components);
+      onSetFormattedAddressChange(response.results[0].formatted_address);
     } catch (error) {
       console.error('Reverse Geocode was not successful for the following reason: ' + error);
     }
