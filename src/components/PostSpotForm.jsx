@@ -8,6 +8,7 @@ const PostSpotForm = ({ onSubmit }) => {
   const [description, setDescription] = useState('');
   const [latitude, setLatitude] = useState(markers ? markers.lat : '');
   const [longitude, setLongitude] = useState(markers ? markers.lng : '');
+  const [addressComponents, setAddressComponents] = useState('');
 
   // markersが変更されたときに実行される
   useEffect(() => {
@@ -43,7 +44,12 @@ const PostSpotForm = ({ onSubmit }) => {
 
   return (
     <div>
-    <ReverseGeocodingComponent lat={latitude} lng={longitude}></ReverseGeocodingComponent>
+      <ReverseGeocodingComponent
+        lat={latitude}
+        lng={longitude}
+        onAddressComponentsChange={setAddressComponents}
+      >
+      </ReverseGeocodingComponent>
 
     <form onSubmit={handleSubmit}>
       <div>
@@ -76,6 +82,14 @@ const PostSpotForm = ({ onSubmit }) => {
           value={longitude}
           name="longitude"
         />
+      </div>
+      <div>
+        {/* <label>address_components:</label> */}
+        {/* <input
+          type="hidden"
+          value={addressComponents}
+          name="addressComponents"
+        /> */}
       </div>
       <button type="submit">ピンを追加</button>
     </form>
