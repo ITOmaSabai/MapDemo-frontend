@@ -20,17 +20,23 @@ const PostSpotForm = ({ onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postSpotData(name, description, latitude, longitude);
+    await postSpotData(name, description, latitude, longitude, addressComponents);
   };
 
-  const postSpotData = async (name, description, latitude, longitude) => {
+  const postSpotData = async (name, description, latitude, longitude, addressComponents) => {
     try {
       const response = await fetch('/api/v1/maps', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ map: {name: name, description: description, lat: latitude, lng: longitude } }),
+        body: JSON.stringify({ map: {
+          name: name, 
+          description: description, 
+          lat: latitude, 
+          lng: longitude,
+          addressComponents: addressComponents
+        } }),
       });
       if (!response.ok) {
         throw new Error('データの送信に失敗しました');
