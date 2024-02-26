@@ -14,7 +14,7 @@ const ReverseGeocodingComponent = ({ lat, lng }) => {
       const geocoder = new window.google.maps.Geocoder();
       const response = await geocoder.geocode({ location: { lat, lng } });
       setAddress(response.results[0].formatted_address);
-      console.log(response.results[0])
+      console.log(response)
     } catch (error) {
       console.error('Reverse Geocode was not successful for the following reason: ' + error);
     }
