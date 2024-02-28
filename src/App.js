@@ -4,7 +4,7 @@ import { APIProvider } from '@vis.gl/react-google-maps';
 import MarkerPostComponent from './components/MarkerPostComponent';
 import { SpotProvider } from './contexts/SpotContext';
 import PostSpotForm from './components/PostSpotForm';
-import VideoListComponent from './components/ VideoListComponent';
+import VideoListComponent from './components/VideoListComponent';
 
 export default function App() {
   const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }

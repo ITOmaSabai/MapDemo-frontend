@@ -4,11 +4,11 @@ const VideoListComponent = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch('/api/videos')
+    fetch('/api/v1/videos')
       .then(response => response.json())
       .then(data => setVideos(data))
       .catch(error => console.error('Error:', error));
-  }, [videos]);
+  }, []);
 
   return (
     <div>
