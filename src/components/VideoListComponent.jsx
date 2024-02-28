@@ -4,7 +4,7 @@ const VideoListComponent = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch('/api/v1/videos')
+    fetch('http://localhost:3000/api/v1/videos')
       .then(response => response.json())
       .then(data => setVideos(data))
       .catch(error => console.error('Error:', error));
