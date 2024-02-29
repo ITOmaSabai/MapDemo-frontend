@@ -13,12 +13,22 @@ const SavedMarkerComponent = () => {
       .catch(error => console.error('Error:', error));
   }, [savedMarkers]);
 
-
+  const handleMarkerClick = (id) => {
+    // すべてのvideoから、map_idがクリックされたMarkerのmap.idと等しいものを抜き出し、videoに代入
+    const video = videos.find(v => v.map_id === id);
+    // videoContextが必要
+    setSelectedVideos(video);
+  };
 
   return (
     <>
       {savedMarkers.map((savedMarker) => (
-        <Marker key={savedMarker.id} position={{lat: savedMarker.lat, lng:savedMarker.lng}} />
+        <Marker 
+          key={savedMarker.id} 
+          id={savedMarker.id} 
+          position={{lat: savedMarker.lat, lng:savedMarker.lng}}
+          onClick={() => handleMarkerClick(savedMarker.id)}
+        />
         ))}
     </>
   )
