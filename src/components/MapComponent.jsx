@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Map, Marker } from '@vis.gl/react-google-maps';
 import SpotContext from '../contexts/SpotContext';
+import SavedMarkerComponent from './SavedMarkerComponent';
 
 const MapComponent = ({ zoom, center, onClick }) => {
   const {markers, setMarkers} = useContext(SpotContext);
@@ -15,6 +16,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
       <div style={{ height: "100vh", width: "100%" }}>
         <Map defaultZoom={zoom} defaultCenter={center} onClick={handleMapOnClick} clickableIcons={false} >
         {markers && <Marker position={markers} />}
+        {<SavedMarkerComponent />}
         </Map>
       </div>
   );
