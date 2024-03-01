@@ -10,6 +10,7 @@ const PostSpotForm = ({ onSubmit }) => {
   const [longitude, setLongitude] = useState(markers ? markers.lng : '');
   const [addressComponents, setAddressComponents] = useState('');
   const [formattedAddres, setFormattedAddres] = useState('');
+  const [isDataPosted, setIsDataPosted] = useState(false);
 
   // markersが変更されたときに実行される
   useEffect(() => {
@@ -22,6 +23,7 @@ const PostSpotForm = ({ onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await postSpotData(name, description, latitude, longitude, addressComponents, formattedAddres );
+    setIsDataPosted(true);
   };
 
   const postSpotData = async (name, description, latitude, longitude, addressComponents, formattedAddres) => {

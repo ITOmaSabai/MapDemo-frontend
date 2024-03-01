@@ -8,12 +8,14 @@ const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
 
   useEffect(() => {
+    if(isDataPosted) {
     fetch('http://localhost:3000/api/v1/maps')
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data)
       })
       .catch(error => console.error('Error:', error));
+    }
   }, []);
 
   const handleMarkerClick = (id) => {
