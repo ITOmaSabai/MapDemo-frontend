@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Marker } from '@vis.gl/react-google-maps';
 import { useContext } from 'react';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
+import { useDataPosted } from '../contexts/DataPostedContext';
 
 const SavedMarkerComponent = () => {
   const [savedMarkers, setSavedMarkers] = useState([]);
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
+  const { isDataPosted, setIsDataPosted } = useDataPosted();
 
   useEffect(() => {
-    if(isDataPosted) {
     fetch('http://localhost:3000/api/v1/maps')
       .then(response => response.json())
       .then(data => {
-        setSavedMarkers(data)
+        setSavedMarkers(data);
+        setIsDataPosted(false);
       })
       .catch(error => console.error('Error:', error));
-    }
-  }, []);
+  }, [isDataPosted]);
 
   const handleMarkerClick = (id) => {
     // すべてのvideoから、map_idがクリックされたMarkerのmap.idと等しいものを抜き出し、videoに代入
