@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Marker } from '@vis.gl/react-google-maps';
+import { useContext } from 'react';
+import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const SavedMarkerComponent = () => {
   const [savedMarkers, setSavedMarkers] = useState([]);
+  const { setSelectedMarkers } = useContext(SelectedMarkerContext);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/maps')
@@ -11,13 +14,14 @@ const SavedMarkerComponent = () => {
         setSavedMarkers(data)
       })
       .catch(error => console.error('Error:', error));
-  }, [savedMarkers]);
+  }, []);
 
   const handleMarkerClick = (id) => {
     // すべてのvideoから、map_idがクリックされたMarkerのmap.idと等しいものを抜き出し、videoに代入
-    const video = videos.find(v => v.map_id === id);
+    // const video = videos.find(v => v.map_id === id);
     // videoContextが必要
-    setSelectedVideos(video);
+    // setSelectedVideos(video);
+    setSelectedMarkers(id);
   };
 
   return (

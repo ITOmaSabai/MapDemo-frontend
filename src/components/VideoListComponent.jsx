@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import SelectedVideosContext from '../contexts/SelectedVideosContext';
 
 const VideoListComponent = () => {
-
-
-
+  const {selectedVideos} = useContext(SelectedVideosContext);
 
   return (
     <div>
       Video List
+      {selectedVideos && selectedVideos.length > 0 && (
       <ul>
         {selectedVideos.map((selectedVideo) => (
           <li key={selectedVideo.id}>
@@ -15,6 +15,7 @@ const VideoListComponent = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   )
 }
