@@ -17,14 +17,18 @@ export default function App() {
       <SelectedMarkerProvider>
           <SpotProvider>
             <VideosProvider>
-              <div >
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
-                    <MarkerPostComponent zoom={10} position={defaultPosition} />
+              <div style={{display: "flex", padding: "5px"}}>
+              <div style={{flex: 3}}>
+                    <MarkerPostComponent zoom={2} position={defaultPosition} />
                     <PostSpotForm />
                     <VideoFetcher />
+                    </div>
+                    <div style={{flex: 1}}>
                     <VideoListComponent />
-                  </APIProvider>
+                    </div>
               </div>
+                  </APIProvider>
             </VideosProvider>
           </SpotProvider>
         </SelectedMarkerProvider>

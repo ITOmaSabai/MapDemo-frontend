@@ -13,7 +13,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
     setMarkers({ lat, lng });
   }
   return (
-      <div style={{ height: "100vh", width: "100%" }}>
+      <div style={{ height: "80vh", width: "100%" }}>
         <Map defaultZoom={zoom} defaultCenter={center} onClick={handleMapOnClick} clickableIcons={false} >
         {markers && <Marker position={markers} />}
         {<SavedMarkerComponent />}
