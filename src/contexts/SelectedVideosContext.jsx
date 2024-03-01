@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 const SelectedVideosContext = createContext();
 
 export const SelectedVideosProvider = ({ children }) => {
-  const [SelectedVideoss, setSelectedVideos] = useState([]);
+  const [selectedVideos, setSelectedVideos] = useState([]);
 
   return (
-    <SelectedVideosContext.Provider value={{ SelectedVideoss, setSelectedVideos }}>
+    <SelectedVideosContext.Provider value={{ selectedVideos, setSelectedVideos }}>
       {children}
     </SelectedVideosContext.Provider>
   );

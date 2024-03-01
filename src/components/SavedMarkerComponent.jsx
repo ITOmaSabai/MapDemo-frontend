@@ -5,7 +5,7 @@ import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const SavedMarkerComponent = () => {
   const [savedMarkers, setSavedMarkers] = useState([]);
-  const { setSelectedMarkers } = useContext(SelectedMarkerContext);
+  const { setSelectedMarker } = useContext(SelectedMarkerContext);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/maps')
@@ -21,7 +21,7 @@ const SavedMarkerComponent = () => {
     // const video = videos.find(v => v.map_id === id);
     // videoContextが必要
     // setSelectedVideos(video);
-    setSelectedMarkers(id);
+    setSelectedMarker(id);
   };
 
   return (

@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 const SelectedMarkerContext = createContext();
 
 export const SelectedMarkerProvider = ({ children }) => {
-  const [selectedMarkers, setSelectedMarkers] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
   return (
-    <SelectedMarkerContext.Provider value={{ selectedMarkers, setSelectedMarkers }}>
+    <SelectedMarkerContext.Provider value={{ selectedMarker, setSelectedMarker }}>
       {children}
     </SelectedMarkerContext.Provider>
   );

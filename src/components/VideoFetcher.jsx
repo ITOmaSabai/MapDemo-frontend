@@ -5,9 +5,9 @@ import SelectedVideosContext from '../contexts/SelectedVideosContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const VideoFetcher = () => {
-  const {videos, setVideos} = useContext(VideosContext) || { videos: [] };
-  const {setSelectedVideos} = useContext(SelectedVideosContext) || { SelectedVideos: [] };
-  const {selectedMarker} = useContext(SelectedMarkerContext) || { selectedMarker: [] };
+  const {videos, setVideos} = useContext(VideosContext);
+  const {setSelectedVideos} = useContext(SelectedVideosContext);
+  const {selectedMarker} = useContext(SelectedMarkerContext);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/videos')
@@ -18,7 +18,6 @@ const VideoFetcher = () => {
 
   useEffect(() => {
       const matchedVideos = videos ? videos.filter(v => v.map_id === selectedMarker) : [];
-      // console.log(matchedVideos)s
       setSelectedVideos(matchedVideos);
   }, [videos, selectedMarker, setSelectedVideos])
 
