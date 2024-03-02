@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import SpotContext from '../contexts/SpotContext';
 import ReverseGeocodingComponent from './ReverseGeocodingComponent';
 import { useDataPosted } from '../contexts/DataPostedContext';
+import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const PostSpotForm = ({ onSubmit }) => {
   const { markers } = useContext(SpotContext);
@@ -12,14 +13,14 @@ const PostSpotForm = ({ onSubmit }) => {
   const [addressComponents, setAddressComponents] = useState('');
   const [formattedAddres, setFormattedAddres] = useState('');
   const { setIsDataPosted } = useDataPosted();
+  const { setSelectedMarker } = useContext(SelectedMarkerContext);
 
-  // markersが変更されたときに実行される
   useEffect(() => {
     if (markers) {
       setLatitude(markers.lat);
       setLongitude(markers.lng);
     }
-  }, [markers]); // 依存配列にmarkersを入れて、markersが変更されたときだけこのeffectを実行する
+  }, [markers]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +49,7 @@ const PostSpotForm = ({ onSubmit }) => {
       }
       const data = await response.json();
       console.log('保存成功:', data);
+      setSelectedMarker(data.map.id);
     } catch (error) {
       console.error('エラー:', error);
     }
