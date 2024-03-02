@@ -10,7 +10,7 @@ const SavedMarkerComponent = () => {
   const { isDataPosted, setIsDataPosted } = useDataPosted();
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/v1/maps')
+    fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data);
