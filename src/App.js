@@ -29,7 +29,7 @@ export default function App() {
                       </div>
                       <div style={{flex: 1}}>
                         <VideoListComponent />
-                        <StreetviewPanoramaComponent />
+                        {/* <StreetviewPanoramaComponent /> */}
                       </div>
                     </div>
                   </APIProvider>
