@@ -1,6 +1,6 @@
 // "use client";
 import './App.css';
-import { APIProvider } from '@vis.gl/react-google-maps';
+import { APIProvider, useMapsLibrary } from '@vis.gl/react-google-maps';
 import MarkerPostComponent from './components/MarkerPostComponent';
 import { SpotProvider } from './contexts/SpotContext';
 import PostSpotForm from './components/PostSpotForm';
@@ -10,6 +10,7 @@ import { SelectedMarkerProvider } from './contexts/SelectedMarkerContext';
 import { SelectedVideosProvider } from './contexts/SelectedVideosContext';
 import { VideosProvider } from './contexts/VideosContext';
 import { DataPostedProvider } from './contexts/DataPostedContext';
+import StreetviewPanoramaComponent from './components/StreetviewPanoramaComponent';
 
 export default function App() {
   const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }
@@ -28,6 +29,7 @@ export default function App() {
                       </div>
                       <div style={{flex: 1}}>
                         <VideoListComponent />
+                        <StreetviewPanoramaComponent />
                       </div>
                     </div>
                   </APIProvider>
