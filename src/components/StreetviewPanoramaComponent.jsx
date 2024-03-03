@@ -1,9 +1,11 @@
 import { useMapsLibrary, StreetViewPanorama } from "@vis.gl/react-google-maps";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import SpotContext from "../contexts/SpotContext";
 
 const StreetviewPanoramaComponent = () => {
   const streetviewPanoramaLibrary = useMapsLibrary("streetView");
-  const [options, setOptions] = useState(null);
+  const {markers, setMarkers} = useContext(SpotContext);
+  const [positionForStreetViewPanoramaOption, setPositionForStreetViewPanoramaOption] = useState(null);
 
   useEffect(() => {
     if (!streetviewPanoramaLibrary) return;
@@ -12,13 +14,20 @@ const StreetviewPanoramaComponent = () => {
       document.getElementById("street-view"),
       streetViewPanoramaOption
     )
-  }, [streetviewPanoramaLibrary]);
+  }, [positionForStreetViewPanoramaOption]);
 
-    const streetViewPanoramaOption = {
-      position: { lat: 37.86926, lng: -122.254811 },
-      pov: { heading: 165, pitch: 0 },
-      zoom: 1
-    }
+  useEffect(() => {
+    setPositionForStreetViewPanoramaOption(markers);
+  }, [markers]);
+
+  const streetViewPanoramaOption = {
+    position: { 
+      lat: positionForStreetViewPanoramaOption?.lat,
+      lng: positionForStreetViewPanoramaOption?.lng
+    },
+    pov: { heading: 165, pitch: 0 },
+    zoom: 1
+  }
 
   return (
     <div id="street-view" style={{height: "50vh", width: "100%"}}>
