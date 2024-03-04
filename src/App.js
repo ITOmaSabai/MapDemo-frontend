@@ -11,6 +11,7 @@ import { SelectedVideosProvider } from './contexts/SelectedVideosContext';
 import { VideosProvider } from './contexts/VideosContext';
 import { DataPostedProvider } from './contexts/DataPostedContext';
 import StreetviewPanoramaComponent from './components/StreetviewPanoramaComponent';
+import AutoCompleteComponent from './components/AutoCompleteComponent';
 import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
                       <div style={{flex: 1}}>
                         <VideoListComponent />
                         {/* <StreetviewPanoramaComponent /> */}
+                        <AutoCompleteComponent />
                       </div>
                     </div>
                   </APIProvider>
