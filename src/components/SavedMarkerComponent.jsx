@@ -16,8 +16,6 @@ const SavedMarkerComponent = () => {
       .then(data => {
         setSavedMarkers(data);
         setIsDataPosted(false);
-        console.log(data)
-        console.log(savedMarkers)
       })
       .catch(error => console.error('Error:', error));
   }, [isDataPosted]);

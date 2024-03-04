@@ -3,6 +3,10 @@ import SpotContext from '../contexts/SpotContext';
 import ReverseGeocodingComponent from './ReverseGeocodingComponent';
 import { useDataPosted } from '../contexts/DataPostedContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import HikingIcon from '@mui/icons-material/Hiking';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 const PostSpotForm = ({ onSubmit }) => {
   const { markers } = useContext(SpotContext);
@@ -57,15 +61,16 @@ const PostSpotForm = ({ onSubmit }) => {
 
   return (
     <div>
-      <ReverseGeocodingComponent
-        lat={latitude}
-        lng={longitude}
-        onSetAddressComponentsChange={setAddressComponents}
-        onSetFormattedAddressChange={setFormattedAddres}
-      >
-      </ReverseGeocodingComponent>
+        <ReverseGeocodingComponent
+          lat={latitude}
+          lng={longitude}
+          onSetAddressComponentsChange={setAddressComponents}
+          onSetFormattedAddressChange={setFormattedAddres}
+        >
+        </ReverseGeocodingComponent>
 
     <form onSubmit={handleSubmit}>
+      <Stack direction="column" spacing={1} useFlexGap flexWrap={"wrap"}>
       <div>
         <label>スポット名:</label>
         <input
@@ -98,14 +103,18 @@ const PostSpotForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        {/* <label>address_components:</label> */}
+        {/* <>address_components:</ label> */}
         {/* <input
           type="hidden"
           value={addressComponents}
           name="addressComponents"
         /> */}
       </div>
-      <button type="submit">ピンを追加</button>
+ 
+      <Button variant="contained" color="info" type="submit" endIcon={<FlightTakeoffIcon />}>
+         街に行ってみる
+      </Button>
+    </Stack>
     </form>
 
     </div>
