@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 const SavedMarkerContext = createContext();
 
 export const SavedMarkerProvider = ({ children }) => {
-  const [savedMarker, setSavedMarker] = useState([]);
+  const [savedMarkers, setSavedMarkers] = useState([]);
 
   return (
-    <SavedMarkerContext.Provider value={{ savedMarker, setSavedMarker }}>
+    <SavedMarkerContext.Provider value={{ savedMarkers, setSavedMarkers }}>
       {children}
     </SavedMarkerContext.Provider>
   );
 };
 
-export const useDataPosted = () => useContext(SavedMarkerContext);
+export default SavedMarkerContext;
