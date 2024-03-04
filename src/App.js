@@ -32,10 +32,10 @@ export default function App() {
                         <VideoFetcher />
                       </div>
                       <div style={{flex: 1}}>
+                        <SpotSearchBox/>
                         <VideoListComponent />
                         {/* <StreetviewPanoramaComponent /> */}
                         {/* <AutoCompleteComponent /> */}
-                        <SpotSearchBox/>
                       </div>
                     </div>
                   </APIProvider>

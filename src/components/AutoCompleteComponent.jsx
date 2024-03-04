@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import SavedMarkerContext from '../contexts/SavedMarkerContext';
 
 const AutocompleteComponent = ({options}) => {
-  console.log(options)
   return (
     <Autocomplete
+      key={options.id}
       disablePortal
       id="combo-box-demo"
       options={options}

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AutocompleteComponent from './AutoCompleteComponent';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
+import ClickableAndDeletableChips from './ClickableAndDeletableChips';
 
 const SpotSearchBox = () => {
   const {savedMarkers} = useContext(SavedMarkerContext);
@@ -14,6 +15,7 @@ const SpotSearchBox = () => {
     <>
       スポット名を検索
       <AutocompleteComponent options={savedMarkerList}/>
+      <ClickableAndDeletableChips/>
     </>
   )
 }
