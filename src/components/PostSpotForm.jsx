@@ -5,7 +5,7 @@ import { useDataPosted } from '../contexts/DataPostedContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+// import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 const PostSpotForm = () => {
   const { markers } = useContext(SpotContext);
@@ -120,8 +120,7 @@ const PostSpotForm = () => {
         variant="contained"
         color="info"
         type="submit"
-        endIcon={<FlightTakeoffIcon />}
-
+        // endIcon={<FlightTakeoffIcon />}
       >
          街に行ってみる
       </Button>
