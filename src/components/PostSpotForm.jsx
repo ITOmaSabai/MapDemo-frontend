@@ -109,7 +109,7 @@ const PostSpotForm = ({ onSubmit }) => {
         /> */}
       </div>
       {/* <button type="submit">ピンを追加</button> */}
-      <Button variant="outlined" color="success" type="submit">
+      <Button variant="contained" color="success" type="submit">
          街を歩いてみる(動画を取得します)
       </Button>
     </Stack>
