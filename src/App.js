@@ -12,6 +12,7 @@ import { VideosProvider } from './contexts/VideosContext';
 import { DataPostedProvider } from './contexts/DataPostedContext';
 import StreetviewPanoramaComponent from './components/StreetviewPanoramaComponent';
 import AutoCompleteComponent from './components/AutoCompleteComponent';
+import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 
 export default function App() {
   const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }
@@ -21,6 +22,7 @@ export default function App() {
           <SpotProvider>
             <VideosProvider>
               <DataPostedProvider>
+                <SavedMarkerProvider>
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <div style={{display: "flex", padding: "5px"}}>
                       <div style={{flex: 3}}>
@@ -35,7 +37,8 @@ export default function App() {
                       </div>
                     </div>
                   </APIProvider>
-                </DataPostedProvider>
+                </SavedMarkerProvider>
+              </DataPostedProvider>
             </VideosProvider>
           </SpotProvider>
         </SelectedMarkerProvider>
