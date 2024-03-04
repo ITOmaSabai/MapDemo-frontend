@@ -15,6 +15,7 @@ import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 import AutoCompleteComponent from './components/AutoCompleteComponent';
 import SpotSearchBox from './components/SpotSearchBox';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import VideoDialog from './components/VideoDialog';
 
 const theme = createTheme({
   components: {
@@ -36,7 +37,7 @@ export default function App() {
             <VideosProvider>
               <DataPostedProvider>
                 <SavedMarkerProvider>
-                  <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
+                  <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='ja'>
                     <div style={{display: "flex", padding: "5px"}}>
                     <div style={{flex: 1}}>
                         <SpotSearchBox/>
@@ -44,6 +45,7 @@ export default function App() {
                         <PostSpotForm />
                         {/* <StreetviewPanoramaComponent /> */}
                         {/* <AutoCompleteComponent /> */}
+                        <VideoDialog />
                       </div>
                       <div style={{flex: 3}}>
                         <MarkerPostComponent zoom={2} position={defaultPosition} />
