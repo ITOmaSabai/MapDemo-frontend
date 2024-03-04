@@ -37,7 +37,7 @@ export default function App() {
             <VideosProvider>
               <DataPostedProvider>
                 <SavedMarkerProvider>
-                  <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='ja'>
+                  <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <div style={{display: "flex", padding: "5px"}}>
                     <div style={{flex: 1}}>
                         <SpotSearchBox/>
