@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import SelectedVideosContext from '../contexts/SelectedVideosContext';
 
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+const emails = ['username@gmail.com'];
 
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
@@ -56,10 +56,6 @@ export default function VideoDialog() {
 
   return (
     <div>
-      <Typography variant="subtitle1" component="div">
-        Selected: {selectedValue}
-      </Typography>
-      <br />
       <Button variant="outlined" onClick={handleClickOpen}>
         Open simple dialog
       </Button>

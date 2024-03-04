@@ -45,11 +45,11 @@ export default function App() {
                         <PostSpotForm />
                         {/* <StreetviewPanoramaComponent /> */}
                         {/* <AutoCompleteComponent /> */}
+                        <VideoDialog />
                       </div>
                       <div style={{flex: 3}}>
                         <MarkerPostComponent zoom={2} position={defaultPosition} />
                         <VideoFetcher />
-                        <VideoDialog />
                       </div>
                     </div>
                   </APIProvider>
