@@ -11,6 +11,7 @@ import { SelectedVideosProvider } from './contexts/SelectedVideosContext';
 import { VideosProvider } from './contexts/VideosContext';
 import { DataPostedProvider } from './contexts/DataPostedContext';
 import StreetviewPanoramaComponent from './components/StreetviewPanoramaComponent';
+import AutoCompleteComponent from './components/AutoCompleteComponent';
 import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 import AutoCompleteComponent from './components/AutoCompleteComponent';
 import SpotSearchBox from './components/SpotSearchBox';
