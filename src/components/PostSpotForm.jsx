@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import HikingIcon from '@mui/icons-material/Hiking';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
-const PostSpotForm = ({ onSubmit }) => {
+const PostSpotForm = () => {
   const { markers } = useContext(SpotContext);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -25,6 +25,10 @@ const PostSpotForm = ({ onSubmit }) => {
       setLongitude(markers.lng);
     }
   }, [markers]);
+
+  // useEffect(() => {
+  //   setName();
+  // }, [addressComponents]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +58,8 @@ const PostSpotForm = ({ onSubmit }) => {
       const data = await response.json();
       console.log('保存成功:', data);
       setSelectedMarker(data.map.id);
+      setName('');
+      setDescription('');
     } catch (error) {
       console.error('エラー:', error);
     }
