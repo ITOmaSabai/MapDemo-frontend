@@ -12,11 +12,11 @@ const SpotSearchBox = () => {
   }));
 
   return (
-    <>
+    <div style={{padding: "10px"}}>
       スポット名を検索
       <AutocompleteComponent options={savedMarkerList}/>
       <ClickableAndDeletableChips/>
-    </>
+    </div>
   )
 }
 

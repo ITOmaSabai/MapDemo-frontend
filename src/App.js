@@ -14,10 +14,22 @@ import StreetviewPanoramaComponent from './components/StreetviewPanoramaComponen
 import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 import AutoCompleteComponent from './components/AutoCompleteComponent';
 import SpotSearchBox from './components/SpotSearchBox';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    MuiStack: {
+      defaultProps: {
+        useFlexGap: true,
+      },
+    },
+  },
+});
 
 export default function App() {
   const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }
   return (
+    <ThemeProvider theme={theme}>
     <SelectedVideosProvider>
       <SelectedMarkerProvider>
           <SpotProvider>
@@ -45,5 +57,6 @@ export default function App() {
           </SpotProvider>
         </SelectedMarkerProvider>
       </SelectedVideosProvider>
+    </ThemeProvider>
   );
 }

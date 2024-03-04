@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
+
+
 const ClickableAndDeletableChips = () => {
   const [chips, setChips] = useState([
     { key: 0, label: "行ってみたい" },
@@ -20,8 +22,8 @@ const ClickableAndDeletableChips = () => {
   };
 
   return (
-    <>
-      <Stack direction="row" spacing={1}>
+    <div style={{padding: "10px"}}>
+      <Stack direction="row" spacing={1} useFlexGap flexWrap={"wrap"}>
         {chips.map(chip => (
             <Chip
               label={chip.label}
@@ -32,7 +34,7 @@ const ClickableAndDeletableChips = () => {
             />
         ))}
       </Stack>
-    </>
+    </div>
 
   );
 }
