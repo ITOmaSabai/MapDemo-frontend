@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Marker } from '@vis.gl/react-google-maps';
-import { useContext } from 'react';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
+import SavedMarkerContext from '../contexts/SavedMarkerContext';
 
 const SavedMarkerComponent = () => {
-  const [savedMarkers, setSavedMarkers] = useState([]);
+  // const [savedMarkers, setSavedMarkers] = useState([]);
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
   const { isDataPosted, setIsDataPosted } = useDataPosted();
+  const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
 
   useEffect(() => {
     fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
@@ -15,15 +16,13 @@ const SavedMarkerComponent = () => {
       .then(data => {
         setSavedMarkers(data);
         setIsDataPosted(false);
+        console.log(data)
+        console.log(savedMarkers)
       })
       .catch(error => console.error('Error:', error));
   }, [isDataPosted]);
 
   const handleMarkerClick = (id) => {
-    // すべてのvideoから、map_idがクリックされたMarkerのmap.idと等しいものを抜き出し、videoに代入
-    // const video = videos.find(v => v.map_id === id);
-    // videoContextが必要
-    // setSelectedVideos(video);
     setSelectedMarker(id);
   };
 
