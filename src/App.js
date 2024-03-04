@@ -38,16 +38,16 @@ export default function App() {
                 <SavedMarkerProvider>
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <div style={{display: "flex", padding: "5px"}}>
-                      <div style={{flex: 3}}>
-                        <MarkerPostComponent zoom={2} position={defaultPosition} />
-                        <PostSpotForm />
-                        <VideoFetcher />
-                      </div>
-                      <div style={{flex: 1}}>
+                    <div style={{flex: 1}}>
                         <SpotSearchBox/>
                         <VideoListComponent />
+                        <PostSpotForm />
                         {/* <StreetviewPanoramaComponent /> */}
                         {/* <AutoCompleteComponent /> */}
+                      </div>
+                      <div style={{flex: 3}}>
+                        <MarkerPostComponent zoom={2} position={defaultPosition} />
+                        <VideoFetcher />
                       </div>
                     </div>
                   </APIProvider>
