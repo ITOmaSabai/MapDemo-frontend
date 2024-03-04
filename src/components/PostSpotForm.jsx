@@ -5,7 +5,6 @@ import { useDataPosted } from '../contexts/DataPostedContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import HikingIcon from '@mui/icons-material/Hiking';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 const PostSpotForm = () => {
