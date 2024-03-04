@@ -3,8 +3,6 @@ import { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-
-
 const ClickableAndDeletableChips = () => {
   const [chips, setChips] = useState([
     { key: 0, label: "行ってみたい" },

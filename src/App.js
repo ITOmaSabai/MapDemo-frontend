@@ -15,6 +15,7 @@ import { SavedMarkerProvider } from './contexts/SavedMarkerContext';
 import AutoCompleteComponent from './components/AutoCompleteComponent';
 import SpotSearchBox from './components/SpotSearchBox';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import SimpleDialogDemo from './components/VideoDialog';
 
 const theme = createTheme({
   components: {
@@ -48,6 +49,7 @@ export default function App() {
                       <div style={{flex: 3}}>
                         <MarkerPostComponent zoom={2} position={defaultPosition} />
                         <VideoFetcher />
+                        <SimpleDialogDemo />
                       </div>
                     </div>
                   </APIProvider>

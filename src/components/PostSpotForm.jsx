@@ -119,6 +119,7 @@ const PostSpotForm = () => {
       <Button variant="contained" color="info" type="submit" endIcon={<FlightTakeoffIcon />}>
          街に行ってみる
       </Button>
+      (動画を表示します)
     </Stack>
     </form>
 
