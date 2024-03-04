@@ -103,17 +103,14 @@ const PostSpotForm = ({ onSubmit }) => {
         />
       </div>
       <div>
-        {/* <label>address_components:</label> */}
+        {/* <>address_components:</ label> */}
         {/* <input
           type="hidden"
           value={addressComponents}
           name="addressComponents"
         /> */}
       </div>
-      {/* <button type="submit">ピンを追加</button> */}
-      {/* <Button variant="contained" color="success" type="submit" endIcon={<HikingIcon />}>
-         街を歩いてみる
-      </Button> */}
+ 
       <Button variant="contained" color="info" type="submit" endIcon={<FlightTakeoffIcon />}>
          街に行ってみる
       </Button>
