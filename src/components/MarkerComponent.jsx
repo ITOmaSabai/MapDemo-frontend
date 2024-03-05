@@ -6,14 +6,17 @@ const MarkerComponent = (position) => {
   const {markers} = useContext(SpotContext);
 
   return (
-<AdvancedMarker
-          position={markers}
-          title={'AdvancedMarker with customized pin.'}>
-          <Pin background={'#22ccff'} borderColor={'#1e89a1'} scale={1.4}>
-            {/* children are rendered as 'glyph' of pin */}
-            👀
-          </Pin>
-        </AdvancedMarker>
+    <AdvancedMarker
+      position={markers}
+      title={'AdvancedMarker with customized pin.'}>
+      <Pin
+        // background={'#22ccff'}
+        // borderColor={'#1e89a1'}
+        // glyphColor={'#0f677a'}
+      >
+          You
+      </Pin>
+    </AdvancedMarker>
   )
 };
 

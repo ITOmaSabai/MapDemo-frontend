@@ -22,10 +22,11 @@ const MapComponent = ({ zoom, center, onClick }) => {
          clickableIcons={false}
          disableDefaultUI
          gestureHandling={'greedy'}
+         mapId={'ID952dd815ce99344a'}
         >
-        {/* {markers && <Marker position={markers} />} */}
-        {markers && <MarkerComponent />}
-        {<SavedMarkerComponent />}
+          {/* {markers && <Marker position={markers} />} */}
+          {markers && <MarkerComponent />}
+          <SavedMarkerComponent />
         </Map>
       </div>
   );
