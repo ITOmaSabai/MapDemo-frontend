@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Marker } from '@vis.gl/react-google-maps';
+import { AdvancedMarker, Marker, Pin } from '@vis.gl/react-google-maps';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
@@ -26,14 +26,28 @@ const SavedMarkerComponent = () => {
 
   return (
     <>
-      {savedMarkers.map((savedMarker) => (
+      {/* {savedMarkers.map((savedMarker) => (
         <Marker 
           key={savedMarker.id} 
           id={savedMarker.id} 
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
           onClick={() => handleMarkerClick(savedMarker.id)}
         />
-        ))}
+        ))} */}
+      {savedMarkers.map((savedMarker) => (
+        <AdvancedMarker
+          key={savedMarker.id} 
+          position={{lat: savedMarker.lat, lng:savedMarker.lng}}
+          onClick={() => handleMarkerClick(savedMarker.id)}
+        >
+          <Pin
+            background={'#22ccff'}
+            borderColor={'#1e89a1'}
+            glyphColor={'#0f677a'}
+          >
+          </Pin>
+        </AdvancedMarker>
+    ))}
     </>
   )
 };
