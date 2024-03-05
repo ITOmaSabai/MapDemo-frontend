@@ -10,7 +10,7 @@ const MarkerComponent = (position) => {
       position={markers}
       title={'AdvancedMarker with customized pin.'}>
       <Pin
-        // background={'#22ccff'}
+        background={'#FF6600'}
         // borderColor={'#1e89a1'}
         // glyphColor={'#0f677a'}
       >
