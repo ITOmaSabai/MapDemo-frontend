@@ -22,7 +22,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
          clickableIcons={false}
          disableDefaultUI
          gestureHandling={'greedy'}
-         mapId={'ID952dd815ce99344a'}
+         mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
         >
           {/* {markers && <Marker position={markers} />} */}
           {markers && <MarkerComponent />}
