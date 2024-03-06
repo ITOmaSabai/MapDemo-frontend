@@ -3,7 +3,7 @@ import { AdvancedMarker, Marker, Pin, useMap } from '@vis.gl/react-google-maps';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
-import { MarkerClusterer } from '@googlemaps/markerClusterer'
+import { MarkerClusterer } from '@googlemaps/markerclusterer'
 
 const SavedMarkerComponent = () => {
   // const [savedMarkers, setSavedMarkers] = useState([]);
