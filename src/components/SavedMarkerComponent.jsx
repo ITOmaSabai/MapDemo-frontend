@@ -5,12 +5,13 @@ import { useDataPosted } from '../contexts/DataPostedContext';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import marker from '@googlemaps/markerclusterer';
+import SpotContext from '../contexts/SpotContext';
 
 const SavedMarkerComponent = () => {
-  // const [savedMarkers, setSavedMarkers] = useState([]);
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
   const { isDataPosted, setIsDataPosted } = useDataPosted();
   const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
+  const { setMarkers } = useContext(SpotContext);
 
   useEffect(() => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
@@ -23,8 +24,12 @@ const SavedMarkerComponent = () => {
       .catch(error => console.error('Error:', error));
   }, [isDataPosted]);
 
-  const handleMarkerClick = (id) => {
+  const map = useMap();
+
+  const handleMarkerClick = (id, lat, lng) => {
     setSelectedMarker(id);
+    setMarkers({lat, lng});
+    map.setCenter({lat, lng});
   };
 
   // クラスター機能を実装する
@@ -74,7 +79,7 @@ const SavedMarkerComponent = () => {
         <AdvancedMarker
           key={savedMarker.id} 
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
-          onClick={() => handleMarkerClick(savedMarker.id)}
+          onClick={() => handleMarkerClick(savedMarker.id, savedMarker.lat, savedMarker.lng)}
           // ref={(marker) => setMarkerRef(marker, savedMarker.id)}
         >
           <Pin
