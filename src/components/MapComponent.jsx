@@ -23,6 +23,8 @@ const MapComponent = ({ zoom, center, onClick }) => {
          disableDefaultUI
          gestureHandling={'greedy'}
          mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
+         minZoom={zoom + 0}
+         maxZoom={zoom + 14}
         >
           {/* {markers && <Marker position={markers} />} */}
           {markers && <MarkerComponent />}
