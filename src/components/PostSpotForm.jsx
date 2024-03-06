@@ -31,11 +31,10 @@ const PostSpotForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postSpotData(name, description, latitude, longitude, addressComponents, formattedAddres );
-    setIsDataPosted(true);
+    await postSpotData();
   };
 
-  const postSpotData = async (name, description, latitude, longitude, addressComponents, formattedAddres) => {
+  const postSpotData = async () => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
       const response = await fetch('http://localhost:3000/api/v1/maps', {
@@ -57,6 +56,7 @@ const PostSpotForm = () => {
       }
       const data = await response.json();
       console.log('保存成功:', data);
+      setIsDataPosted(true);
       setSelectedMarker(data.map.id);
       setName('');
       setDescription('');
