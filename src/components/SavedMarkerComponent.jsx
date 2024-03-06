@@ -28,45 +28,45 @@ const SavedMarkerComponent = () => {
   };
 
   // クラスター機能を実装する
-  const map = useMap();
-  const clusterer = useRef(null);
-  const [markers, setMarkers] = useState({});
+  // const map = useMap();
+  // const clusterer = useRef(null);
+  // const [markers, setMarkers] = useState({});
 
-  useEffect(() => {
+  // useEffect(() => {
     // mapインスタンスが存在し、clustererが存在しない場合、MarkerClustererインスタンスを生成する
-    if (!map) return;
-    if (!clusterer.current) {
-      clusterer.current = new MarkerClusterer({ map });
-    }
-  }, [map]);
+  //   if (!map) return;
+  //   if (!clusterer.current) {
+  //     clusterer.current = new MarkerClusterer({ map });
+  //   }
+  // }, [map]);
 
   // useEffect(() => {
 
   // }, [markers])
 
-  useEffect(() => {
+  // useEffect(() => {
     // markersが変化した場合に、markersを一度全て削除し、markersを追加する
-    clusterer.current?.clearMarkers();
-    clusterer.current?.addMarkers(Object.values(markers));
-  },[markers])
+  //   clusterer.current?.clearMarkers();
+  //   clusterer.current?.addMarkers(Object.values(markers));
+  // },[markers])
 
-  const setMarkerRef = (marker, key) => {
-    if (marker && markers[key]) return;
-    if (!marker && !markers[key]) return;
+  // const setMarkerRef = (marker, key) => {
+  //   if (marker && markers[key]) return;
+  //   if (!marker && !markers[key]) return;
     // 以前の状態をmarkersにセットする
-    setMarkers(prev => {
+    // setMarkers(prev => {
       // markerが存在する場合
-      if (marker) {
+      // if (marker) {
         // 以前の状態のコピーに、新しいmarkerのキーを持つmarkerを追加する
-        return {...prev, [key]: marker};
-      } else {
+      //   return {...prev, [key]: marker};
+      // } else {
         // markerが存在しない場合、前の状態のコピーから、新しいmarkerを削除する
-        const newMarkers = {...prev};
-        delete newMarkers[key];
-        return newMarkers;
-      }
-    })
-  }
+  //       const newMarkers = {...prev};
+  //       delete newMarkers[key];
+  //       return newMarkers;
+  //     }
+  //   })
+  // }
 
   return (
     <>
@@ -75,7 +75,7 @@ const SavedMarkerComponent = () => {
           key={savedMarker.id} 
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
           onClick={() => handleMarkerClick(savedMarker.id)}
-          ref={(marker) => setMarkerRef(marker, savedMarker.id)}
+          // ref={(marker) => setMarkerRef(marker, savedMarker.id)}
         >
           <Pin
             background={'#22ccff'}
