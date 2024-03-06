@@ -37,7 +37,8 @@ const PostSpotForm = () => {
 
   const postSpotData = async (name, description, latitude, longitude, addressComponents, formattedAddres) => {
     try {
-      const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
+      // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
+      const response = await fetch('http://localhost:3000/api/v1/maps', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

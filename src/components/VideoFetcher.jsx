@@ -12,7 +12,8 @@ const VideoFetcher = () => {
   const { isDataPosted } = useDataPosted();
 
   useEffect(() => {
-    fetch('https://mapdemo-backend.onrender.com/api/v1/videos')
+    // fetch('https://mapdemo-backend.onrender.com/api/v1/videos')
+    fetch('http://localhost:3000/api/v1/videos')
       .then(response => response.json())
       .then(data => setVideos(data))
       .catch(error => console.error('Error:', error));

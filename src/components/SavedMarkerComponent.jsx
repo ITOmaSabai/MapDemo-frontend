@@ -11,7 +11,8 @@ const SavedMarkerComponent = () => {
   const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
 
   useEffect(() => {
-    fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
+    // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
+    fetch('http://localhost:3000/api/v1/maps')
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data);
