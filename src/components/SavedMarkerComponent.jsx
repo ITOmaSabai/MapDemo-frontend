@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AdvancedMarker, Marker, Pin } from '@vis.gl/react-google-maps';
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { AdvancedMarker, Marker, Pin, useMap } from '@vis.gl/react-google-maps';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
+import { MarkerClusterer } from '@googlemaps/markerClusterer'
 
 const SavedMarkerComponent = () => {
   // const [savedMarkers, setSavedMarkers] = useState([]);
@@ -25,6 +26,37 @@ const SavedMarkerComponent = () => {
     setSelectedMarker(id);
   };
 
+  const map = useMap();
+  const clusterer = useRef(null);
+  const [markers, setMarkers] = useState({});
+
+  useEffect(() => {
+    if (!map) return;
+    if (!clusterer.current) {
+      clusterer.current = new MarkerClusterer({ map });
+    }
+
+  }, [map]);
+
+  useEffect(() => {
+    clusterer.current?.clearMarkers();
+    clusterer.current?.addMarkers(Object.values(markers));
+  },[markers])
+
+  const setMarkerRef = (marker, key) => {
+    if (marker && markers[key]) return;
+    if (!marker && !markers[key]) return;
+    setMarkers(prev => {
+      if (marker) {
+        return {...prev, [key]: marker};
+      } else {
+        const newMarkers = {...prev};
+        delete newMarkers[key];
+        return newMarkers;
+      }
+    })
+  }
+
   return (
     <>
       {/* {savedMarkers.map((savedMarker) => (
@@ -40,6 +72,7 @@ const SavedMarkerComponent = () => {
           key={savedMarker.id} 
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
           onClick={() => handleMarkerClick(savedMarker.id)}
+          ref={marker => setMarkerRef(marker, savedMarker.id)}
         >
           <Pin
             background={'#22ccff'}
