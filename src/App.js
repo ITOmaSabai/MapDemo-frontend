@@ -19,7 +19,7 @@ import VideoDialog from './components/VideoDialog';
 import { Container, Typography, Box } from '@mui/material';
 import CssBaseLine from '@mui/material/CssBaseline'
 import { grey } from '@mui/material/colors';
-import PrimarySearchAppBar from './components/PrimarySearchAppBar';
+import HeaderAppBar from './components/HeaderAppBar';
 
 // const color = blueGrey[800];
 
@@ -55,12 +55,11 @@ export default function App() {
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <CssBaseLine>
                     <Box sx={{ px: 0, height: "100vh" }}>
-                      <PrimarySearchAppBar />
+                      <HeaderAppBar />
                       {/* <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
                         BackHacker */}
                     <Box sx={{ display: "flex", px: 1}}>
-                    <Box sx={{flex: 1, px: 1}}>
-                        <SpotSearchBox/>
+                    <Box sx={{flex: 1, px: 1, py: 2}}>
                         <VideoListComponent />
                         <PostSpotForm />
                         {/* <StreetviewPanoramaComponent /> */}
