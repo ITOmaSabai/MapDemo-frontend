@@ -20,6 +20,8 @@ import { Container, Typography, Box } from '@mui/material';
 import CssBaseLine from '@mui/material/CssBaseline'
 import { grey } from '@mui/material/colors';
 import HeaderAppBar from './components/HeaderAppBar';
+import { SidebarDrawerOpenProvider } from './contexts/SidebarDrawerOpenContext';
+import SidebarDrawer from './components/SidebarDrawer';
 
 // const color = blueGrey[800];
 
@@ -52,10 +54,13 @@ export default function App() {
             <VideosProvider>
               <DataPostedProvider>
                 <SavedMarkerProvider>
+                  <SidebarDrawerOpenProvider>
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <CssBaseLine>
                     <Box sx={{ px: 0, height: "100vh" }}>
                       <HeaderAppBar />
+                      <SidebarDrawer />
+
                       {/* <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
                         BackHacker */}
                     <Box sx={{ display: "flex", px: 1}}>
@@ -74,6 +79,7 @@ export default function App() {
                     </Box>
                     </CssBaseLine>
                   </APIProvider>
+                  </SidebarDrawerOpenProvider>
                 </SavedMarkerProvider>
               </DataPostedProvider>
             </VideosProvider>

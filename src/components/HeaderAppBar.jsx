@@ -16,6 +16,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import SpotSearchBox from './SpotSearchBox';
+import SidebarDrawer from './SidebarDrawer';
+import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,6 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function HeaderAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { sidebarDrawerOpen, setSidebarDrawerOpen } = React.useContext(SidebarDrawerOpenContext);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -80,6 +83,12 @@ export default function HeaderAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleDrawerClick = () => {
+    setSidebarDrawerOpen(true);
+    console.log("sidebar should be opened.")
+    console.log(sidebarDrawerOpen)
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -165,6 +174,7 @@ export default function HeaderAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleDrawerClick}
           >
             <MenuIcon />
           </IconButton>
