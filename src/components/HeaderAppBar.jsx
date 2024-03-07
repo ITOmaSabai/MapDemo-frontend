@@ -18,6 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import SpotSearchBox from './SpotSearchBox';
 import SidebarDrawer from './SidebarDrawer';
 import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
+import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -241,6 +242,7 @@ export default function HeaderAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {/* <AuthGoogleSIgninPopup /> */}
     </Box>
   );
 }
