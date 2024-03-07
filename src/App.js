@@ -22,6 +22,8 @@ import { grey } from '@mui/material/colors';
 import HeaderAppBar from './components/HeaderAppBar';
 import { SidebarDrawerOpenProvider } from './contexts/SidebarDrawerOpenContext';
 import SidebarDrawer from './components/SidebarDrawer';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 // const color = blueGrey[800];
 
@@ -47,6 +49,7 @@ const theme = createTheme({
 export default function App() {
   const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }
   return (
+    <Router>
     <ThemeProvider theme={theme}>
     <SelectedVideosProvider>
       <SelectedMarkerProvider>
@@ -57,26 +60,37 @@ export default function App() {
                   <SidebarDrawerOpenProvider>
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <CssBaseLine>
+                    <div>
+                  <Routes>
+                    <Route>
+                  <PrivateRoute exact path="/" render={() => (
+                    
+
                     <Box sx={{ px: 0, height: "100vh" }}>
                       <HeaderAppBar />
                       <SidebarDrawer />
 
                       {/* <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
                         BackHacker */}
-                    <Box sx={{ display: "flex", px: 1}}>
-                    <Box sx={{flex: 1, px: 1, py: 2}}>
-                        <VideoListComponent />
-                        <PostSpotForm />
-                        {/* <StreetviewPanoramaComponent /> */}
-                        {/* <AutoCompleteComponent /> */}
-                        <VideoDialog />
-                    </Box>
-                      <Box sx={{flex: 3, px: 1}}>
-                        <MarkerPostComponent zoom={2} position={defaultPosition} />
-                        <VideoFetcher />
+                      <Box sx={{ display: "flex", px: 1}}>
+                        <Box sx={{flex: 1, px: 1, py: 2}}>
+                          <VideoListComponent />
+                          <PostSpotForm />
+                          {/* <StreetviewPanoramaComponent /> */}
+                          {/* <AutoCompleteComponent /> */}
+                          <VideoDialog />
+                        </Box>
+                        <Box sx={{flex: 3, px: 1}}>
+                          <MarkerPostComponent zoom={2} position={defaultPosition} />
+                          <VideoFetcher />
+                        </Box>
                       </Box>
                     </Box>
-                    </Box>
+                    )}/>
+                    {/* <Route path="/login" component={Login} /> */}
+                    </Route>
+                    </Routes>
+                  </div>
                     </CssBaseLine>
                   </APIProvider>
                   </SidebarDrawerOpenProvider>
@@ -87,5 +101,6 @@ export default function App() {
         </SelectedMarkerProvider>
       </SelectedVideosProvider>
     </ThemeProvider>
+    </Router>
   );
 }
