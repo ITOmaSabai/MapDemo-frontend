@@ -23,7 +23,8 @@ export default function SidebarDrawer() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" >
+    // onClick={setSidebarDrawerOpen(false)}を削除している
+    <Box sx={{ width: 250 }} role="presentation">
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
