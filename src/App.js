@@ -25,6 +25,7 @@ import SidebarDrawer from './components/SidebarDrawer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import AuthGoogleSIgninPopup from './auth_google_signin_popup';
+import UserInfo from './components/UserInfo';
 
 // const color = blueGrey[800];
 
@@ -89,6 +90,7 @@ export default function App() {
                       <div>
                         <Routes>
                           <Route path="/" element={<RouteComponent />} />
+                          <Route path="/user" element={<UserInfo />} />
                           <Route path="/login" element={<AuthGoogleSIgninPopup />} />
                         </Routes>
                       </div>
