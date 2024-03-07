@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { Box } from '@mui/material';
 
 const ClickableAndDeletableChips = () => {
   const [chips, setChips] = useState([
@@ -22,19 +23,19 @@ const ClickableAndDeletableChips = () => {
   };
 
   return (
-    <div style={{padding: "10px"}}>
+    <Box sx={{p: "10px"}}>
       <Stack direction="row" spacing={1} useFlexGap flexWrap={"wrap"}>
         {chips.map(chip => (
             <Chip
               label={chip.label}
               variant="filled"
-              color="info"
+              color="secondary"
               onClick={handleClick}
               onDelete={() => handleDelete(chip.key)}
             />
         ))}
       </Stack>
-    </div>
+    </Box>
 
   );
 }
