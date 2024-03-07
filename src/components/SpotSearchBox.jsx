@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import AutocompleteComponent from './AutoCompleteComponent';
 import SavedMarkerContext from '../contexts/SavedMarkerContext';
 import ClickableAndDeletableChips from './ClickableAndDeletableChips';
+import Box from '@mui/material/Box';
 
 const SpotSearchBox = () => {
   const {savedMarkers} = useContext(SavedMarkerContext);
@@ -12,11 +13,10 @@ const SpotSearchBox = () => {
   }));
 
   return (
-    <div style={{padding: "10px"}}>
-      スポット名を検索
+    <Box>
       <AutocompleteComponent options={savedMarkerList}/>
-      <ClickableAndDeletableChips/>
-    </div>
+      {/* <ClickableAndDeletableChips/> */}
+    </Box>
   )
 }
 

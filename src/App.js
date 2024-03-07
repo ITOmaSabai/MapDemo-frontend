@@ -16,6 +16,14 @@ import AutoCompleteComponent from './components/AutoCompleteComponent';
 import SpotSearchBox from './components/SpotSearchBox';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import VideoDialog from './components/VideoDialog';
+import { Container, Typography, Box } from '@mui/material';
+import CssBaseLine from '@mui/material/CssBaseline'
+import { grey } from '@mui/material/colors';
+import HeaderAppBar from './components/HeaderAppBar';
+import { SidebarDrawerOpenProvider } from './contexts/SidebarDrawerOpenContext';
+import SidebarDrawer from './components/SidebarDrawer';
+
+// const color = blueGrey[800];
 
 const theme = createTheme({
   components: {
@@ -25,6 +33,15 @@ const theme = createTheme({
       },
     },
   },
+  palette: {
+    primary: {
+      main: grey[800],
+    },
+    secondary: {
+      main: '#5c6bc0',
+    },
+  //   mode: 'dark'
+  }
 });
 
 export default function App() {
@@ -37,22 +54,32 @@ export default function App() {
             <VideosProvider>
               <DataPostedProvider>
                 <SavedMarkerProvider>
+                  <SidebarDrawerOpenProvider>
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
-                    <div style={{display: "flex", padding: "5px"}}>
-                    <div style={{flex: 1}}>
-                        <SpotSearchBox/>
+                    <CssBaseLine>
+                    <Box sx={{ px: 0, height: "100vh" }}>
+                      <HeaderAppBar />
+                      <SidebarDrawer />
+
+                      {/* <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
+                        BackHacker */}
+                    <Box sx={{ display: "flex", px: 1}}>
+                    <Box sx={{flex: 1, px: 1, py: 2}}>
                         <VideoListComponent />
                         <PostSpotForm />
                         {/* <StreetviewPanoramaComponent /> */}
                         {/* <AutoCompleteComponent /> */}
                         <VideoDialog />
-                      </div>
-                      <div style={{flex: 3}}>
+                    </Box>
+                      <Box sx={{flex: 3, px: 1}}>
                         <MarkerPostComponent zoom={2} position={defaultPosition} />
                         <VideoFetcher />
-                      </div>
-                    </div>
+                      </Box>
+                    </Box>
+                    </Box>
+                    </CssBaseLine>
                   </APIProvider>
+                  </SidebarDrawerOpenProvider>
                 </SavedMarkerProvider>
               </DataPostedProvider>
             </VideosProvider>

@@ -3,6 +3,7 @@ import { Map, Marker } from '@vis.gl/react-google-maps';
 import SpotContext from '../contexts/SpotContext';
 import SavedMarkerComponent from './SavedMarkerComponent';
 import MarkerComponent from './MarkerComponent';
+import { Box } from '@mui/material'
 
 const MapComponent = ({ zoom, center, onClick }) => {
   const {markers, setMarkers} = useContext(SpotContext);
@@ -14,7 +15,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
     setMarkers({ lat, lng });
   }
   return (
-      <div style={{ height: "90vh", width: "100%" }}>
+    <Box sx={{ height: "90vh", width: "100%", p: 0 }}>
         <Map
          defaultZoom={zoom}
          defaultCenter={center}
@@ -30,7 +31,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
           {markers && <MarkerComponent />}
           <SavedMarkerComponent />
         </Map>
-      </div>
+      </Box>
   );
 };
 
