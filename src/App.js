@@ -55,9 +55,9 @@ export default function App() {
                   <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} language='en'>
                     <CssBaseLine>
                     <Box sx={{ px: 0, height: "100vh" }}>
-                      <PrimarySearchAppBar>
-                      <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
-                        BackHacker
+                      <PrimarySearchAppBar />
+                      {/* <Typography variant='h3' sx={{ my: 4, textAlign: "center" }}>
+                        BackHacker */}
                     <Box sx={{ display: "flex", px: 1}}>
                     <Box sx={{flex: 1, px: 1}}>
                         <SpotSearchBox/>
@@ -72,8 +72,6 @@ export default function App() {
                         <VideoFetcher />
                       </Box>
                     </Box>
-                    </Typography>
-                    </PrimarySearchAppBar>
                     </Box>
                     </CssBaseLine>
                   </APIProvider>
