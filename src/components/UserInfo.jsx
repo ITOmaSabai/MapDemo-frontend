@@ -8,7 +8,7 @@ import { deepPurple } from '@mui/material/colors';
 import HeaderAppBar from './HeaderAppBar';
 import SpotCard from './SpotCard';
 
-const UserInfo = () => {
+const UserInfo = (displayName, photoURL) => {
 
   return (
     <>
@@ -17,7 +17,7 @@ const UserInfo = () => {
       <Stack sx={{textAlign: "center", mb: 10, display: "flex", justifyContent: "center", flexDirection: "row"}}>
         <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
         {/* <Box sx={{textAlign: "center", mb: 10}}> */}
-          <Typography variant="h4" component="h2">サンプルユーザー</Typography>
+          <Typography variant="h4" component="h2">displayName</Typography>
         {/* </Box> */}
       </Stack>
       <Stack 

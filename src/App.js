@@ -91,7 +91,7 @@ export default function App() {
                         <Routes>
                           <Route path="/" element={<RouteComponent />} />
                           <Route path="/user" element={<UserInfo />} />
-                          <Route path="/login" element={<AuthGoogleSIgninPopup />} />
+                          {/* <Route path="/login" element={<AuthGoogleSIgninPopup />} /> */}
                         </Routes>
                       </div>
                     </CssBaseLine>

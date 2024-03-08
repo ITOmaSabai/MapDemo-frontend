@@ -20,6 +20,7 @@ import SidebarDrawer from './SidebarDrawer';
 import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
 import { Link } from 'react-router-dom';
+import { Login } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -82,6 +83,12 @@ export default function HeaderAppBar() {
     handleMobileMenuClose();
   };
 
+  const handleSignIn = () => {
+    AuthGoogleSIgninPopup();
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -112,7 +119,7 @@ export default function HeaderAppBar() {
       <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleSignIn}>My account</MenuItem>
     </Menu>
   );
 
