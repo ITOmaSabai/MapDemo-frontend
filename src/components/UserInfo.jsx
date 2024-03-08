@@ -17,7 +17,7 @@ const UserInfo = (displayName, photoURL) => {
       <Stack sx={{textAlign: "center", mb: 10, display: "flex", justifyContent: "center", flexDirection: "row"}}>
         <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
         {/* <Box sx={{textAlign: "center", mb: 10}}> */}
-          <Typography variant="h4" component="h2">displayName</Typography>
+          <Typography variant="h4" component="h2">ゲストユーザー</Typography>
         {/* </Box> */}
       </Stack>
       <Stack 
