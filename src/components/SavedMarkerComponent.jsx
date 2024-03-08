@@ -28,9 +28,28 @@ const SavedMarkerComponent = () => {
 
   const handleMarkerClick = (id, lat, lng) => {
     setSelectedMarker(id);
-    setMarkers({lat, lng});
-    map.setCenter({lat, lng});
+    // setMarkers({lat, lng});
+    map.panTo({lat, lng});
+    const currentZoomLevel = map.getZoom();
+
+    const zoomToMarker = (zoomLevel) => {
+      window.setTimeout(() => {
+        map.setZoom(zoomLevel);
+      }, 300);
+    }
+    
+    if (currentZoomLevel < 5) {
+      zoomToMarker(5);
+    } else if (currentZoomLevel < 9) {
+      zoomToMarker(9);
+    } else if (currentZoomLevel < 12) {
+      zoomToMarker(12);
+    } else {
+      zoomToMarker(16);
+    };
   };
+
+
 
   // クラスター機能を実装する
   // const map = useMap();
