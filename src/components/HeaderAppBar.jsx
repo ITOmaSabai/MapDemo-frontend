@@ -19,6 +19,7 @@ import SpotSearchBox from './SpotSearchBox';
 import SidebarDrawer from './SidebarDrawer';
 import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -108,7 +109,9 @@ export default function HeaderAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -179,6 +182,7 @@ export default function HeaderAppBar() {
           >
             <MenuIcon />
           </IconButton>
+          <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
           <Typography
             variant="h6"
             noWrap
@@ -187,6 +191,7 @@ export default function HeaderAppBar() {
           >
             BackHacker
           </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           <Search>
