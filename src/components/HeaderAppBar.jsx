@@ -21,6 +21,9 @@ import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
 import { Link } from 'react-router-dom';
 import { Login } from '@mui/icons-material';
+import IsAuthContext from '../contexts/IsAuthContext';
+import { useContext } from 'react';
+import AuthSignOut from '../auth_sign_out';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -66,9 +69,11 @@ export default function HeaderAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const { sidebarDrawerOpen, setSidebarDrawerOpen } = React.useContext(SidebarDrawerOpenContext);
+  const { isAuth } = useContext(IsAuthContext);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const useAuthSignOut = AuthSignOut();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -88,6 +93,10 @@ export default function HeaderAppBar() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
+  // const handleLogOut = () => {
+  //   useAuthSignOut();
+  // }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -116,10 +125,19 @@ export default function HeaderAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      </Link>
-      <MenuItem onClick={handleSignIn}>My account</MenuItem>
+      {!isAuth ? (
+        <>
+          <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
+            <MenuItem onClick={handleMenuClose}>プロフィール</MenuItem>
+          </Link>
+          <MenuItem onClick={useAuthSignOut}>ログアウト</MenuItem>
+        </>
+      ) : (
+        <>
+          <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
+        </>
+      )
+      }
     </Menu>
   );
 
