@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Card, CardMedia, Stack, Typography, Avatar, Paper } from "@mui/material";
 import ClickableAndDeletableChips from "./ClickableAndDeletableChips";
 import thumbnail from "../mqdefault.jpg";
 import VideoListComponent from "./VideoListComponent";
 import VideoDialog from "./VideoDialog";
+import SavedMarkerContext from "../contexts/SavedMarkerContext";
+import SelectedMarkerContext from "../contexts/SelectedMarkerContext";
 
 const SpotInfo = () => {
+  const { selectedMarker, setSelectedMarker } = useContext(SelectedMarkerContext);
+  const { savedMarkers } = useContext(SavedMarkerContext);
+  const [ selectedSpotInfomation, setSelectedSpotInfomation ] = useState({}
+    // selectedSpotName: selectedSpotInfo.name
+  );
+  console.log(selectedSpotInfomation);
+  console.log(savedMarkers);
+  console.log(selectedMarker);
+
+  useEffect(() => {
+    if (savedMarkers && savedMarkers.length > 0) {
+      const selectedSpotInfo = savedMarkers.find(savedMarker => savedMarker.id === selectedMarker);
+      setSelectedSpotInfomation(selectedSpotInfo);
+      }
+  }, [selectedMarker]);
 
   return (
     <Paper sx={{bgcolor: "primary.dark", height: "100%", m: 0, p: 0}}>
