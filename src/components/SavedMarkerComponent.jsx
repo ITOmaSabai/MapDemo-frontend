@@ -33,9 +33,9 @@ const SavedMarkerComponent = () => {
     const currentZoomLevel = map.getZoom();
 
     const zoomToMarker = (zoomLevel) => {
-      window.setTimeout(() => {
-        map.setZoom(zoomLevel);
-      }, 300);
+      // window.setTimeout(() => {
+      //   map.setZoom(zoomLevel);
+      // }, 300);
     }
     
     if (currentZoomLevel < 5) {
