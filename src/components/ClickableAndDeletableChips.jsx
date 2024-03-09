@@ -32,6 +32,7 @@ const ClickableAndDeletableChips = () => {
               color="secondary"
               onClick={handleClick}
               onDelete={() => handleDelete(chip.key)}
+              size='small'
             />
         ))}
       </Stack>

@@ -27,6 +27,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthGoogleSIgninPopup from './auth_google_signin_popup';
 import UserInfo from './components/UserInfo';
 import GetCurrentUserInfo from './components/GetCurrentUserInfo';
+import SpotInfo from './components/SpotInfo';
 
 // const color = blueGrey[800];
 
@@ -43,10 +44,44 @@ const theme = createTheme({
       main: grey[800],
     },
     secondary: {
-      main: '#5c6bc0',
+      main: '#00B8C6',
     },
+  },
+  typography: {
+    button: {
+      textTransform: "none"
+    },
+    fontfamily: [
+      'Hitmarker Text Regular", Arial',
+      // '"Helvetica Neue"'
+    ].join(','),
+  },
+  props: {
+    MuiTextField: {
+        variant: "outlined"
+    },
+    MuiCheckbox: {
+      color: "primary"
+    },
+    MuiRadio: {
+        color: "primary"
+    },
+    MuiSwitch: {
+        color: "primary"
+    },
+    MuiList: {
+      dense: true
+    },
+    MuiTable: {
+      size: "small"
+    },
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 42
+    }
+},
   //   mode: 'dark'
-  }
 });
 
 export const RouteComponent = () => {
@@ -59,7 +94,8 @@ export const RouteComponent = () => {
         <SidebarDrawer />
         <Box sx={{ display: "flex", px: 1}}>
           <Box sx={{flex: 1, px: 1, py: 2}}>
-            <VideoListComponent />
+            <SpotInfo></SpotInfo>
+            {/* <VideoListComponent /> */}
             <PostSpotForm />
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
