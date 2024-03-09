@@ -29,9 +29,10 @@ const ClickableAndDeletableChips = () => {
             <Chip
               label={chip.label}
               variant="filled"
-              color="secondary"
+              color="primary"
               onClick={handleClick}
               onDelete={() => handleDelete(chip.key)}
+              size='small'
             />
         ))}
       </Stack>
