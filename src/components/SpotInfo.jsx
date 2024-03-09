@@ -13,9 +13,6 @@ const SpotInfo = () => {
   const [ selectedSpotInfomation, setSelectedSpotInfomation ] = useState({}
     // selectedSpotName: selectedSpotInfo.name
   );
-  console.log(selectedSpotInfomation);
-  console.log(savedMarkers);
-  console.log(selectedMarker);
 
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0) {
@@ -33,11 +30,11 @@ const SpotInfo = () => {
       <CardMedia ><img src={thumbnail} alt="thumbnail" /></CardMedia>
       <Box >
         <Box sx={{pt: 0, mt: 0}}>
-          <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>バンコク</Typography>
-          <Typography fontFamily="Menlo"  sx={{px: 2, pb: 1, color: "white" }}>Bangkok, Thailand</Typography>
+          <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
+          <Typography fontFamily="Menlo"  sx={{px: 2, pb: 1, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
           <ClickableAndDeletableChips />
 
-          <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>旅行で行ったことがある。飯がうまい！Soi Sukhumwit 16, Sukhumwit Road, Khlong Toei, Khet Khlong Toei, Bangkok, 10110, Thailand</Typography>
+          <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
         </Box>
         <VideoDialog />
         {/* <Box> */}

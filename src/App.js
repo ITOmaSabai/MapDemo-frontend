@@ -113,7 +113,7 @@ export const RouteComponent = () => {
           <Box sx={{flex: 1, p: 0}}>
             <SpotInfo></SpotInfo>
             {/* <VideoListComponent /> */}
-            {/* <PostSpotForm /> */}
+            <PostSpotForm />
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
             {/* <VideoDialog /> */}

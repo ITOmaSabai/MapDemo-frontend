@@ -26,9 +26,12 @@ function SimpleDialog(props) {
     <Dialog PaperProps={{sx: {maxHeight: "95vh"}}} maxWidth={'xl'} fullWidth onClose={handleClose} open={open}>
       <DialogContent style={{height:'100vh'}}>
         {selectedVideos && selectedVideos.length > 0 && (
-        selectedVideos.map((selectedVideo) => (
-          <iframe width="45%" height="50%" src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        )))}
+        // selectedVideos.first((selectedVideo) => (
+        //   <iframe width="45%" height="50%" src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        // ))
+        <iframe width="95%" height="95%" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+        )}
       </DialogContent>
     </Dialog>
   );
