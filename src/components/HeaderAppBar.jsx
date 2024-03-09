@@ -104,8 +104,6 @@ export default function HeaderAppBar() {
 
   const handleDrawerClick = () => {
     setSidebarDrawerOpen(true);
-    console.log("sidebar should be opened.")
-    console.log(sidebarDrawerOpen)
   }
 
   const menuId = 'primary-search-account-menu';
@@ -128,9 +126,9 @@ export default function HeaderAppBar() {
       {!isAuth ? (
         <>
           <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
-            <MenuItem onClick={handleMenuClose}>プロフィール</MenuItem>
+            <MenuItem onClick={handleMenuClose}><Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>プロフィール</Typography></MenuItem>
           </Link>
-          <MenuItem onClick={useAuthSignOut}>ログアウト</MenuItem>
+          <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem>
         </>
       ) : (
         <>
@@ -209,7 +207,7 @@ export default function HeaderAppBar() {
           </IconButton>
           <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}

@@ -56,8 +56,8 @@ export default function VideoDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open simple dialog
+      <Button variant="outlined" color='secondary' onClick={handleClickOpen}>
+        Watch Videos
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}

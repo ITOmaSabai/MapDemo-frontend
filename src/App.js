@@ -18,7 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import VideoDialog from './components/VideoDialog';
 import { Container, Typography, Box } from '@mui/material';
 import CssBaseLine from '@mui/material/CssBaseline'
-import { grey } from '@mui/material/colors';
+import { grey, deepPurple } from '@mui/material/colors';
 import HeaderAppBar from './components/HeaderAppBar';
 import { SidebarDrawerOpenProvider } from './contexts/SidebarDrawerOpenContext';
 import SidebarDrawer from './components/SidebarDrawer';
@@ -42,27 +42,44 @@ const theme = createTheme({
   palette: {
     primary: {
       main: grey[800],
+      light: "#FAFAFA",
+      dark: "#212121"
     },
     secondary: {
-      main: '#00B8C6',
+      main: '#FAFAFA',
+      light: deepPurple[500],
+      dark: grey[800]
     },
   },
   typography: {
-    button: {
-      textTransform: "none"
-    },
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 700,
+
+    h1: { fontSize: 60 },
+    h2: { fontSize: 48 },
+    h3: { fontSize: 42 },
+    h4: { fontSize: 36 },
+    h5: { fontSize: 20 },
+    h6: { fontSize: 18 },
+    subtitle1: { fontSize: 18 },
+    body1: { fontSize: 16 },
+    button: { textTransform: "none" },
     fontfamily: [
-      'Hitmarker Text Regular", Arial',
+      // 'Hitmarker Text Regular", Arial',
       // '"Helvetica Neue"'
+      "Courier New",
+      "Menlo",
+      "Monaco",
+      "Consolas",
+      "Noto Sans JP",
+      "游ゴシック体"
     ].join(','),
   },
   props: {
-    MuiTextField: {
-        variant: "outlined"
-    },
-    MuiCheckbox: {
-      color: "primary"
-    },
+    MuiTextField: { variant: "outlined" },
+    MuiCheckbox: { color: "primary" },
     MuiRadio: {
         color: "primary"
     },
@@ -89,19 +106,19 @@ export const RouteComponent = () => {
 
   return (
     <>
-      <Box sx={{ px: 0, height: "100vh" }}>
+      <Box sx={{ p: 0, m: 0, height: "100vh" }}>
         <HeaderAppBar />
         <SidebarDrawer />
-        <Box sx={{ display: "flex", px: 1}}>
-          <Box sx={{flex: 1, px: 1, py: 2}}>
+        <Box sx={{ display: "flex", p: 0}}>
+          <Box sx={{flex: 1, p: 0}}>
             <SpotInfo></SpotInfo>
             {/* <VideoListComponent /> */}
-            <PostSpotForm />
+            {/* <PostSpotForm /> */}
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
-            <VideoDialog />
+            {/* <VideoDialog /> */}
           </Box>
-          <Box sx={{flex: 3, px: 1}}>
+          <Box sx={{flex: 3, p: 0}}>
             <MarkerPostComponent zoom={2} position={defaultPosition} />
             <VideoFetcher />
           </Box>
