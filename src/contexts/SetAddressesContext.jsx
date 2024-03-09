@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 const SetAddressesContext = createContext();
 
 export const SetAddressesProvider = ({ children }) => {
-  const [setAddresses, setSetAddresses] = useState(false);
+  const [addresses, setAddresses] = useState(false);
 
   return (
-    <SetAddressesContext.Provider value={{ setAddresses, setSetAddresses }}>
+    <SetAddressesContext.Provider value={{ addresses, setAddresses }}>
       {children}
     </SetAddressesContext.Provider>
   );

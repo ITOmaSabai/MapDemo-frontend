@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { IsAuthProvider } from './contexts/IsAuthContext';
 import { SetAddressesProvider } from './contexts/SetAddressesContext';
+import { SelectedAddressProvider } from './contexts/SelectedAddressContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <IsAuthProvider>
-      <SetAddressesProvider>
-        <App />
-      </SetAddressesProvider>
+      <SelectedAddressProvider>
+        <SetAddressesProvider>
+          <App />
+        </SetAddressesProvider>
+      </SelectedAddressProvider>
     </IsAuthProvider>
   </React.StrictMode>
 );
