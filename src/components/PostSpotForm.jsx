@@ -5,7 +5,8 @@ import { useDataPosted } from '../contexts/DataPostedContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-// import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import { Box, FormControl, FormHelperText, Input, InputLabel, Paper, TextField, Typography } from '@mui/material';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 const PostSpotForm = () => {
   const { markers } = useContext(SpotContext);
@@ -67,68 +68,110 @@ const PostSpotForm = () => {
 
   return (
     <div>
-        <ReverseGeocodingComponent
-          lat={latitude}
-          lng={longitude}
-          onSetAddressComponentsChange={setAddressComponents}
-          onSetFormattedAddressChange={setFormattedAddres}
+    <Paper sx={{bgcolor: "primary.light", height: "90vh", width:"360px", m: 0, p: 0}}>
+      <Box sx={{m: 2, pt: 4}} textAlign={"center"}>
+        <Typography fontFamily="Menlo" fontSize={14} >
+          <ReverseGeocodingComponent
+            lat={latitude}
+            lng={longitude}
+            onSetAddressComponentsChange={setAddressComponents}
+            onSetFormattedAddressChange={setFormattedAddres}
+          >
+          </ReverseGeocodingComponent>
+        </Typography>
+      </Box>
+      <form onSubmit={handleSubmit}>
+        <Stack
+          direction="column"
+          spacing={3}
+          useFlexGap
+          flexWrap={"wrap"}
+          sx={{p: 3}}
+          justifyContent={"center"}
         >
-        </ReverseGeocodingComponent>
+          <div>
+            <label>スポット名:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {/* <Box
+              component="form"
+              sx={{p: 3}}
+            > */}
+              {/* <FormControl>
+                <TextField
+                  error
+                  required
+                  size='small' 
+                  label="スポット名"
+                  variant="outlined" 
+                  color='info'
+                  helperText="スポット名を入力してください"
+                />
+                <InputLabel htmlFor="スポット名"></InputLabel>
+                <Input
+                  required
+                  id='spotName'
+                  size='small' 
+                  defaultValue="スポット名"
+                  label="スポット名"
+                  variant="outlined" 
+                  color='info'
+                />
+                <FormHelperText id="spotName-helper-text">紹介する時のスポット名</FormHelperText>
 
-    <form onSubmit={handleSubmit}>
-      <Stack direction="column" spacing={1} useFlexGap flexWrap={"wrap"}>
-      <div>
-        <label>スポット名:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>説明:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <div>
-        {/* <label>緯度:</label> */}
-        <input
-          type="hidden"
-          value={latitude}
-          name="latitude"
-        />
-      </div>
-      <div>
-        {/* <label>経度:</label> */}
-        <input
-          type="hidden"
-          value={longitude}
-          name="longitude"
-        />
-      </div>
-      <div>
-        {/* <>address_components:</ label> */}
-        {/* <input
-          type="hidden"
-          value={addressComponents}
-          name="addressComponents"
-        /> */}
-      </div>
- 
-      <Button
-        variant="contained"
-        color="info"
-        type="submit"
-        // endIcon={<FlightTakeoffIcon />}
-      >
-         街に行ってみる
-      </Button>
-      (動画を表示します)
-    </Stack>
-    </form>
-
+              </FormControl>  */}
+              {/* </Box> */}
+          </div>
+          <div>
+            <label>説明:</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div>
+            {/* <label>緯度:</label> */}
+            <input
+              type="hidden"
+              value={latitude}
+              name="latitude"
+            />
+          </div>
+          <div>
+            {/* <label>経度:</label> */}
+            <input
+              type="hidden"
+              value={longitude}
+              name="longitude"
+            />
+          </div>
+          <div>
+            {/* <>address_components:</ label> */}
+            {/* <input
+              type="hidden"
+              value={addressComponents}
+              name="addressComponents"
+            /> */}
+          </div>
+  
+          <Button
+            variant="contained"
+            color="success"
+            type="submit"
+            size='large'
+            endIcon={<FlightTakeoffIcon />}
+          >
+            街に行ってみる
+          </Button>
+          <Typography fontFamily="Menlo" fontSize={14} textAlign={"center"} sx={{m: 0, p: 0}} >
+            (動画を表示します)
+          </Typography>
+        </Stack>
+      </form>
+    </Paper>
     </div>
   );
 }
