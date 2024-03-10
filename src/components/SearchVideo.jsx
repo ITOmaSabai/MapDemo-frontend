@@ -1,13 +1,11 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReverseGeocodingComponent from "./ReverseGeocodingComponent";
 
 const SearchVideo = ({latitude, longitude}) => {
   const [ addressComponents, setAddressComponents ] = useState();
   const [ formattedAddress, setFormattedAddress ] = useState();
-
-  console.log(addressComponents);
-  console.log(formattedAddress);
+  const [ searchResultVideos, setSearchResultVideos ] = useState();
 
   const getVideoSearchResult = async () => {
     try {
@@ -26,6 +24,7 @@ const SearchVideo = ({latitude, longitude}) => {
         throw new Error('データの送信に失敗しました');
       }
       const data = await response.json();
+      setSearchResultVideos(data.items);
     } catch (error) {
       console.error('エラー:', error);
     }
@@ -35,11 +34,6 @@ const SearchVideo = ({latitude, longitude}) => {
     e.preventDefault();
     getVideoSearchResult();
   }
-
-  // useEffect(() => {
-  //   setAddressComponents(21.32744137161838);
-  //   setFormattedAddress();
-  // }, []);
 
   return (
     <>
@@ -62,6 +56,14 @@ const SearchVideo = ({latitude, longitude}) => {
           動画を取得
         </Button>
       </form>
+      <Box>
+        {searchResultVideos && searchResultVideos.length > 0 && (
+          searchResultVideos.map((searchResultVideo) => (
+            <li key={searchResultVideo.id.videoId} style={{listStyle :"none"}}>
+             <iframe width="350" height="200" src={`https://www.youtube.com/embed/${searchResultVideo.id.videoId}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+           </li>
+          )))}
+      </Box>
     </>
   );
 };
