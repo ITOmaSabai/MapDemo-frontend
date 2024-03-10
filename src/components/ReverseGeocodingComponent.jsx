@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onSetFormattedAddressChange }) => {
@@ -24,7 +25,9 @@ const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onS
   return (
     <div>
       {address && (
-        <p>住所: {address.formatted_address}</p>
+        <Typography>
+          住所: {address.formatted_address}
+        </Typography>
       )}
     </div>
   );

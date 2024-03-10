@@ -24,7 +24,6 @@ const AddressFetcher = () => {
   useEffect(() => {
     const matchedAddresses = addresses ? addresses.find(address => address.map_id === selectedMarker) : "";
     setSelectedAddress(matchedAddresses);
-    console.log(selectedAddress);
   }, [selectedMarker, addresses, isDataPosted, setSelectedAddress ]);
 
 };

@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Box, FormControl, FormHelperText, Input, InputLabel, Paper, TextField, Typography } from '@mui/material';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
+import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 
 const PostSpotForm = () => {
   const { markers } = useContext(SpotContext);
@@ -18,7 +20,9 @@ const PostSpotForm = () => {
   const [formattedAddres, setFormattedAddres] = useState('');
   const { setIsDataPosted } = useDataPosted();
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
-
+  const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
+  const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
+ 
   useEffect(() => {
     if (markers) {
       setLatitude(markers.lat);
@@ -59,6 +63,8 @@ const PostSpotForm = () => {
       console.log('保存成功:', data);
       setIsDataPosted(true);
       setSelectedMarker(data.map.id);
+      setIsNewMarkerSelected(false);
+      setIsSavedMarkerSelected(true);
       setName('');
       setDescription('');
     } catch (error) {

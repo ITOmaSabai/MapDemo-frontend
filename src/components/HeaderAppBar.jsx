@@ -162,7 +162,7 @@ export default function HeaderAppBar() {
             <MailIcon />
           </Badge>
         </IconButton> */}
-        <p>Messages</p>
+        Messages
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -174,7 +174,7 @@ export default function HeaderAppBar() {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        Notifications
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -186,7 +186,7 @@ export default function HeaderAppBar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        Profile
       </MenuItem>
     </Menu>
   );
