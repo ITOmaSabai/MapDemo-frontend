@@ -9,6 +9,7 @@ import { Box, FormControl, FormHelperText, Input, InputLabel, Paper, TextField, 
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
+import SearchVideo from './SearchVideo';
 
 const PostSpotForm = () => {
   const { markers } = useContext(SpotContext);
@@ -77,13 +78,13 @@ const PostSpotForm = () => {
     <Paper sx={{bgcolor: "primary.light", height: "90vh", width:"360px", m: 0, p: 0}}>
       <Box sx={{m: 2, pt: 4}} textAlign={"center"}>
         <Typography fontFamily="Menlo" fontSize={14} >
-          <ReverseGeocodingComponent
+          {/* <ReverseGeocodingComponent
             lat={latitude}
             lng={longitude}
             onSetAddressComponentsChange={setAddressComponents}
             onSetFormattedAddressChange={setFormattedAddres}
           >
-          </ReverseGeocodingComponent>
+          </ReverseGeocodingComponent> */}
         </Typography>
       </Box>
       <form onSubmit={handleSubmit}>
@@ -177,6 +178,7 @@ const PostSpotForm = () => {
           </Typography>
         </Stack>
       </form>
+      <SearchVideo latitude={latitude} longitude={longitude} />
     </Paper>
     </div>
   );
