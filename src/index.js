@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { IsAuthProvider } from './contexts/IsAuthContext';
 import { SetAddressesProvider } from './contexts/SetAddressesContext';
 import { SelectedAddressProvider } from './contexts/SelectedAddressContext';
+import { IsSavedMarkerSelectedProvider } from './contexts/IsSavedMarkerSelectedContext';
+import { IsNewMarkerSelectedProvider } from './contexts/IsNewMarkerSelectedContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +15,11 @@ root.render(
     <IsAuthProvider>
       <SelectedAddressProvider>
         <SetAddressesProvider>
-          <App />
+          <IsSavedMarkerSelectedProvider>
+            <IsNewMarkerSelectedProvider>
+              <App />
+            </IsNewMarkerSelectedProvider>
+          </IsSavedMarkerSelectedProvider>
         </SetAddressesProvider>
       </SelectedAddressProvider>
     </IsAuthProvider>
