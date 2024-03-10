@@ -14,7 +14,9 @@ const MapComponent = ({ zoom, center, onClick }) => {
   
   const handleMapOnClick = (e) => {
     onClick(e);
+    // 新規投稿用の画面を表示する
     setIsNewMarkerSelected(true);
+    // 投稿済みスポットの情報画面を表示しない
     setIsSavedMarkerSelected(false);
     const lat = parseFloat(e.detail.latLng.lat);
     const lng = parseFloat(e.detail.latLng.lng);

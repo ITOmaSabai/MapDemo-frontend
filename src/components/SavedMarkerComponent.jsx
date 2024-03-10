@@ -7,6 +7,7 @@ import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import marker from '@googlemaps/markerclusterer';
 import SpotContext from '../contexts/SpotContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
+import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 
 const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -14,6 +15,7 @@ const SavedMarkerComponent = () => {
   const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
   const { setMarkers } = useContext(SpotContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
+  const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
 
   useEffect(() => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
@@ -29,7 +31,10 @@ const SavedMarkerComponent = () => {
   const map = useMap();
 
   const handleMarkerClick = (id, lat, lng) => {
+    // 既存のスポットの情報画面を表示する
     setIsSavedMarkerSelected(true);
+    // 新規登録用の画面を表示しない
+    setIsNewMarkerSelected(false);
     setSelectedMarker(id);
     // setMarkers({lat, lng});
     map.panTo({lat, lng});
