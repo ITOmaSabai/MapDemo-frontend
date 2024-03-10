@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import SpotInfo from "./SpotInfo";
 import PostSpotForm from "./PostSpotForm";
+import IsNewMarkerSelectedContext from "../contexts/IsNewMarkerSelectedContext";
+import IsSavedMarkerSelectedContext from "../contexts/IsSavedMarkerSelectedContext";
 
 const SpotInfoDisplaySwitcher = () => {
-  const { isNewMarkerSelected, setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
-  const { isSavedMarkerSelected, SetIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
-
+  const { isNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
+  const { isSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
 
   return (
     <>

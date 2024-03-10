@@ -162,7 +162,7 @@ export default function HeaderAppBar() {
             <MailIcon />
           </Badge>
         </IconButton> */}
-        <p>Messages</p>
+        Messages
       </MenuItem>
       <MenuItem>
         <IconButton

@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 const IsNewMarkerSelectedContext = createContext();
 
 export const IsNewMarkerSelectedProvider = ({ children }) => {
-  const [isNewMarkerSelecteds, setIsNewMarkerSelecteds] = useState(true);
+  const [isNewMarkerSelected, setIsNewMarkerSelected] = useState(true);
 
   return (
-    <IsNewMarkerSelectedContext.Provider value={{ isNewMarkerSelecteds, setIsNewMarkerSelecteds }}>
+    <IsNewMarkerSelectedContext.Provider value={{ isNewMarkerSelected, setIsNewMarkerSelected }}>
       {children}
     </IsNewMarkerSelectedContext.Provider>
   );

@@ -6,12 +6,14 @@ import SavedMarkerContext from '../contexts/SavedMarkerContext';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import marker from '@googlemaps/markerclusterer';
 import SpotContext from '../contexts/SpotContext';
+import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 
 const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
   const { isDataPosted, setIsDataPosted } = useDataPosted();
   const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
   const { setMarkers } = useContext(SpotContext);
+  const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
 
   useEffect(() => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
@@ -27,6 +29,7 @@ const SavedMarkerComponent = () => {
   const map = useMap();
 
   const handleMarkerClick = (id, lat, lng) => {
+    setIsSavedMarkerSelected(true);
     setSelectedMarker(id);
     // setMarkers({lat, lng});
     map.panTo({lat, lng});

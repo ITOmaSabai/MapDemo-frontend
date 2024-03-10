@@ -19,8 +19,6 @@ const SpotInfo = () => {
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { selectedAddress } = useContext(SelectedAddressContext);
 
-  console.log(selectedSpotInfomation)
-
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0) {
       const selectedSpotInfo = savedMarkers.find(savedMarker => savedMarker.id === selectedMarker);
