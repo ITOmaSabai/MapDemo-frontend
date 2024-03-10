@@ -28,6 +28,8 @@ import AuthGoogleSIgninPopup from './auth_google_signin_popup';
 import UserInfo from './components/UserInfo';
 import GetCurrentUserInfo from './components/GetCurrentUserInfo';
 import SpotInfo from './components/SpotInfo';
+import AddressFetcher from './components/AddressFetcher';
+import LikeButton from './components/LikeButton';
 
 // const color = blueGrey[800];
 
@@ -111,9 +113,10 @@ export const RouteComponent = () => {
         <SidebarDrawer />
         <Box sx={{ display: "flex", p: 0}}>
           <Box sx={{flex: 1, p: 0}}>
-            <SpotInfo></SpotInfo>
+            <SpotInfo />
+            <LikeButton />
             {/* <VideoListComponent /> */}
-            {/* <PostSpotForm /> */}
+            <PostSpotForm />
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
             {/* <VideoDialog /> */}
