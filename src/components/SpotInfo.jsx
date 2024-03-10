@@ -10,6 +10,7 @@ import SelectedVideosContext from "../contexts/SelectedVideosContext";
 import SetAddressesContext from "../contexts/SetAddressesContext";
 import AddressFetcher from "./AddressFetcher";
 import SelectedAddressContext from "../contexts/SelectedAddressContext";
+import LikeButton from "./LikeButton";
 
 const SpotInfo = () => {
   const { selectedMarker, setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -51,6 +52,9 @@ const SpotInfo = () => {
           {/* <Box> */}
             {/* <VideoListComponent /> */}
           {/* </Box> */}
+        </Box>
+        <Box >
+          <LikeButton />
         </Box>
       </Paper>
     </>

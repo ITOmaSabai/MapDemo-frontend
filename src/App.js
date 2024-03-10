@@ -29,6 +29,7 @@ import UserInfo from './components/UserInfo';
 import GetCurrentUserInfo from './components/GetCurrentUserInfo';
 import SpotInfo from './components/SpotInfo';
 import AddressFetcher from './components/AddressFetcher';
+import LikeButton from './components/LikeButton';
 
 // const color = blueGrey[800];
 
@@ -113,6 +114,7 @@ export const RouteComponent = () => {
         <Box sx={{ display: "flex", p: 0}}>
           <Box sx={{flex: 1, p: 0}}>
             <SpotInfo />
+            <LikeButton />
             {/* <VideoListComponent /> */}
             <PostSpotForm />
             {/* <StreetviewPanoramaComponent /> */}
