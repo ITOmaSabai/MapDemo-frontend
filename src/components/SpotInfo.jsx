@@ -11,7 +11,6 @@ import SetAddressesContext from "../contexts/SetAddressesContext";
 import AddressFetcher from "./AddressFetcher";
 import SelectedAddressContext from "../contexts/SelectedAddressContext";
 import LikeButton from "./LikeButton";
-import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
 
 const SpotInfo = () => {
   const { selectedMarker, setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -19,7 +18,6 @@ const SpotInfo = () => {
   const [ selectedSpotInfomation, setSelectedSpotInfomation ] = useState();
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { selectedAddress } = useContext(SelectedAddressContext);
-  const { isTopInfoVisible, setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0) {
@@ -27,8 +25,6 @@ const SpotInfo = () => {
       setSelectedSpotInfomation(selectedSpotInfo);
       }
   }, [selectedMarker, savedMarkers]);
-
-  setIsTopInfoVisible(false);
 
   return (
     <>

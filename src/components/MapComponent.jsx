@@ -6,11 +6,13 @@ import MarkerComponent from './MarkerComponent';
 import { Box } from '@mui/material'
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
+import IsTopInfoVisibleContext from '../contexts/IsTopInfoVisibleContext';
 
 const MapComponent = ({ zoom, center, onClick }) => {
   const { markers, setMarkers } = useContext(SpotContext);
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
+  const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
   
   const handleMapOnClick = (e) => {
     onClick(e);
@@ -18,6 +20,8 @@ const MapComponent = ({ zoom, center, onClick }) => {
     setIsNewMarkerSelected(true);
     // 投稿済みスポットの情報画面を表示しない
     setIsSavedMarkerSelected(false);
+    // 最初に表示する情報画面を表示しない
+    setIsTopInfoVisible(false);
     const lat = parseFloat(e.detail.latLng.lat);
     const lng = parseFloat(e.detail.latLng.lng);
     // SpotContextに座標をセットする

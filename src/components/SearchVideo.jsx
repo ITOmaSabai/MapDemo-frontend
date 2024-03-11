@@ -5,7 +5,6 @@ import SpotContext from "../contexts/SpotContext";
 import SetAddressesContext from "../contexts/SetAddressesContext";
 import VideoDialog from "./VideoDialog";
 import DialogOpenContext from "../contexts/DialogOpenContext";
-import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -17,9 +16,6 @@ const SearchVideo = () => {
   const [ reverseGeocodedAddress, setReverseGeocodedAddress ] = useState('');
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
-  const { isTopInfoVisible, setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
-
-  setIsTopInfoVisible(false);
 
   const getVideoSearchResult = async () => {
     try {
@@ -62,7 +58,7 @@ const SearchVideo = () => {
         <Box sx={{py: 5, md: 'flex', flexDirection: "row"}} textAlign={"center"} >
           <Box height={"15vh"} >
             <Typography color={"white"} fontFamily="Menlo" >
-              {markers && 
+              {/* {markers && 
                 <ReverseGeocodingComponent
                   lat={markers.lat}
                   lng={markers.lng}
@@ -71,7 +67,7 @@ const SearchVideo = () => {
                   setAddressToSearchVideo={setReverseGeocodedAddress}
                 >
                 </ReverseGeocodingComponent>
-              }
+              } */}
             </Typography>
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
