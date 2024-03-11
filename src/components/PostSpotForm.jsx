@@ -175,7 +175,6 @@ const PostSpotForm = () => {
           </Typography>
         </Stack>
       </form>
-      <SearchVideo />
     </Paper>
     </div>
   );
