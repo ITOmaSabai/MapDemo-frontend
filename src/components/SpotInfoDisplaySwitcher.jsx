@@ -4,6 +4,7 @@ import PostSpotForm from "./PostSpotForm";
 import IsNewMarkerSelectedContext from "../contexts/IsNewMarkerSelectedContext";
 import IsSavedMarkerSelectedContext from "../contexts/IsSavedMarkerSelectedContext";
 import SearchVideo from "./SearchVideo";
+import TopInfo from "./TopInfo";
 
 const SpotInfoDisplaySwitcher = () => {
   const { isNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
@@ -12,7 +13,7 @@ const SpotInfoDisplaySwitcher = () => {
   return (
     <>
       {isSavedMarkerSelected && <SpotInfo /> }
-      {isNewMarkerSelected && <SearchVideo /> }
+      {isNewMarkerSelected && <TopInfo /> }
     </>
   );
 };
