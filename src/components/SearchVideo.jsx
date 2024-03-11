@@ -46,10 +46,7 @@ const SearchVideo = ({latitude, longitude}) => {
         onSetFormattedAddressChange={setFormattedAddress}
       >
       </ReverseGeocodingComponent>
-      <Typography fontFamily="Menlo" fontSize={14}>
-        {searchedKeywords && `${searchedKeywords}
-        の検索結果を表示しています`}
-      </Typography>
+
       <form onSubmit={handleSubmit}>
         <input type="hidden" value={21.32744137161838} name="addressComponents" />
         <input type="hidden" value={79.05807583185117} name="formattedAddres" />
@@ -61,6 +58,14 @@ const SearchVideo = ({latitude, longitude}) => {
         >
           動画を取得
         </Button>
+        <Box textAlign="center" sx={{px: 2, my: 2}} >
+          <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"}>
+            {searchedKeywords && `"${searchedKeywords}"`}
+          </Typography>
+          <Typography fontFamily="Menlo" fontSize={14}>
+            {searchedKeywords && "の動画を表示しています"}
+          </Typography>
+        </Box>
       </form>
       <Box>
         {searchResultVideos && searchResultVideos.length > 0 && (
