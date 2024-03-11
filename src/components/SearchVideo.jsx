@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReverseGeocodingComponent from "./ReverseGeocodingComponent";
 
@@ -6,6 +6,7 @@ const SearchVideo = ({latitude, longitude}) => {
   const [ addressComponents, setAddressComponents ] = useState();
   const [ formattedAddress, setFormattedAddress ] = useState();
   const [ searchResultVideos, setSearchResultVideos ] = useState();
+  const [ searchedKeywords, setSearchedKeywords ] = useState();
 
   const getVideoSearchResult = async () => {
     try {
@@ -24,7 +25,8 @@ const SearchVideo = ({latitude, longitude}) => {
         throw new Error('データの送信に失敗しました');
       }
       const data = await response.json();
-      setSearchResultVideos(data.items);
+      setSearchResultVideos(data.videos_data.items);
+      setSearchedKeywords(data.search_keywords);
     } catch (error) {
       console.error('エラー:', error);
     }
@@ -44,6 +46,10 @@ const SearchVideo = ({latitude, longitude}) => {
         onSetFormattedAddressChange={setFormattedAddress}
       >
       </ReverseGeocodingComponent>
+      <Typography fontFamily="Menlo" fontSize={14}>
+        {searchedKeywords && `${searchedKeywords}
+        の検索結果を表示しています`}
+      </Typography>
       <form onSubmit={handleSubmit}>
         <input type="hidden" value={21.32744137161838} name="addressComponents" />
         <input type="hidden" value={79.05807583185117} name="formattedAddres" />
@@ -59,10 +65,10 @@ const SearchVideo = ({latitude, longitude}) => {
       <Box>
         {searchResultVideos && searchResultVideos.length > 0 && (
           searchResultVideos.map((searchResultVideo) => (
-            <li key={searchResultVideo.id.videoId} style={{listStyle :"none"}}>
-             <iframe width="350" height="200" src={`https://www.youtube.com/embed/${searchResultVideo.id.videoId}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-           </li>
-          )))}
+            <li key={searchResultVideo.id.video_id} style={{listStyle :"none"}}>
+             <iframe width="350" height="200" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></li>
+          ))
+        )}
       </Box>
     </>
   );
