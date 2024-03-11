@@ -1,8 +1,16 @@
 import { Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
-const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onSetFormattedAddressChange }) => {
-  const [address, setAddress] = useState('');
+const ReverseGeocodingComponent = (
+  {
+    lat,
+    lng,
+    onSetAddressComponentsChange,
+    onSetFormattedAddressChange,
+    setAddressToSearchVideo
+   }
+  ) => {
+  const [reverseGeocodedAddress, setReverseGeocodedAddress] = useState('');
 
   useEffect(() => {
     if (lat && lng) {
@@ -14,7 +22,8 @@ const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onS
     try {
       const geocoder = new window.google.maps.Geocoder();
       const response = await geocoder.geocode({ location: { lat, lng } });
-      setAddress(response.results[0]);
+      setReverseGeocodedAddress(response.results[0]);
+      setAddressToSearchVideo(response.results[0])
       onSetAddressComponentsChange(response.results[0].address_components);
       onSetFormattedAddressChange(response.results[0].formatted_address);
     } catch (error) {
@@ -24,9 +33,9 @@ const ReverseGeocodingComponent = ({ lat, lng, onSetAddressComponentsChange, onS
 
   return (
     <div>
-      {address && (
+      {reverseGeocodedAddress && (
         <Typography>
-          住所: {address.formatted_address}
+          住所: {reverseGeocodedAddress.formatted_address}
         </Typography>
       )}
     </div>

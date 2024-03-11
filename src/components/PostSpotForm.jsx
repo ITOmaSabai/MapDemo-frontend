@@ -31,9 +31,6 @@ const PostSpotForm = () => {
     }
   }, [markers]);
 
-  // useEffect(() => {
-  //   setName();
-  // }, [addressComponents]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,8 +48,8 @@ const PostSpotForm = () => {
         body: JSON.stringify({ map: {
           name: name, 
           description: description, 
-          lat: latitude, 
-          lng: longitude,
+          lat: markers.lat, 
+          lng: markers.lng,
           address_components: addressComponents,
           formatted_addres: formattedAddres
         } }),
@@ -178,7 +175,6 @@ const PostSpotForm = () => {
           </Typography>
         </Stack>
       </form>
-      <SearchVideo latitude={latitude} longitude={longitude} />
     </Paper>
     </div>
   );

@@ -20,6 +20,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
     setIsSavedMarkerSelected(false);
     const lat = parseFloat(e.detail.latLng.lat);
     const lng = parseFloat(e.detail.latLng.lng);
+    // SpotContextに座標をセットする
     setMarkers({ lat, lng });
   }
   return (

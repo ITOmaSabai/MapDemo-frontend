@@ -30,7 +30,7 @@ const SpotInfo = () => {
     <>
       <AddressFetcher />
       <Paper sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
-        <Box sx={{mx: 3, py: 1, md: 'flex', flexDirection: "row"}} display={"flex"}>
+        <Box sx={{mx: 3, py: 1, md: 'flex', flexDirection: "row"}} display={"flex"} justifyContent={"space-betweem"}>
           <Avatar sx={{ bgcolor: "secondary.light" }} >OP</Avatar>
           <Typography color={"primary.light"}>いとう</Typography>
         </Box>

@@ -6,6 +6,7 @@ import SelectedAddressContext from '../contexts/SelectedAddressContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
 
+// 保存済みの全てのAddress情報を取得する
 const AddressFetcher = () => {
   const { selectedMarker } = useContext(SelectedMarkerContext);
   const { isDataPosted } = useDataPosted();
@@ -21,6 +22,7 @@ const AddressFetcher = () => {
       .catch(error => console.error('Error:', error));
   }, [isDataPosted, savedMarkers]);
 
+  // selectedMarkerと同じmap_idを持つAddressを全てのAddressを保持したaddressの中から探し出す
   useEffect(() => {
     const matchedAddresses = addresses ? addresses.find(address => address.map_id === selectedMarker) : "";
     setSelectedAddress(matchedAddresses);
