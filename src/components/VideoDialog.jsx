@@ -9,6 +9,7 @@ import SelectedVideosContext from '../contexts/SelectedVideosContext';
 import { Box } from '@mui/material';
 import FloatingActionButtonSize from './ScrollToBottomButton';
 import ScrollToBottomButton from './ScrollToBottomButton';
+import VideoListComponent from './VideoListComponent';
 
 const emails = ['username@gmail.com'];
 

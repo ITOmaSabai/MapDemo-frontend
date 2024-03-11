@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import SelectedVideosContext from '../contexts/SelectedVideosContext';
 import VideoDialog from './VideoDialog';
 import ReverseGeocodingComponent from './ReverseGeocodingComponent';
+import { Box, Stack } from '@mui/material';
 
 const VideoListComponent = () => {
   const {selectedVideos} = useContext(SelectedVideosContext);
@@ -9,15 +10,15 @@ const VideoListComponent = () => {
   return (
     <div>
       <ReverseGeocodingComponent/>
+      <Box sx={{m: 0, p: 0, }} display={"flex"} flexDirection={"row"} justifyContent={"space-between"}>
      {selectedVideos && selectedVideos.length > 0 && ( 
-       <ul style={{margin :"0", padding: "0"}}>
+      <>
          {selectedVideos.map((selectedVideo) => (
-           <li key={selectedVideo.id} style={{listStyle :"none"}}>
-             <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-           </li>
+            <iframe key={selectedVideo.id} width="150" height="100" src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
          ))}
-       </ul>
+       </>
       )}
+      </Box>
     </div>
   )
 }
