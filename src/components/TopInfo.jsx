@@ -12,17 +12,25 @@ import AddressFetcher from "./AddressFetcher";
 import SelectedAddressContext from "../contexts/SelectedAddressContext";
 import LikeButton from "./LikeButton";
 import SearchVideo from "./SearchVideo";
+import TopAnimation from "./TopAnimation";
 
 const TopInfo = () => {
   
   return (
     <>
-      <Paper sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0, alignItems: "center", justifyContent: "center"}}>
-        <Box sx={{mx: 3, py: 1, md: 'flex', flexDirection: "row", alignItems: "center"}} display={"flex"} flexDirection={"row"}>
-          <Typography color={"primary.light"}>地図上の好きな場所をクリック</Typography>
+      <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0, alignItems: "center", justifyContent: "center"}}>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          flexDirection: 'column',
+          pb: 20
+        }}>
+          <TopAnimation />
+          <Typography color={"primary.light"} sx={{mt: 3}}>地図上の好きな場所をクリック</Typography>
         </Box>
         <Box sx={{pt: 0, mt: 0}}>
-          <SearchVideo />
         </Box>
         {/* <Box >
 

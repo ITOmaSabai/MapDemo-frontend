@@ -211,8 +211,10 @@ export default function HeaderAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
+            fontFamily="Menlo"
+            // fontWeight={"bold"}
           >
-            BackHacker
+            BackHacker.
           </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
