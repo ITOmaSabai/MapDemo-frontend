@@ -5,6 +5,7 @@ import SpotContext from "../contexts/SpotContext";
 import SetAddressesContext from "../contexts/SetAddressesContext";
 import VideoDialog from "./VideoDialog";
 import DialogOpenContext from "../contexts/DialogOpenContext";
+import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -16,6 +17,9 @@ const SearchVideo = () => {
   const [ reverseGeocodedAddress, setReverseGeocodedAddress ] = useState('');
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
+  const { isTopInfoVisible, setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
+
+  setIsTopInfoVisible(false);
 
   const getVideoSearchResult = async () => {
     try {
