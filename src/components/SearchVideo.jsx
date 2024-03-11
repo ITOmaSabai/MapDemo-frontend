@@ -1,12 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReverseGeocodingComponent from "./ReverseGeocodingComponent";
+import SpotContext from "../contexts/SpotContext";
 
-const SearchVideo = ({latitude, longitude}) => {
+const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
   const [ formattedAddress, setFormattedAddress ] = useState();
   const [ searchResultVideos, setSearchResultVideos ] = useState();
   const [ searchedKeywords, setSearchedKeywords ] = useState();
+  const { markers } = useContext(SpotContext);
 
   const getVideoSearchResult = async () => {
     try {
@@ -37,16 +39,24 @@ const SearchVideo = ({latitude, longitude}) => {
     getVideoSearchResult();
   }
 
+  useEffect(() => {
+    if (markers) {
+      console.log(markers.lat);
+      console.log(markers.lng);
+    }
+  }, [markers])
+
   return (
     <>
+    {markers && 
       <ReverseGeocodingComponent
-        lat={latitude}
-        lng={longitude}
+        lat={markers.lat}
+        lng={markers.lng}
         onSetAddressComponentsChange={setAddressComponents}
         onSetFormattedAddressChange={setFormattedAddress}
       >
       </ReverseGeocodingComponent>
-
+      }
       <form onSubmit={handleSubmit}>
         <input type="hidden" value={21.32744137161838} name="addressComponents" />
         <input type="hidden" value={79.05807583185117} name="formattedAddres" />
@@ -71,7 +81,7 @@ const SearchVideo = ({latitude, longitude}) => {
         {searchResultVideos && searchResultVideos.length > 0 && (
           searchResultVideos.map((searchResultVideo) => (
             <li key={searchResultVideo.id.video_id} style={{listStyle :"none"}}>
-             <iframe width="350" height="200" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></li>
+             <iframe width="100" height="50" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></li>
           ))
         )}
       </Box>

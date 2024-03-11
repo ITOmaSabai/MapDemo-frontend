@@ -33,9 +33,6 @@ function SimpleDialog(props) {
             {/* {searchedKeywords && `"${searchedKeywords}"`} */}
             "Bangkok, Thailand"
           </Typography>
-          <Typography fontFamily="Menlo" fontSize={14}>
-            の動画を表示しています
-          </Typography>
           </Box>
         {selectedVideos && selectedVideos.length > 0 && (
         // selectedVideos.first((selectedVideo) => (
