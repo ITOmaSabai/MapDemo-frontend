@@ -29,10 +29,10 @@ const SpotInfo = () => {
   return (
     <>
       <AddressFetcher />
-      <Paper sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
-        <Box sx={{mx: 3, py: 1, md: 'flex', flexDirection: "row"}} display={"flex"} justifyContent={"space-betweem"}>
-          <Avatar sx={{ bgcolor: "secondary.light" }} >OP</Avatar>
-          <Typography color={"primary.light"}>いとう</Typography>
+      <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
+        <Box sx={{mx: 3, py: 1, display: 'flex', flexDirection: "row", justifyContent: "left", alignItems: 'center'}} >
+          <Avatar sx={{ bgcolor: "secondary.light", mr: 2 }}  >IT</Avatar>
+          <Typography color="primary.light" fontFamily="Menlo" >ito</Typography>
         </Box>
         {selectedVideos && selectedVideos.length > 0 && (
         <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -46,7 +46,9 @@ const SpotInfo = () => {
 
             <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
           </Box>
-          <VideoDialog />
+          <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
+            <VideoDialog />
+          </Box>
           {/* <Box> */}
             {/* <VideoListComponent /> */}
           {/* </Box> */}

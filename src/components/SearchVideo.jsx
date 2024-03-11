@@ -54,11 +54,11 @@ const SearchVideo = () => {
 
   return (
     <>
-      <Paper sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
+      <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
         <Box sx={{py: 5, md: 'flex', flexDirection: "row"}} textAlign={"center"} >
           <Box height={"15vh"} >
             <Typography color={"white"} fontFamily="Menlo" >
-              {markers && 
+              {/* {markers && 
                 <ReverseGeocodingComponent
                   lat={markers.lat}
                   lng={markers.lng}
@@ -67,7 +67,7 @@ const SearchVideo = () => {
                   setAddressToSearchVideo={setReverseGeocodedAddress}
                 >
                 </ReverseGeocodingComponent>
-              }
+              } */}
             </Typography>
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>

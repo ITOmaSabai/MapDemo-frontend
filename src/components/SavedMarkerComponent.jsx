@@ -8,6 +8,7 @@ import marker from '@googlemaps/markerclusterer';
 import SpotContext from '../contexts/SpotContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
+import IsTopInfoVisibleContext from '../contexts/IsTopInfoVisibleContext';
 
 const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -16,6 +17,7 @@ const SavedMarkerComponent = () => {
   const { setMarkers } = useContext(SpotContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
+  const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
   useEffect(() => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
@@ -35,8 +37,10 @@ const SavedMarkerComponent = () => {
     setIsSavedMarkerSelected(true);
     // 新規登録用の画面を表示しない
     setIsNewMarkerSelected(false);
+    // 最初に表示する情報画面を表示しない
+    setIsTopInfoVisible(false);
+
     setSelectedMarker(id);
-    // setMarkers({lat, lng});
     map.panTo({lat, lng});
     const currentZoomLevel = map.getZoom();
 

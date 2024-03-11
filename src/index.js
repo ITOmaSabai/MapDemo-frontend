@@ -9,6 +9,7 @@ import { SelectedAddressProvider } from './contexts/SelectedAddressContext';
 import { IsSavedMarkerSelectedProvider } from './contexts/IsSavedMarkerSelectedContext';
 import { IsNewMarkerSelectedProvider } from './contexts/IsNewMarkerSelectedContext';
 import { DialogOpenProvider } from './contexts/DialogOpenContext';
+import { IsTopInfoVisibleProvider } from './contexts/IsTopInfoVisibleContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,7 +20,9 @@ root.render(
           <IsSavedMarkerSelectedProvider>
             <IsNewMarkerSelectedProvider>
               <DialogOpenProvider>
-                <App />
+                <IsTopInfoVisibleProvider>
+                  <App />
+                </IsTopInfoVisibleProvider>
               </DialogOpenProvider>
             </IsNewMarkerSelectedProvider>
           </IsSavedMarkerSelectedProvider>
