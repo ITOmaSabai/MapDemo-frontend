@@ -8,6 +8,7 @@ import { SetAddressesProvider } from './contexts/SetAddressesContext';
 import { SelectedAddressProvider } from './contexts/SelectedAddressContext';
 import { IsSavedMarkerSelectedProvider } from './contexts/IsSavedMarkerSelectedContext';
 import { IsNewMarkerSelectedProvider } from './contexts/IsNewMarkerSelectedContext';
+import { DialogOpenProvider } from './contexts/DialogOpenContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,9 @@ root.render(
         <SetAddressesProvider>
           <IsSavedMarkerSelectedProvider>
             <IsNewMarkerSelectedProvider>
-              <App />
+              <DialogOpenProvider>
+                <App />
+              </DialogOpenProvider>
             </IsNewMarkerSelectedProvider>
           </IsSavedMarkerSelectedProvider>
         </SetAddressesProvider>

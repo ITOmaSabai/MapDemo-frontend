@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import ReverseGeocodingComponent from "./ReverseGeocodingComponent";
 import SpotContext from "../contexts/SpotContext";
 import SetAddressesContext from "../contexts/SetAddressesContext";
+import VideoDialog from "./VideoDialog";
+import DialogOpenContext from "../contexts/DialogOpenContext";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -11,7 +13,9 @@ const SearchVideo = () => {
   const [ searchedKeywords, setSearchedKeywords ] = useState();
   const { markers } = useContext(SpotContext);
   const { address } = useContext(SetAddressesContext);
-  const [reverseGeocodedAddress, setReverseGeocodedAddress] = useState('');
+  const [ reverseGeocodedAddress, setReverseGeocodedAddress ] = useState('');
+  const [ open, setOpen ] = useState(false);
+  const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
 
   const getVideoSearchResult = async () => {
     try {
@@ -40,7 +44,13 @@ const SearchVideo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     getVideoSearchResult();
+    handleClickOpen();
   }
+
+  const handleClickOpen = () => {
+    setIsDialogOpen(true);
+    console.log(isDialogOpen)
+  };
 
   return (
     <>
@@ -102,6 +112,7 @@ const SearchVideo = () => {
           </Box>
         </Box>
       </Paper>
+      <VideoDialog handleClickOpen={handleClickOpen} searchResultVideos={searchResultVideos} />
     </>
   );
 };
