@@ -1,11 +1,12 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import UserInfo from "./UserInfo";
-import { useContext, useEffect, useState } from "react";
-import IsAuthContext from "../contexts/IsAuthContext";
+import React, { useContext, useEffect, useState } from "react";
+import IsAutContext from "../contexts/IsAuthContext";
 
 const GetCurrentUserInfo = () => {
   const { isAuth, setIsAuth } = useContext(IsAuthContext);
   const [ userDisplayName, setUserDisplayName ] = useState(null);
+  const [ currentUserInfo, setCurrentUserInfo ] = useState({});
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -38,13 +39,39 @@ const GetCurrentUserInfo = () => {
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
     const uid = user.uid;
+    setCurrentUserInfo({
+      name: displayName,
+      uid: uid,
+      avatar: photoURL
+    })
   }
 
   return (
-    <UserInfo
-      // displayName={userDisplayName}
-      // photoURL={photoURL}
-    />
+    <>
+      <UserInfo
+        // displayName={userDisplayName}
+        // photoURL={photoURL}
+      />
+      <form >
+        <input
+          type="hidden"
+          value={currentUserInfo.name}
+          name="name"
+        />
+        <input
+          type="hidden"
+          value={currentUserInfo.uid}
+          name="uid"
+        />
+        <input
+          type="hidden"
+          value={currentUserInfo.avatar}
+          name="avatar"
+        />
+
+
+      </form>
+    </>
   );
 };
 
