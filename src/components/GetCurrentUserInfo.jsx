@@ -1,7 +1,8 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import UserInfo from "./UserInfo";
 import React, { useContext, useEffect, useState } from "react";
-import IsAutContext from "../contexts/IsAuthContext";
+import IsAuthContext from "../contexts/IsAuthContext";
+import { Button } from "@mui/material";
 
 const GetCurrentUserInfo = () => {
   const { isAuth, setIsAuth } = useContext(IsAuthContext);
@@ -20,31 +21,61 @@ const GetCurrentUserInfo = () => {
       setIsAuth(true);
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/auth.user
+      const displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
       const uid = user.uid;
       // ...
+      setCurrentUserInfo({
+        userName: displayName,
+        uid: uid,
+        avatar: photoURL
+      })
     } else {
       // User is signed out
       // ...
     }
   });
 
-  if (user !== null) {
+  // if (user !== null) {
     // The user object has basic properties such as display name, email, etc.
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const emailVerified = user.emailVerified;
-
+   
     // The user's ID, unique to the Firebase project. Do NOT use
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
-    const uid = user.uid;
-    setCurrentUserInfo({
-      name: displayName,
-      uid: uid,
-      avatar: photoURL
-    })
-  }
+
+  // };
+
+  const createUser = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user: {
+          name: currentUserInfo.userName,
+          uid: currentUserInfo.uid,
+          avatar: currentUserInfo.avatar
+        } }),
+      });
+      if (!response.ok) {
+        throw new Error('データの送信に失敗しました');
+      }
+      const data = await response.json();
+      console.log('保存成功:', data);
+    } catch (error) {
+      console.error('エラー:', error);
+    }
+  };
+
+  const handleCreateUserSubmit = async (e) => {
+    e.preventDefault();
+    await createUser();
+  };
+
+  console.log(currentUserInfo)
 
   return (
     <>
@@ -52,7 +83,7 @@ const GetCurrentUserInfo = () => {
         // displayName={userDisplayName}
         // photoURL={photoURL}
       />
-      <form >
+      <form onSubmit={handleCreateUserSubmit}>
         <input
           type="hidden"
           value={currentUserInfo.name}
@@ -68,8 +99,7 @@ const GetCurrentUserInfo = () => {
           value={currentUserInfo.avatar}
           name="avatar"
         />
-
-
+        <Button color="info" type="submit">ユーザー登録する</Button>
       </form>
     </>
   );
