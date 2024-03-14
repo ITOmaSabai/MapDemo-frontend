@@ -9,6 +9,7 @@ import SpotContext from '../contexts/SpotContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsTopInfoVisibleContext from '../contexts/IsTopInfoVisibleContext';
+import { auth, provider, getAuth } from "../firebase";
 
 const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -19,9 +20,11 @@ const SavedMarkerComponent = () => {
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
-  useEffect(() => {
+  useEffect((config) => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
-    fetch('http://localhost:3000/api/v1/maps')
+    fetch('http://localhost:3000/api/v1/maps', {
+      headers: config
+    })
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data);
@@ -29,6 +32,14 @@ const SavedMarkerComponent = () => {
       })
       .catch(error => console.error('Error:', error));
   }, [isDataPosted]);
+
+    const auth = getAuth();
+    const idToken = auth.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
 
   const map = useMap();
 

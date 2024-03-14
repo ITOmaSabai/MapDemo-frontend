@@ -75,7 +75,7 @@ const GetCurrentUserInfo = () => {
     await createUser();
   };
 
-  console.log(currentUserInfo)
+  // console.log(currentUserInfo)
 
   return (
     <>

@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { Login } from '@mui/icons-material';
 import IsAuthContext from '../contexts/IsAuthContext';
 import { useContext } from 'react';
-import AuthSignOut from '../auth_sign_out';
+// import AuthSignOut from '../auth_sign_out';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -73,7 +73,7 @@ export default function HeaderAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const useAuthSignOut = AuthSignOut();
+  // const useAuthSignOut = AuthSignOut();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
