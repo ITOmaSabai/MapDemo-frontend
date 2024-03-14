@@ -17,6 +17,14 @@ const SearchVideo = () => {
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await ReverseGeocodingComponent(setReverseGeocodedAddress);
+    await getVideoSearchResult();
+    handleClickOpen();
+  }
+
   const getVideoSearchResult = async () => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/videos/search', {
@@ -41,15 +49,8 @@ const SearchVideo = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getVideoSearchResult();
-    handleClickOpen();
-  }
-
   const handleClickOpen = () => {
     setIsDialogOpen(true);
-    console.log(isDialogOpen)
   };
 
   return (
@@ -58,16 +59,14 @@ const SearchVideo = () => {
         <Box sx={{py: 5, md: 'flex', flexDirection: "row"}} textAlign={"center"} >
           <Box height={"15vh"} >
             <Typography color={"white"} fontFamily="Menlo" >
-              {/* {markers && 
+              {markers && 
                 <ReverseGeocodingComponent
-                  lat={markers.lat}
-                  lng={markers.lng}
-                  onSetAddressComponentsChange={setAddressComponents}
-                  onSetFormattedAddressChange={setFormattedAddress}
-                  setAddressToSearchVideo={setReverseGeocodedAddress}
+                  // onSetAddressComponentsChange={setAddressComponents}
+                  // onSetFormattedAddressChange={setFormattedAddress}
+                  // setAddressToSearchVideo={setReverseGeocodedAddress}
                 >
                 </ReverseGeocodingComponent>
-              } */}
+              }
             </Typography>
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
