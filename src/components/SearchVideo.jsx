@@ -113,7 +113,11 @@ const SearchVideo = () => {
           </Box>
         </Box>
       </Paper>
-      <VideoDialog handleClickOpen={handleClickOpen} searchResultVideos={searchResultVideos} />
+      <VideoDialog
+        handleClickOpen={handleClickOpen}
+        searchResultVideos={searchResultVideos}
+        searchedKeywords={searchedKeywords}
+      />
     </>
   );
 };
