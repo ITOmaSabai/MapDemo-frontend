@@ -11,6 +11,7 @@ import FloatingActionButtonSize from './ScrollToBottomButton';
 import ScrollToBottomButton from './ScrollToBottomButton';
 import VideoListComponent from './VideoListComponent';
 import DialogOpenContext from '../contexts/DialogOpenContext';
+import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
 
 const emails = ['username@gmail.com'];
 
@@ -42,15 +43,16 @@ function SimpleDialog(props) {
             <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Box>
         ))) ) : (
-          <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"} flexDirection={"column"}>
+          <Box textAlign="center" sx={{mx: 45, my: 3, bgcolor: "primary.light"}} display={"flex"} justifyContent={"center"} flexDirection={"column"} height={"70%"}>
             <Typography variant='h5'>動画を取得できませんでした...</Typography>
+            <Box sx={{p: 0, mt: 10, mb: 5}} display={"flex"} justifyContent={"center"} >
+              <AddressNotFoundImage  height={"200px"}/>
+            </Box>
             <Typography>動画を取得するためには、住所情報が必要です</Typography>
-            <Typography>山の上、砂漠、海などをクリックせずに都市部で再度試してください</Typography>
+            <Typography>山、砂漠、海などは避け、都市部をクリックして再度試してみてください</Typography>
           </Box>
         )}
-    
-        {ScrollToBottomButton()}
-        <Box sx={{height: "30vh"}}></Box>
+        {/* {ScrollToBottomButton()} */}
       </DialogContent>
     </Dialog>
   );
