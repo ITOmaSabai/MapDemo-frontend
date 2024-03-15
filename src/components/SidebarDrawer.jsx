@@ -14,11 +14,8 @@ import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 
 export default function SidebarDrawer() {
   const { sidebarDrawerOpen, setSidebarDrawerOpen } = React.useContext(SidebarDrawerOpenContext);
-  console.log(sidebarDrawerOpen)
-  // const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
-    console.log("sidebar state are updated.")
     setSidebarDrawerOpen(newOpen);
   };
 
