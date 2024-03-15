@@ -8,12 +8,14 @@ import TopInfo from "./TopInfo";
 import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
 
 const SpotInfoDisplaySwitcher = () => {
-  const { isNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
-  const { isSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
+  const { isNewMarkerSelected, setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
+  const { isSavedMarkerSelected, setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
   const { isTopInfoVisible, setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
   useEffect(() => {
     setIsTopInfoVisible(true);
+    setIsNewMarkerSelected(false);
+    setIsSavedMarkerSelected(false);
   }, []);
 
   return (
