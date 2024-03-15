@@ -109,9 +109,7 @@ const SearchVideo = () => {
           </Box>
       
           <Box>
-            {searchResultVideos && (
-              <iframe width="350" height="250" src={`https://www.youtube.com/embed/${searchResultVideos[0].id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            )}
+            <VideoDialog />
           </Box>
         </Box>
       </Paper>

@@ -17,6 +17,7 @@ const emails = ['username@gmail.com'];
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { onClose, selectedValue, open, searchResultVideos } = props;
+  const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -62,8 +63,6 @@ export default function VideoDialog({handleClickOpen, searchResultVideos}) {
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
   const {selectedVideos} = useContext(SelectedVideosContext);
 
-
-
   const handleClose = (value) => {
     setIsDialogOpen(false);
     setSelectedValue(value);
@@ -71,7 +70,7 @@ export default function VideoDialog({handleClickOpen, searchResultVideos}) {
 
   return (
     <div>
-      <Button variant="outlined" color='secondary' fontWeight='bold' onClick={handleClickOpen}>
+      <Button variant="outlined" color='secondary' fontWeight='bold' onClick={() => setIsDialogOpen(true)}>
         <Typography fontFamily="Menlo">
           Watch Videos
         </Typography>
