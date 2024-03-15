@@ -12,6 +12,7 @@ import ScrollToBottomButton from './ScrollToBottomButton';
 import VideoListComponent from './VideoListComponent';
 import DialogOpenContext from '../contexts/DialogOpenContext';
 import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
+import IsConfirmSaveSpotModalOpenContextContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
 
 const emails = ['username@gmail.com'];
 
@@ -19,9 +20,11 @@ function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched } = props;
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
+  const { setIsConfirmSaveSpotModalOpenContext } = useContext(IsConfirmSaveSpotModalOpenContextContext);
 
   const handleClose = () => {
     onClose(selectedValue);
+    setIsConfirmSaveSpotModalOpenContext(true);
   };
 
   const handleListItemClick = (value) => {
