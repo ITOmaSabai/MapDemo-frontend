@@ -147,7 +147,7 @@ const SearchVideo = () => {
           </Box>
         </Box>
           <Box>
-            <ConfirmSaveSpotModal />
+            <ConfirmSaveSpotModal searchedKeywords={searchedKeywords} />
           </Box>
         </Box>
       </Paper>
