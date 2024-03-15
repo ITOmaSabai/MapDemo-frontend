@@ -12,7 +12,7 @@ import ScrollToBottomButton from './ScrollToBottomButton';
 import VideoListComponent from './VideoListComponent';
 import DialogOpenContext from '../contexts/DialogOpenContext';
 import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
-import IsConfirmSaveSpotModalOpenContextContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
+import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
 
 const emails = ['username@gmail.com'];
 
@@ -20,11 +20,11 @@ function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched } = props;
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
-  const { setIsConfirmSaveSpotModalOpenContext } = useContext(IsConfirmSaveSpotModalOpenContextContext);
+  const { setIsConfirmSaveSpotModalOpen } = useContext(IsConfirmSaveSpotModalOpenContext);
 
   const handleClose = () => {
     onClose(selectedValue);
-    setIsConfirmSaveSpotModalOpenContext(true);
+    setIsConfirmSaveSpotModalOpen(true);
   };
 
   const handleListItemClick = (value) => {
@@ -75,7 +75,7 @@ export default function VideoDialog({searchResultVideos, searchedKeywords, isVal
   const handleClose = (value) => {
     setIsDialogOpen(false);
     setSelectedValue(value);
-    setIsVideoSearched(true); // 他のスポットをクリックした際に、falseにする必要がある
+    setIsVideoSearched(true);
   };
 
   return (

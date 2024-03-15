@@ -1,15 +1,15 @@
 import React, { createContext, useState } from 'react';
 
-const IsConfirmSaveSpotModalOpenContextContext = createContext();
+const IsConfirmSaveSpotModalOpenContext = createContext();
 
-export const IsConfirmSaveSpotModalOpenContextProvider = ({ children }) => {
-  const [isConfirmSaveSpotModalOpenContext, setIsConfirmSaveSpotModalOpenContext] = useState(false);
+export const IsConfirmSaveSpotModalOpenProvider = ({ children }) => {
+  const [isConfirmSaveSpotModalOpen, setIsConfirmSaveSpotModalOpen] = useState(false);
 
   return (
-    <IsConfirmSaveSpotModalOpenContextContext.Provider value={{ isConfirmSaveSpotModalOpenContext, setIsConfirmSaveSpotModalOpenContext }}>
+    <IsConfirmSaveSpotModalOpenContext.Provider value={{ isConfirmSaveSpotModalOpen, setIsConfirmSaveSpotModalOpen }}>
       {children}
-    </IsConfirmSaveSpotModalOpenContextContext.Provider>
+    </IsConfirmSaveSpotModalOpenContext.Provider>
   );
 };
 
-export default IsConfirmSaveSpotModalOpenContextContext;
+export default IsConfirmSaveSpotModalOpenContext;

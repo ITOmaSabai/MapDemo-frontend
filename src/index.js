@@ -11,7 +11,7 @@ import { IsNewMarkerSelectedProvider } from './contexts/IsNewMarkerSelectedConte
 import { DialogOpenProvider } from './contexts/DialogOpenContext';
 import { IsTopInfoVisibleProvider } from './contexts/IsTopInfoVisibleContext';
 import { ReverseGeocodedAddressProvider } from './contexts/ReverseGeocodedAddressContext';
-import { IsConfirmSaveSpotModalOpenContextProvider } from './contexts/IsConfirmSaveSpotModalOpenContext';
+import { IsConfirmSaveSpotModalOpenProvider } from './contexts/IsConfirmSaveSpotModalOpenContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,9 +24,9 @@ root.render(
               <DialogOpenProvider>
                 <IsTopInfoVisibleProvider>
                   <ReverseGeocodedAddressProvider>
-                    <IsConfirmSaveSpotModalOpenContextProvider>
+                    <IsConfirmSaveSpotModalOpenProvider>
                       <App />
-                    </IsConfirmSaveSpotModalOpenContextProvider>
+                    </IsConfirmSaveSpotModalOpenProvider>
                   </ReverseGeocodedAddressProvider>
                 </IsTopInfoVisibleProvider>
               </DialogOpenProvider>
