@@ -18,6 +18,7 @@ const SearchVideo = () => {
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
   const [ isValidAddress, setIsValidAddress ] = useState();
+  const [ isVideoSearched, setIsVideoSearched ] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,6 +62,7 @@ const SearchVideo = () => {
 
   const handleClickOpen = () => {
     setIsDialogOpen(true);
+    console.log(isDialogOpen)
   };
 
   return (
@@ -77,6 +79,7 @@ const SearchVideo = () => {
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
             {/* markers(クリックした地点の緯度経度)が存在すれば=マップをクリックした場合に、ボタンを表示する */}
             {markers ? ( 
+              !isVideoSearched ? (
               <>
                 <Button
                   variant="contained"
@@ -92,8 +95,29 @@ const SearchVideo = () => {
                   searchResultVideos={searchResultVideos}
                   searchedKeywords={searchedKeywords}
                   isValidAddress={isValidAddress}
+                  setIsVideoSearched={setIsVideoSearched}
                 />
               </>
+              ) : (
+                <>
+                  <Button
+                    variant="contained"
+                    color="info"
+                    type="submit"
+                    size='large'
+                    onClick={handleClickOpen}
+                  >
+                    動画を見る
+                  </Button>
+                  <VideoDialog
+                    handleClickOpen={handleClickOpen}
+                    searchResultVideos={searchResultVideos}
+                    searchedKeywords={searchedKeywords}
+                    isValidAddress={isValidAddress}
+                    setIsVideoSearched={setIsVideoSearched}
+                  />
+                </>
+              )
                ) : (
               <>
                 <Button

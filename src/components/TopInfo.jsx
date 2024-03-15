@@ -28,7 +28,7 @@ const TopInfo = () => {
           pb: 20
         }}>
           <TopAnimation />
-          <Typography color={"primary.light"} sx={{mt: 3}}>地図上の好きな場所をクリック</Typography>
+          <Typography color={"primary.light"} sx={{mt: 3}}>スポットを訪問してみよう</Typography>
         </Box>
         <Box sx={{pt: 0, mt: 0}}>
         </Box>
