@@ -59,7 +59,6 @@ export const ReverseGeocodeLatLng = async (markers, setReverseGeocodedAddress) =
     const geocoder = new window.google.maps.Geocoder();
     const response = await geocoder.geocode({ location: { lat: markers.lat, lng: markers.lng } });
     const resultAddress = response.results[0];
-    console.log(resultAddress) //取れてるけど渡ってない
     return resultAddress
   } catch (error) {
     console.error('Reverse Geocode was not successful for the following reason: ' + error);

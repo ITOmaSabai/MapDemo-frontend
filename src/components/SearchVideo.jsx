@@ -23,8 +23,12 @@ const SearchVideo = () => {
     e.preventDefault();
     const resultAddress = await ReverseGeocodeLatLng(markers, setReverseGeocodedAddress);
     setReverseGeocodedAddress(resultAddress);
-    await getVideoSearchResult(resultAddress);
-    handleClickOpen();
+    if (resultAddress.address_components.length > 1) {
+      await getVideoSearchResult(resultAddress);
+      handleClickOpen();
+    } else {
+      console.log("住所がある場所をクリックしてください");
+    }
   }
 
   const getVideoSearchResult = async (resultAddress) => {
@@ -62,62 +66,57 @@ const SearchVideo = () => {
           <Box height={"15vh"} >
             <Typography color={"white"} fontFamily="Menlo" >
               {markers && 
-                <ReverseGeocodingComponent
-                  // onSetAddressComponentsChange={setAddressComponents}
-                  // onSetFormattedAddressChange={setFormattedAddress}
-                  // setAddressToSearchVideo={setReverseGeocodedAddress}
-                >
-                </ReverseGeocodingComponent>
+                <ReverseGeocodingComponent />
               }
             </Typography>
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
-            <form onSubmit={handleSubmit}>
-              <input type="hidden" value={21.32744137161838} name="addressComponents" />
-              <input type="hidden" value={79.05807583185117} name="formattedAddres" />
-
-                {markers 
-                //  && reverseGeocodedAddress && reverseGeocodedAddress.address_components.length > 1 
-                  ? ( 
-                  <Button
-                    variant="contained"
-                    color="info"
-                    type="submit"
-                    size='large'
-                  >
-                    動画を取得
-                  </Button> ) : (
-                  <Button
-                    variant="contained"
-                    color="info"
-                    type="submit"
-                    size='large'
-                    disabled
-                  >
-                    動画を取得
-                  </Button> ) }
-                {/* } */}
-              <Box textAlign="center" sx={{px: 2, my: 2}} >
-                <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"} color={"white"}>
-                  {searchedKeywords && `"${searchedKeywords}"`}
-                </Typography>
-                <Typography fontFamily="Menlo" fontSize={14} color={"white"}>
-                  {searchedKeywords && "の動画を表示しています"}
-                </Typography>
-              </Box>
-            </form>
+            {/* markers(クリックした地点の緯度経度)が存在すれば=マップをクリックした場合に、ボタンを表示する */}
+            {markers ? ( 
+              <>
+                <Button
+                  variant="contained"
+                  color="info"
+                  type="submit"
+                  size='large'
+                  onClick={handleSubmit}
+                >
+                  動画を取得
+                </Button>
+                <VideoDialog
+                  handleClickOpen={handleClickOpen}
+                  searchResultVideos={searchResultVideos}
+                  searchedKeywords={searchedKeywords}
+                />
+              </>
+               ) : (
+              <>
+                <Button
+                  variant="contained"
+                  color="info"
+                  type="submit"
+                  size='large'
+                  disabled
+                >
+                  動画を取得
+                </Button>
+                
+              </> ) }
+            {/* } */}
+          <Box textAlign="center" sx={{px: 2, my: 2}} >
+            {/* <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"} color={"white"}>
+              {searchedKeywords && `"${searchedKeywords}"`}
+            </Typography> */}
+            {/* <Typography fontFamily="Menlo" fontSize={14} color={"white"}>
+              {searchedKeywords && "の動画を表示しています"}
+            </Typography> */}
           </Box>
-      
+        </Box>
           <Box>
-            <VideoDialog />
           </Box>
         </Box>
       </Paper>
-      <VideoDialog
-        handleClickOpen={handleClickOpen}
-        searchResultVideos={searchResultVideos}
-        searchedKeywords={searchedKeywords}
-      />
+
     </>
   );
 };
