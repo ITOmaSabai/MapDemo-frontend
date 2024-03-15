@@ -17,7 +17,7 @@ const emails = ['username@gmail.com'];
 
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
-  const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress } = props;
+  const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched } = props;
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
 
   const handleClose = () => {
@@ -33,7 +33,7 @@ function SimpleDialog(props) {
       <DialogContent sx={{height: "100vh", p: 0, m: 0}}>
         <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"}>
           <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"}>
-            {searchedKeywords && `"${searchedKeywords}"`}
+            {searchedKeywords && `"${searchedKeywords}" の動画を表示中`}
           </Typography>
         </Box>
         {isValidAddress ? (
@@ -64,7 +64,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function VideoDialog({searchResultVideos, searchedKeywords, isValidAddress}) {
+export default function VideoDialog({searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched}) {
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
   const {selectedVideos} = useContext(SelectedVideosContext);
@@ -72,11 +72,12 @@ export default function VideoDialog({searchResultVideos, searchedKeywords, isVal
   const handleClose = (value) => {
     setIsDialogOpen(false);
     setSelectedValue(value);
+    setIsVideoSearched(true); // 他のスポットをクリックした際に、falseにする必要がある
   };
 
   return (
     <div>
-      <Button
+      {/* <Button
         variant="outlined"
         color='secondary'
         fontWeight='bold'
@@ -85,7 +86,7 @@ export default function VideoDialog({searchResultVideos, searchedKeywords, isVal
         <Typography fontFamily="Menlo">
           Watch Videos
         </Typography>
-      </Button>
+      </Button> */}
       <SimpleDialog
         selectedValue={selectedValue}
         open={isDialogOpen}
