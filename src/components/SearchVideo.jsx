@@ -14,7 +14,7 @@ const SearchVideo = () => {
   const [ searchedKeywords, setSearchedKeywords ] = useState();
   const { markers } = useContext(SpotContext);
   const { address } = useContext(SetAddressesContext);
-  const { reverseGeocodedAddress, setReverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
+  const { setReverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
   const [ isValidAddress, setIsValidAddress ] = useState();
@@ -35,6 +35,11 @@ const SearchVideo = () => {
       handleClickOpen();
     }
   }
+
+  useEffect(() => {
+    setIsVideoSearched(false);
+    setReverseGeocodedAddress("");
+  }, [markers])
 
   const getVideoSearchResult = async (resultAddress) => {
     try {
@@ -62,7 +67,6 @@ const SearchVideo = () => {
 
   const handleClickOpen = () => {
     setIsDialogOpen(true);
-    console.log(isDialogOpen)
   };
 
   return (

@@ -9,40 +9,18 @@ const ReverseGeocodingComponent = () => {
 
   return (
     <div>
-      {/* {markers ? (
-        <Button
-          variant="contained"
-          color="info"
-          type="submit"
-          size='large'
-          onClick={handleReverseGeocide}
-        >
-          動画を取得
-        </Button>
-       ) : (
-        <Button
-        variant="contained"
-        color="info"
-        type="submit"
-        size='large'
-        disable
-        >
-          動画を取得
-        </Button>
-      )
-    } */}
-              {reverseGeocodedAddress && (
-        <Typography>
-          住所: {reverseGeocodedAddress.formatted_address}
-        </Typography>
-      )}
+        {reverseGeocodedAddress && (
+          <Typography>
+            住所: {reverseGeocodedAddress.formatted_address}
+          </Typography>
+        )}
     </div>
   );
 };
 
 export default ReverseGeocodingComponent;
 
-export const ReverseGeocodeLatLng = async (markers, setReverseGeocodedAddress) => {
+export const ReverseGeocodeLatLng = async (markers) => {
   try {
     const geocoder = new window.google.maps.Geocoder();
     const response = await geocoder.geocode({ location: { lat: markers.lat, lng: markers.lng } });

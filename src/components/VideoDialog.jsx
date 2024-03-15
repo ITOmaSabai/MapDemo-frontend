@@ -33,7 +33,7 @@ function SimpleDialog(props) {
       <DialogContent sx={{height: "100vh", p: 0, m: 0}}>
         <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"}>
           <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"}>
-            {searchedKeywords && `"${searchedKeywords}"`}
+            {searchedKeywords && `"${searchedKeywords}" の動画を表示中`}
           </Typography>
         </Box>
         {isValidAddress ? (
