@@ -1,39 +1,37 @@
-import { Typography } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import { Button, Typography } from '@mui/material';
+import React, { useState, useEffect, useContext } from 'react';
+import SpotContext from '../contexts/SpotContext';
+import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressContext';
 
-const ReverseGeocodingComponent = (
-  {
-    lat,
-    lng,
-    onSetAddressComponentsChange,
-    onSetFormattedAddressChange,
-    setAddressToSearchVideo
-   }
-  ) => {
-  const [reverseGeocodedAddress, setReverseGeocodedAddress] = useState('');
-
-  useEffect(() => {
-    if (lat && lng) {
-      reverseGeocodeLatLng(lat, lng);
-    }
-  }, [lat, lng]);
-
-  const reverseGeocodeLatLng = async (lat, lng) => {
-    try {
-      const geocoder = new window.google.maps.Geocoder();
-      const response = await geocoder.geocode({ location: { lat, lng } });
-      setReverseGeocodedAddress(response.results[0]);
-      setAddressToSearchVideo(response.results[0])
-      onSetAddressComponentsChange(response.results[0].address_components);
-      onSetFormattedAddressChange(response.results[0].formatted_address);
-    } catch (error) {
-      console.error('Reverse Geocode was not successful for the following reason: ' + error);
-    }
-  };
+const ReverseGeocodingComponent = () => {
+  const { reverseGeocodedAddress, setReverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
+  const { markers, setMarkers } = useContext(SpotContext);
 
   return (
     <div>
-      {reverseGeocodedAddress && (
+      {/* {markers ? (
+        <Button
+          variant="contained"
+          color="info"
+          type="submit"
+          size='large'
+          onClick={handleReverseGeocide}
+        >
+          動画を取得
+        </Button>
+       ) : (
+        <Button
+        variant="contained"
+        color="info"
+        type="submit"
+        size='large'
+        disable
+        >
+          動画を取得
+        </Button>
+      )
+    } */}
+              {reverseGeocodedAddress && (
         <Typography>
           住所: {reverseGeocodedAddress.formatted_address}
         </Typography>
@@ -43,3 +41,15 @@ const ReverseGeocodingComponent = (
 };
 
 export default ReverseGeocodingComponent;
+
+export const ReverseGeocodeLatLng = async (markers, setReverseGeocodedAddress) => {
+  try {
+    const geocoder = new window.google.maps.Geocoder();
+    const response = await geocoder.geocode({ location: { lat: markers.lat, lng: markers.lng } });
+    const resultAddress = response.results[0];
+    return resultAddress
+  } catch (error) {
+    console.error('Reverse Geocode was not successful for the following reason: ' + error);
+    return Promise.reject(error);
+  }
+};
