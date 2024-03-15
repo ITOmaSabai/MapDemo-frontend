@@ -3,21 +3,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import SpotContext from '../contexts/SpotContext';
 import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressContext';
 
-const ReverseGeocodingComponent = (
-  {
-    // onSetAddressComponentsChange,
-    // onSetFormattedAddressChange,
-    // setAddressToSearchVideo
-   }
-  ) => {
+const ReverseGeocodingComponent = () => {
   const { reverseGeocodedAddress, setReverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
   const { markers, setMarkers } = useContext(SpotContext);
-
-  const handleReverseGeocide = () => {
-    if (markers) {
-      ReverseGeocodeLatLng();
-    }
-  };
 
   return (
     <div>

@@ -42,7 +42,11 @@ function SimpleDialog(props) {
             <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Box>
         ))) ) : (
-          <><Typography>動画がありません</Typography></>
+          <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"} flexDirection={"column"}>
+            <Typography variant='h5'>動画を取得できませんでした...</Typography>
+            <Typography>動画を取得するためには、住所情報が必要です</Typography>
+            <Typography>山の上、砂漠、海などをクリックせずに都市部で再度試してください</Typography>
+          </Box>
         )}
     
         {ScrollToBottomButton()}

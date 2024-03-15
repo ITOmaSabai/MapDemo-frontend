@@ -29,6 +29,8 @@ const SearchVideo = () => {
       handleClickOpen();
     } else {
       setIsValidAddress(false);
+      setSearchResultVideos("");
+      setSearchedKeywords("");
       handleClickOpen();
     }
   }
