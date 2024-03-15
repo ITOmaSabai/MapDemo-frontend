@@ -17,7 +17,7 @@ const SearchVideo = () => {
   const { reverseGeocodedAddress, setReverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
   const [ open, setOpen ] = useState(false);
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
-
+  const [ isValidAddress, setIsValidAddress ] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,9 +25,11 @@ const SearchVideo = () => {
     setReverseGeocodedAddress(resultAddress);
     if (resultAddress.address_components.length > 1) {
       await getVideoSearchResult(resultAddress);
+      setIsValidAddress(true);
       handleClickOpen();
     } else {
-      console.log("住所がある場所をクリックしてください");
+      setIsValidAddress(false);
+      handleClickOpen();
     }
   }
 
@@ -87,6 +89,7 @@ const SearchVideo = () => {
                   handleClickOpen={handleClickOpen}
                   searchResultVideos={searchResultVideos}
                   searchedKeywords={searchedKeywords}
+                  isValidAddress={isValidAddress}
                 />
               </>
                ) : (

@@ -16,7 +16,7 @@ const emails = ['username@gmail.com'];
 
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
-  const { onClose, selectedValue, open, searchResultVideos, searchedKeywords } = props;
+  const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress } = props;
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
 
   const handleClose = () => {
@@ -35,12 +35,15 @@ function SimpleDialog(props) {
             {searchedKeywords && `"${searchedKeywords}"`}
           </Typography>
         </Box>
-        {searchResultVideos && searchResultVideos.length > 0 && (
-        searchResultVideos.map((searchResultVideo) => (
-        <Box sx={{height: "90%", m: 0, p: 0}} textAlign={"center"}>
-          <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </Box>
-        )))}
+        {isValidAddress ? (
+          searchResultVideos && searchResultVideos.length > 0 && (
+          searchResultVideos.map((searchResultVideo) => (
+          <Box sx={{height: "90%", m: 0, p: 0}} textAlign={"center"}>
+            <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </Box>
+        ))) ) : (
+          <><Typography>動画がありません</Typography></>
+        )}
     
         {ScrollToBottomButton()}
         <Box sx={{height: "30vh"}}></Box>
@@ -55,7 +58,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function VideoDialog({searchResultVideos, searchedKeywords}) {
+export default function VideoDialog({searchResultVideos, searchedKeywords, isValidAddress}) {
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
   const {selectedVideos} = useContext(SelectedVideosContext);
@@ -83,6 +86,7 @@ export default function VideoDialog({searchResultVideos, searchedKeywords}) {
         onClose={handleClose}
         searchResultVideos={searchResultVideos}
         searchedKeywords={searchedKeywords}
+        isValidAddress={isValidAddress}
       />
     </div>
   );
