@@ -22,7 +22,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: 500,
+  minWidth: '500px',
   height: '60vh',
   bgcolor: 'background.paper',
   boxShadow: 24,
@@ -45,7 +45,7 @@ export default function PostSpotModal() {
   const [ postSpotName, setPostSpotName ] = useState();
   const [ postSpotDescription, setPostSpotDescription ] = useState();
   const { reverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
-  const { setIsDataPosted } = useContext(useDataPosted);
+  const { setIsDataPosted } = useDataPosted();
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
 
@@ -64,8 +64,6 @@ export default function PostSpotModal() {
     e.preventDefault();
     postSpotData();
   }
-
-  console.log(reverseGeocodedAddress);
 
   const postSpotData = async () => {
     try {
@@ -102,7 +100,6 @@ export default function PostSpotModal() {
     }
   };
 
-
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
@@ -115,11 +112,9 @@ export default function PostSpotModal() {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        <>
-          <Box sx={{minWidth: "200px"}}>a</Box>
-          <Box sx={style}>
-            <FormControl display={"flex"} flexDirection={"column"} sx={{width: "90%"}}>
-              <form onSubmit={handlePostNewSpot} >
+        <Box sx={style}>
+          <form onSubmit={handlePostNewSpot} >
+            <Box display={"flex"} flexDirection={"column"} sx={{width: "100%"}}>
               <Typography variant='h5' fontSize={"24px"}><RoomTwoToneIcon />スポット新規投稿</Typography>
               <TextField
                 id="spotName"
@@ -146,10 +141,10 @@ export default function PostSpotModal() {
                 onChange={(e) => setPostSpotDescription(e.target.value)}
               />
               {/* <Autocomplete 
-               options={Tags}
-               renderInput={(params) => <TextField {...params} label="タグ" />}
-               onChange={(e) => handleSetTags(e.target.value)}
-               freeSolo={"true"}
+                options={Tags}
+                renderInput={(params) => <TextField {...params} label="タグ" />}
+                onChange={(e) => handleSetTags(e.target.value)}
+                freeSolo={"true"}
               /> */}
               {/* <ClickableAndDeletableChips
                 chips={chips}
@@ -165,11 +160,10 @@ export default function PostSpotModal() {
               >
                 投稿する
               </Button>
-              </form>
-            </FormControl>
-              {inputedTags}
-          </Box>
-        </>
+            </Box>
+          </form>
+            {/* {inputedTags} */}
+        </Box>
       </Modal>
     </div>
   );
