@@ -6,6 +6,8 @@ import SetAddressesContext from "../contexts/SetAddressesContext";
 import VideoDialog from "./VideoDialog";
 import DialogOpenContext from "../contexts/DialogOpenContext";
 import ReverseGeocodedAddressContext from "../contexts/ReverseGeocodedAddressContext";
+import ConfirmSaveSpotModal from "./ConfirmSaveSpotModal";
+import PostSpotModal from "./PostSpotModal";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -95,7 +97,6 @@ const SearchVideo = () => {
                   動画を取得
                 </Button>
                 <VideoDialog
-                  handleClickOpen={handleClickOpen}
                   searchResultVideos={searchResultVideos}
                   searchedKeywords={searchedKeywords}
                   isValidAddress={isValidAddress}
@@ -114,7 +115,6 @@ const SearchVideo = () => {
                     動画を見る
                   </Button>
                   <VideoDialog
-                    handleClickOpen={handleClickOpen}
                     searchResultVideos={searchResultVideos}
                     searchedKeywords={searchedKeywords}
                     isValidAddress={isValidAddress}
@@ -146,6 +146,8 @@ const SearchVideo = () => {
           </Box>
         </Box>
           <Box>
+            <ConfirmSaveSpotModal searchedKeywords={searchedKeywords} />
+            <PostSpotModal />
           </Box>
         </Box>
       </Paper>
