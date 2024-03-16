@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
-import SpotSaveImage from '../SpotSaveImage.jpg'
+import PostSpotForm from './PostSpotForm';
 
 const style = {
   position: 'absolute',
@@ -35,6 +35,12 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
   }, [isConfirmSaveSpotModalOpen]) 
   // isConfirmSaveSpotModalOpenがtrueになるのを監視した方がいい。どこかでfalseになる時にも実行されてしまう。
 
+  const handlePostSpot = () => {
+    setOpen(false);
+    setIsConfirmSaveSpotModalOpen(false);
+    // PostSpotForm();
+  };
+
   return (
     <div>
       {isConfirmSaveSpotModalOpen && 
@@ -47,14 +53,14 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              {`"${searchedKeywords}" を保存しますか？`}
+              {`"${searchedKeywords}" は気に入りましたか？`}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              この場所が気に入ったなら投稿しましょう！
+              投稿してみんなにシェアしよう🎉
             </Typography>
             <Box display={"flex"} sx={{mt: 2}} >
               <Button color='primary' variant='text' sx={{mt: 2, pr: 5, fontWeight: "normal"}} onClick={handleClose}>投稿しない</Button>
-              <Button color='info' variant='contained' sx={{mt: 2}} onClick={handleClose}>投稿する</Button>
+              <Button color='info' variant='contained' sx={{mt: 2}} onClick={handlePostSpot}>投稿する</Button>
             </Box>
           </Box>
         </Modal>

@@ -7,6 +7,7 @@ import VideoDialog from "./VideoDialog";
 import DialogOpenContext from "../contexts/DialogOpenContext";
 import ReverseGeocodedAddressContext from "../contexts/ReverseGeocodedAddressContext";
 import ConfirmSaveSpotModal from "./ConfirmSaveSpotModal";
+import PostSpotModal from "./PostSpotModal";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -148,6 +149,7 @@ const SearchVideo = () => {
         </Box>
           <Box>
             <ConfirmSaveSpotModal searchedKeywords={searchedKeywords} />
+            <PostSpotModal />
           </Box>
         </Box>
       </Paper>
