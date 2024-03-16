@@ -10,6 +10,9 @@ import ClickableAndDeletableChips from './ClickableAndDeletableChips';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
 import SpotContext from '../contexts/SpotContext';
 import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressContext';
+import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
+import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
+import { useDataPosted } from '../contexts/DataPostedContext';
 
 const style = {
   display: 'flex',
@@ -42,6 +45,9 @@ export default function PostSpotModal() {
   const [ postSpotName, setPostSpotName ] = useState();
   const [ postSpotDescription, setPostSpotDescription ] = useState();
   const { reverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
+  const { setIsDataPosted } = useContext(useDataPosted);
+  const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
+  const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
 
   const handleSetChips = (value) => {
 
@@ -83,12 +89,14 @@ export default function PostSpotModal() {
       }
       const data = await response.json();
       console.log('保存成功:', data);
-      // setIsDataPosted(true);
+      setIsDataPosted(true);
       // setSelectedMarker(data.map.id);
-      // setIsNewMarkerSelected(false);
-      // setIsSavedMarkerSelected(true);
-      // setName('');
-      // setDescription('');
+      // 情報欄の表示を変更する
+      setIsNewMarkerSelected(false);
+      setIsSavedMarkerSelected(true);
+      // formの値を空にする
+      setPostSpotName('');
+      setPostSpotDescription('');
     } catch (error) {
       console.error('エラー:', error);
     }
