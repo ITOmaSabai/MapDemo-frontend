@@ -13,6 +13,7 @@ import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressCon
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
+import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const style = {
   display: 'flex',
@@ -29,10 +30,12 @@ const style = {
   p: 4,
 };
 
-export default function PostSpotModal() {
+export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen}) {
   const [ open, setOpen ] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setPostSpotModalOpen(false);
+  }
   const [ inputedTags, setInputedTags ] = useState();
   const [ chips, setChips ] = useState([
     { key: 0, label: "行ってみたい" },
@@ -48,17 +51,17 @@ export default function PostSpotModal() {
   const { setIsDataPosted } = useDataPosted();
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
+  const { setSelectedMarker } = useContext(SelectedMarkerContext);
 
-  const handleSetChips = (value) => {
+  useEffect(() => {
+    setOpen(postSpotModalOpen);
+  }, [postSpotModalOpen]);
 
-  };
-
-  const handleSetTags = (e) => {
-    // setInputedTags(e);
-    const newChip = {key: 10, label: e}
-  console.log(newChip)
-    setChips([...chips, newChip])
-  };
+  // const handleSetTags = (e) => {
+  //   const newChip = {key: 10, label: e}
+  // console.log(newChip)
+  //   setChips([...chips, newChip])
+  // };
 
   const handlePostNewSpot = (e) => {
     e.preventDefault();
@@ -88,7 +91,7 @@ export default function PostSpotModal() {
       const data = await response.json();
       console.log('保存成功:', data);
       setIsDataPosted(true);
-      // setSelectedMarker(data.map.id);
+      setSelectedMarker(data.map.id);
       // 情報欄の表示を変更する
       setIsNewMarkerSelected(false);
       setIsSavedMarkerSelected(true);
@@ -102,7 +105,6 @@ export default function PostSpotModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -123,7 +125,7 @@ export default function PostSpotModal() {
                 color="info"
                 margin="normal"
                 helperText="※必須項目です"
-                placeholder="表示されるスポット名を入力"
+                placeholder="表示されるスポット名"
                 name="spotName"
                 value={postSpotName}
                 onChange={(e) => setPostSpotName(e.target.value)}

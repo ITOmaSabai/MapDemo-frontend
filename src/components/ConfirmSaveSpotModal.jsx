@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
 import PostSpotForm from './PostSpotForm';
+import PostSpotModal from './PostSpotModal';
 
 const style = {
   position: 'absolute',
@@ -21,11 +22,11 @@ const style = {
 export default function ConfirmSaveSpotModal({searchedKeywords}) {
   const [open, setOpen] = React.useState(false);
   const { isConfirmSaveSpotModalOpen, setIsConfirmSaveSpotModalOpen } = React.useContext(IsConfirmSaveSpotModalOpenContext);
+  const [ postSpotModalOpen, setPostSpotModalOpen ] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     setIsConfirmSaveSpotModalOpen(false);
-    console.log(isConfirmSaveSpotModalOpen)
   }
 
   // ビデオ表示ダイアログが閉じた時、モーダルを開く
@@ -38,7 +39,12 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
   const handlePostSpot = () => {
     setOpen(false);
     setIsConfirmSaveSpotModalOpen(false);
-    // PostSpotForm();
+    setPostSpotModalOpen(true);
+  };
+
+  const handleModalOpen = () => {
+    setOpen(false);
+    setIsConfirmSaveSpotModalOpen(false);
   };
 
   return (
@@ -66,6 +72,10 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
         </Modal>
       </>
       }
+      <PostSpotModal
+        postSpotModalOpen={postSpotModalOpen}
+        setPostSpotModalOpen={setPostSpotModalOpen}
+      />
     </div>
   );
 }

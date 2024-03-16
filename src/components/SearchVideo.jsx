@@ -97,7 +97,6 @@ const SearchVideo = () => {
                   動画を取得
                 </Button>
                 <VideoDialog
-                  handleClickOpen={handleClickOpen}
                   searchResultVideos={searchResultVideos}
                   searchedKeywords={searchedKeywords}
                   isValidAddress={isValidAddress}
@@ -116,7 +115,6 @@ const SearchVideo = () => {
                     動画を見る
                   </Button>
                   <VideoDialog
-                    handleClickOpen={handleClickOpen}
                     searchResultVideos={searchResultVideos}
                     searchedKeywords={searchedKeywords}
                     isValidAddress={isValidAddress}

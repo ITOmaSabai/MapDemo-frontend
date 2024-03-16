@@ -14,8 +14,6 @@ import DialogOpenContext from '../contexts/DialogOpenContext';
 import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
 import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
 
-const emails = ['username@gmail.com'];
-
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched } = props;
@@ -23,7 +21,7 @@ function SimpleDialog(props) {
   const { setIsConfirmSaveSpotModalOpen } = useContext(IsConfirmSaveSpotModalOpenContext);
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
     setIsConfirmSaveSpotModalOpen(true);
   };
 
@@ -69,7 +67,7 @@ SimpleDialog.propTypes = {
 
 export default function VideoDialog({searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched}) {
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState();
   const {selectedVideos} = useContext(SelectedVideosContext);
 
   const handleClose = (value) => {
@@ -80,16 +78,6 @@ export default function VideoDialog({searchResultVideos, searchedKeywords, isVal
 
   return (
     <div>
-      {/* <Button
-        variant="outlined"
-        color='secondary'
-        fontWeight='bold'
-        onClick={() => setIsDialogOpen(true)}
-      >
-        <Typography fontFamily="Menlo">
-          Watch Videos
-        </Typography>
-      </Button> */}
       <SimpleDialog
         selectedValue={selectedValue}
         open={isDialogOpen}
