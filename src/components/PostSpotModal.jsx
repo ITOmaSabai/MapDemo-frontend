@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Autocomplete, FormControl, FormGroup, Input, TextField } from '@mui/material';
+import { Autocomplete, FormControl, FormGroup, Icon, Input, TextField } from '@mui/material';
 import { Tags } from './Tags';
 import { Tag } from '@mui/icons-material';
 import ClickableAndDeletableChips from './ClickableAndDeletableChips';
+import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
+import SpotContext from '../contexts/SpotContext';
+import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressContext';
 
 const style = {
   display: 'flex',
@@ -35,6 +38,10 @@ export default function PostSpotModal() {
     { key: 3, label: "聖地" },
     { key: 4, label: "海がキレイ" }
   ]);
+  const { markers } = useContext(SpotContext);
+  const [ postSpotName, setPostSpotName ] = useState();
+  const [ postSpotDescription, setPostSpotDescription ] = useState();
+  const { reverseGeocodedAddress } = useContext(ReverseGeocodedAddressContext);
 
   const handleSetChips = (value) => {
 
@@ -47,6 +54,47 @@ export default function PostSpotModal() {
     setChips([...chips, newChip])
   };
 
+  const handlePostNewSpot = (e) => {
+    e.preventDefault();
+    postSpotData();
+  }
+
+  console.log(reverseGeocodedAddress);
+
+  const postSpotData = async () => {
+    try {
+      // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
+      const response = await fetch('http://localhost:3000/api/v1/maps', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ map: {
+          name: postSpotName, 
+          description: postSpotDescription, 
+          lat: markers.lat, 
+          lng: markers.lng,
+          address_components: reverseGeocodedAddress.address_components,
+          formatted_address: reverseGeocodedAddress.formatted_address
+        } }),
+      });
+      if (!response.ok) {
+        throw new Error('データの送信に失敗しました');
+      }
+      const data = await response.json();
+      console.log('保存成功:', data);
+      // setIsDataPosted(true);
+      // setSelectedMarker(data.map.id);
+      // setIsNewMarkerSelected(false);
+      // setIsSavedMarkerSelected(true);
+      // setName('');
+      // setDescription('');
+    } catch (error) {
+      console.error('エラー:', error);
+    }
+  };
+
+
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
@@ -58,14 +106,13 @@ export default function PostSpotModal() {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        // PaperProps={{sx: {maxHeight: "95vh"}}}
-        // sx={{height: "90vh"}}
       >
         <>
           <Box sx={{minWidth: "200px"}}>a</Box>
           <Box sx={style}>
             <FormControl display={"flex"} flexDirection={"column"} sx={{width: "90%"}}>
-              <Typography variant='h5' fontSize={"24px"}>スポット新規投稿</Typography>
+              <form onSubmit={handlePostNewSpot} >
+              <Typography variant='h5' fontSize={"24px"}><RoomTwoToneIcon />スポット新規投稿</Typography>
               <TextField
                 id="spotName"
                 label="スポット名"
@@ -73,16 +120,22 @@ export default function PostSpotModal() {
                 color="info"
                 margin="normal"
                 helperText="※必須項目です"
+                placeholder="表示されるスポット名を入力"
+                name="spotName"
+                value={postSpotName}
+                onChange={(e) => setPostSpotName(e.target.value)}
               />
               <TextField
                 id="outlined-multiline-static"
-                label="コメント"
+                label="説明"
                 multiline
                 rows={2}
                 color='info'
-                placeholder="コメントを入力"
+                placeholder="思い出や感想をシェアしましょう"
                 margin="normal"
-                helperText=""
+                name='description'
+                value={postSpotDescription}
+                onChange={(e) => setPostSpotDescription(e.target.value)}
               />
               {/* <Autocomplete 
                options={Tags}
@@ -95,6 +148,7 @@ export default function PostSpotModal() {
                 setChips={setChips}
               /> */}
               <Button
+                type='submit'
                 color='success'
                 variant='contained'
                 display={"flex"}
@@ -103,6 +157,7 @@ export default function PostSpotModal() {
               >
                 投稿する
               </Button>
+              </form>
             </FormControl>
               {inputedTags}
           </Box>
