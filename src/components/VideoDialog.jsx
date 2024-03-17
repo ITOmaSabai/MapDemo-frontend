@@ -11,15 +11,18 @@ import FloatingActionButtonSize from './ScrollToBottomButton';
 import ScrollToBottomButton from './ScrollToBottomButton';
 import VideoListComponent from './VideoListComponent';
 import DialogOpenContext from '../contexts/DialogOpenContext';
-
-const emails = ['username@gmail.com'];
+import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
+import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
 
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
-  const { onClose, selectedValue, open, searchResultVideos } = props;
+  const { onClose, selectedValue, open, searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched } = props;
+  const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
+  const { setIsConfirmSaveSpotModalOpen } = useContext(IsConfirmSaveSpotModalOpenContext);
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
+    setIsConfirmSaveSpotModalOpen(true);
   };
 
   const handleListItemClick = (value) => {
@@ -31,21 +34,26 @@ function SimpleDialog(props) {
       <DialogContent sx={{height: "100vh", p: 0, m: 0}}>
         <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"}>
           <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"}>
-            {/* {searchedKeywords && `"${searchedKeywords}"`} */}
-            "Bangkok, Thailand"
+            {searchedKeywords && `"${searchedKeywords}" の動画を表示中`}
           </Typography>
         </Box>
-        {searchResultVideos && searchResultVideos.length > 0 && (
-        searchResultVideos.map((searchResultVideo) => (
-        //   <iframe width="45%" height="50%" src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        // ))
-        <Box sx={{height: "90%", m: 0, p: 0}} textAlign={"center"}>
-          <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </Box>
-        )))}
-    
-        {ScrollToBottomButton()}
-        <Box sx={{height: "30vh"}}></Box>
+        {isValidAddress ? (
+          searchResultVideos && searchResultVideos.length > 0 && (
+          searchResultVideos.map((searchResultVideo) => (
+          <Box sx={{height: "90%", m: 0, p: 0}} textAlign={"center"}>
+            <iframe width="98%" height="100%" src={`https://www.youtube.com/embed/${searchResultVideo.id.video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </Box>
+        ))) ) : (
+          <Box textAlign="center" sx={{mx: 45, my: 3, bgcolor: "primary.light"}} display={"flex"} justifyContent={"center"} flexDirection={"column"} height={"70%"}>
+            <Typography variant='h5'>動画を取得できませんでした...</Typography>
+            <Box sx={{p: 0, mt: 10, mb: 5}} display={"flex"} justifyContent={"center"} >
+              <AddressNotFoundImage  height={"200px"}/>
+            </Box>
+            <Typography>動画を取得するためには、住所情報が必要です</Typography>
+            <Typography>山、砂漠、海などは避け、都市部をクリックして再度試してみてください</Typography>
+          </Box>
+        )}
+        {/* {ScrollToBottomButton()} */}
       </DialogContent>
     </Dialog>
   );
@@ -57,30 +65,26 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function VideoDialog({handleClickOpen, searchResultVideos}) {
+export default function VideoDialog({searchResultVideos, searchedKeywords, isValidAddress, setIsVideoSearched}) {
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState();
   const {selectedVideos} = useContext(SelectedVideosContext);
-
-
 
   const handleClose = (value) => {
     setIsDialogOpen(false);
     setSelectedValue(value);
+    setIsVideoSearched(true);
   };
 
   return (
     <div>
-      <Button variant="outlined" color='secondary' fontWeight='bold' onClick={handleClickOpen}>
-        <Typography fontFamily="Menlo">
-          Watch Videos
-        </Typography>
-      </Button>
       <SimpleDialog
         selectedValue={selectedValue}
         open={isDialogOpen}
         onClose={handleClose}
         searchResultVideos={searchResultVideos}
+        searchedKeywords={searchedKeywords}
+        isValidAddress={isValidAddress}
       />
     </div>
   );

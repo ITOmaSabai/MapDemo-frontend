@@ -4,7 +4,6 @@ import GoogleMapMarker from '../animations/GoogleMapMarker.json';
 
 const TopAnimation = () => {
   return (
-    <>
     <Player
       autoplay
       loop
@@ -20,7 +19,6 @@ const TopAnimation = () => {
         pointerEvents: "none",
       }}
     />
-    </>
   )
 };
 

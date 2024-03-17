@@ -42,7 +42,7 @@ const SpotInfo = () => {
           <Box sx={{pt: 0, mt: 0}}>
             <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
             <Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{selectedAddress ? selectedAddress.formatted_address : ""}</Typography>
-            <ClickableAndDeletableChips />
+            {/* <ClickableAndDeletableChips /> */}
 
             <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
           </Box>

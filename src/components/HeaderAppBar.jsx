@@ -123,7 +123,7 @@ export default function HeaderAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {!isAuth ? (
+      {/* {!isAuth ? ( */}
         <div>
           <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
             <MenuItem onClick={handleMenuClose}><Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>プロフィール</Typography></MenuItem>
@@ -131,12 +131,17 @@ export default function HeaderAppBar() {
           <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
           {/* <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem> */}
         </div>
-      ) : (
+      {/* ) : ( */}
+        <div>
+          <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
+          <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem>
+        </div>
+      {/* ) : ( */}
         <div>
           <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
         </div>
-      )
-      }
+      {/* ) */}
+      {/* } */}
     </Menu>
   );
 
