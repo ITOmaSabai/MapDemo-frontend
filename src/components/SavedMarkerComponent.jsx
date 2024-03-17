@@ -20,10 +20,21 @@ const SavedMarkerComponent = () => {
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
+  // const auth = getAuth();
+  // const idToken = auth.getIdToken();
+  // const idToken = firebase.auth().currentUser.getIdToken();
+  // const config = {
+  //   headers: {
+  //     authorization: `Bearer ${idToken}`,
+  //   },
+  // };
+
   useEffect((config) => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
     fetch('http://localhost:3000/api/v1/maps', {
-      headers: config
+      // headers: config
+      headers: {'Content-Type': 'application/json'}
+
     })
       .then(response => response.json())
       .then(data => {
@@ -32,14 +43,6 @@ const SavedMarkerComponent = () => {
       })
       .catch(error => console.error('Error:', error));
   }, [isDataPosted]);
-
-    const auth = getAuth();
-    const idToken = auth.getIdToken();
-    const config = {
-      headers: {
-        authorization: `Bearer ${idToken}`,
-      },
-    };
 
   const map = useMap();
 

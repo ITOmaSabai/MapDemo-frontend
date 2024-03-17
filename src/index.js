@@ -12,6 +12,7 @@ import { DialogOpenProvider } from './contexts/DialogOpenContext';
 import { IsTopInfoVisibleProvider } from './contexts/IsTopInfoVisibleContext';
 import { ReverseGeocodedAddressProvider } from './contexts/ReverseGeocodedAddressContext';
 import { IsConfirmSaveSpotModalOpenProvider } from './contexts/IsConfirmSaveSpotModalOpenContext';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,7 +26,9 @@ root.render(
                 <IsTopInfoVisibleProvider>
                   <ReverseGeocodedAddressProvider>
                     <IsConfirmSaveSpotModalOpenProvider>
-                      <App />
+                      <AuthContextProvider>
+                        <App />
+                      </AuthContextProvider>
                     </IsConfirmSaveSpotModalOpenProvider>
                   </ReverseGeocodedAddressProvider>
                 </IsTopInfoVisibleProvider>

@@ -1,17 +1,20 @@
-import { signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider } from "./firebase";
 import GetCurrentUserInfo from "./components/GetCurrentUserInfo";
 import { useState } from "react";
 
 const AuthGoogleSIgninPopup = () => {
   // const [ currentUserInfo, setCurrentUserInfo ] = useState({});
+  const auth = getAuth();
 
   signInWithPopup(auth, provider)
   .then(async (result) => {
     // The signed-in user info.
     const user = result.user;
     console.log(user)
-    const token = await user.getIdToken();
+    // const token = await user.getIdToken();
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
 
     // ??
     const config = { "Authorization": `Bearer ${token}` }

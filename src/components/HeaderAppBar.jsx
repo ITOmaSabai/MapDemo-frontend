@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import { Login } from '@mui/icons-material';
 import IsAuthContext from '../contexts/IsAuthContext';
 import { useContext } from 'react';
+import SignInButton from './SignInButton';
 // import AuthSignOut from '../auth_sign_out';
 
 const Search = styled('div')(({ theme }) => ({
@@ -128,13 +129,13 @@ export default function HeaderAppBar() {
           <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
             <MenuItem onClick={handleMenuClose}><Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>プロフィール</Typography></MenuItem>
           </Link>
-          <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
+          <SignInButton />
           {/* <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem> */}
         </div>
       {/* ) : ( */}
         <div>
           <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
-          <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem>
+          {/* <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem> */}
         </div>
       {/* ) : ( */}
         <div>
