@@ -22,7 +22,7 @@ const ClickedFavoriteIcon = ({ on }) => {
       <Player
         ref={playerRef}
         keepLastFrame
-        speed={2.5}
+        speed={3}
         src={clickedFavoriteIcon}
         style={{
           position: "relative",

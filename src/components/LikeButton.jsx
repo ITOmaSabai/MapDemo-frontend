@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
 const LikeButton = () => {
-  const [ on, setOn ] = React.useState(false);
+  const [ on, setOn ] = React.useState();
   const { selectedMarker } = React.useContext(SelectedMarkerContext);
   const [ likeId, setLikeId ] = React.useState();
+  const [ likedCount, setLikedCount] = React.useState(0);
+
+  const isLikedByCurrentUser = () => {
+  }
 
   const handleLikeButtonClick = async () => {
     setOn(!on);
@@ -57,10 +61,29 @@ const LikeButton = () => {
     };
   };
 
+  React.useEffect(() => {
+    fetch(`http://localhost:3000/api/v1/likes?${selectedMarker}`)
+      .then(response => {
+        response.json()
+        console.log(response);
+      })
+      .then(data => {
+        setLikedCount(data)
+        console.log(likedCount)
+      }
+      )
+      .catch(error => console.error('Error:', error));
+  }, [likedCount]);
+
   return (
-    <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px"}} disableRipple>
-      <ClickedFavoriteIcon on={on}/>
-    </Button>
+    <>
+      <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disableRipple>
+        <ClickedFavoriteIcon on={on}/>
+      </Button>
+      <Typography>
+        {likedCount}
+      </Typography>
+    </>
   );
 }
 

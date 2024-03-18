@@ -6,8 +6,9 @@ const TopAnimation = () => {
   return (
     <Player
       autoplay
-      loop
       src={GoogleMapMarker}
+      speed={0.7}
+      keepLastFrame
       style={{
         // position: "fixed",
         // top: "50%",
