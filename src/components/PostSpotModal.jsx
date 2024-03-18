@@ -71,7 +71,7 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
   const postSpotData = async () => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
-      const response = await fetch(`${process.env.RAILS_API_ENDPOINT}/api/v1/maps`, {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ const LikeButton = () => {
 
   const destroyLike = async (likeId) => {
     try {
-      const response = await fetch(`${process.env.RAILS_API_ENDPOINT}/api/v1/likes`, {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes`, {
         method: 'DESTROY',
         headers: {
           'Content-Type': 'application/json',

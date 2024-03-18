@@ -46,7 +46,7 @@ const SearchVideo = () => {
   const getVideoSearchResult = async (resultAddress) => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/videos/search', {
-      const response = await fetch(`${process.env.RAILS_API_ENDPOINT}/api/v1/videos/search`, {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/videos/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
