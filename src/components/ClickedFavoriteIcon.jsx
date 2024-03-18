@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 
 const ClickedFavoriteIcon = ({ on }) => {
   const playerRef = useRef(null);
-  console.log(on);
 
   useEffect(() => {
     if (!playerRef.current) {
@@ -23,7 +22,7 @@ const ClickedFavoriteIcon = ({ on }) => {
     <Player
       ref={playerRef}
       keepLastFrame
-      speed={2}
+      speed={2.5}
       src={clickedFavoriteIcon}
       style={{
         position: "relative",
