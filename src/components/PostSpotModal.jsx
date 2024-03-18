@@ -77,12 +77,13 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ map: {
-          name: postSpotName, 
-          description: postSpotDescription, 
-          lat: markers.lat, 
+          name: postSpotName,
+          description: postSpotDescription,
+          lat: markers.lat,
           lng: markers.lng,
           address_components: reverseGeocodedAddress.address_components,
-          formatted_address: reverseGeocodedAddress.formatted_address
+          formatted_address: reverseGeocodedAddress.formatted_address,
+          user_id: 1
         } }),
       });
       if (!response.ok) {

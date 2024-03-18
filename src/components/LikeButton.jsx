@@ -1,43 +1,18 @@
 import * as React from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Box, IconButton, ToggleButton, Typography } from '@mui/material';
+import { Button } from '@mui/material';
+import ClickedFavoriteIcon from './ClickedFavoriteIcon';
 
 const LikeButton = () => {
-  const [value, setValue] = React.useState('recents');
-  const [count, setCoutnt] = React.useState(0);
-  const [selected, setSelected] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [on, setOn] = React.useState(false);
 
   const handleLikeButtonClick = () => {
-    setCoutnt(count + 1);
+    setOn(!on);
   };
 
   return (
-    <Box>
-    {/* <BottomNavigation sx={{ width: 100 }} value={value} onChange={handleChange}> */}
-      <ToggleButton
-        aria-label="like"
-        color="warning"
-        onClick={handleLikeButtonClick}
-        selected={selected}
-        onChange={() => setSelected(!selected)}
-      >
-        <FavoriteIcon />
-        {/* label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
-        color="info.main" */}
-      </ToggleButton>
-      <Typography fontSize={10} color={"primary.light"}>
-        {count}
-      </Typography>
-      </Box>
-    // </BottomNavigation>
+    <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px"}} disableRipple>
+      <ClickedFavoriteIcon on={on}/>
+    </Button>
   );
 }
 
