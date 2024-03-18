@@ -19,22 +19,22 @@ const ClickedFavoriteIcon = ({ on }) => {
 
   return (
     <Box position={"absolute"} sx={{width: "30px"}}>
-    <Player
-      ref={playerRef}
-      keepLastFrame
-      speed={2.5}
-      src={clickedFavoriteIcon}
-      style={{
-        position: "relative",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -00%)",
-        height: "200px",
-        width: "200px",
-        zIndex: 1,
-        pointerEvents: "none",
-      }}
-    />
+      <Player
+        ref={playerRef}
+        keepLastFrame
+        speed={2.5}
+        src={clickedFavoriteIcon}
+        style={{
+          position: "relative",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -00%)",
+          height: "200px",
+          width: "200px",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      />
     </Box>
   );
 };
