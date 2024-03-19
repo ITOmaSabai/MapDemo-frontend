@@ -9,13 +9,25 @@ const LikeButton = ({selectedSpotInfomation}) => {
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
 
+  // スポットにlikeが存在すれば、ボタンをいいね済み状態にする
   React.useEffect(() => {
-    selectedSpotInfomation && selectedSpotInfomation.likes.length > 0 ? setOn(true) : setOn(false);
+    if (selectedSpotInfomation && selectedSpotInfomation.likes.length > 0) {
+      setOn(true);
+      const likeId  = selectedSpotInfomation.likes.find(like => like.user_id === 1)
+      setLikeId(likeId.id);
+      // console.log(selectedSpotInfomation)
+    } else {
+      setOn(false);
+      console.log(selectedSpotInfomation)
+
+    }
+
     return () => {
       setOn(false);
     }
   }, [selectedSpotInfomation]);
 
+  // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
     setOn(!on);
     if (!on) {
@@ -66,25 +78,25 @@ const LikeButton = ({selectedSpotInfomation}) => {
   };
 
   React.useEffect(() => {
-    fetch(`http://localhost:3000/api/v1/likes?${selectedMarker}`)
+    fetch(`http://localhost:3000/api/v1/likes?map_id=${selectedMarker}`)
       .then(response => {
         response.json()
-        console.log(response);
       })
       .then(data => {
         setLikedCount(data)
-        console.log(likedCount)
+        console.log(data)
       }
       )
       .catch(error => console.error('Error:', error));
-  }, [likedCount]);
+  }, [selectedMarker]);
+  console.log(likedCount);
 
   return (
     <>
       <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disableRipple>
         <ClickedFavoriteIcon on={on}/>
       </Button>
-      <Typography>
+      <Typography color={"white"}>
         {likedCount}
       </Typography>
     </>
