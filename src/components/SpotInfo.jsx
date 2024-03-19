@@ -51,7 +51,7 @@ const SpotInfo = () => {
         </Box>
         <Box >
           {/* {selectedSpotInfomation ? selectedSpotInfomation.likes.length > 0 : ( */}
-            <LikeButton selectedSpotInfomation={selectedSpotInfomation}/>
+            <LikeButton />
         </Box>
       </Paper>
     </>
