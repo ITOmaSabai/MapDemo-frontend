@@ -25,6 +25,7 @@ const SavedMarkerComponent = () => {
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data);
+        console.log(data)
         setIsDataPosted(false);
       })
       .catch(error => console.error('Error:', error));
@@ -108,7 +109,7 @@ const SavedMarkerComponent = () => {
     <>
       {savedMarkers.map((savedMarker) => (
         <AdvancedMarker
-          key={savedMarker.id} 
+          key={savedMarker.id}
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
           onClick={() => handleMarkerClick(savedMarker.id, savedMarker.lat, savedMarker.lng)}
           // ref={(marker) => setMarkerRef(marker, savedMarker.id)}

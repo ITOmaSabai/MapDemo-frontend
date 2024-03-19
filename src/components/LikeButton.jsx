@@ -3,14 +3,18 @@ import { Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
 
-const LikeButton = () => {
-  const [ on, setOn ] = React.useState();
+const LikeButton = ({selectedSpotInfomation}) => {
+  const [ on, setOn ] = React.useState(false);
   const { selectedMarker } = React.useContext(SelectedMarkerContext);
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
 
-  const isLikedByCurrentUser = () => {
-  }
+  React.useEffect(() => {
+    selectedSpotInfomation && selectedSpotInfomation.likes.length > 0 ? setOn(true) : setOn(false);
+    return () => {
+      setOn(false);
+    }
+  }, [selectedSpotInfomation]);
 
   const handleLikeButtonClick = async () => {
     setOn(!on);
