@@ -16,7 +16,7 @@ const AddressFetcher = () => {
 
   useEffect(() => {
     // fetch('https://mapdemo-backend.onrender.com/api/v1/addresses')
-    fetch('http://localhost:3000/api/v1/addresses')
+    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/addresses`)
       .then(response => response.json())
       .then(data => setAddresses(data))
       .catch(error => console.error('Error:', error));

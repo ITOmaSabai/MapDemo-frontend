@@ -37,7 +37,6 @@ const SpotInfo = () => {
         {selectedVideos && selectedVideos.length > 0 && (
         <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         )}
-        {/* <CardMedia ><img src={thumbnail} alt="thumbnail" /></CardMedia> */}
         <Box >
           <Box sx={{pt: 0, mt: 0}}>
             <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
@@ -49,12 +48,10 @@ const SpotInfo = () => {
           <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
             <VideoDialog />
           </Box>
-          {/* <Box> */}
-            {/* <VideoListComponent /> */}
-          {/* </Box> */}
         </Box>
         <Box >
-          <LikeButton />
+          {/* {selectedSpotInfomation ? selectedSpotInfomation.likes.length > 0 : ( */}
+            <LikeButton />
         </Box>
       </Paper>
     </>

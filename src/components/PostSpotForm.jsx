@@ -23,7 +23,7 @@ const PostSpotForm = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
- 
+
   useEffect(() => {
     if (markers) {
       setLatitude(markers.lat);
@@ -40,15 +40,15 @@ const PostSpotForm = () => {
   const postSpotData = async () => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
-      const response = await fetch('http://localhost:3000/api/v1/maps', {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ map: {
-          name: name, 
-          description: description, 
-          lat: markers.lat, 
+          name: name,
+          description: description,
+          lat: markers.lat,
           lng: markers.lng,
           address_components: addressComponents,
           formatted_addres: formattedAddres
@@ -160,7 +160,7 @@ const PostSpotForm = () => {
               name="addressComponents"
             /> */}
           </div>
-  
+
           <Button
             variant="contained"
             color="success"
