@@ -20,7 +20,6 @@ const SavedMarkerComponent = () => {
   const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
   useEffect(() => {
-    // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
     fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`)
       .then(response => response.json())
       .then(data => {
