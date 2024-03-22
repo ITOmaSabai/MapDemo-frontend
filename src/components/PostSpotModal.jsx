@@ -71,18 +71,19 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
   const postSpotData = async () => {
     try {
       // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
-      const response = await fetch('http://localhost:3000/api/v1/maps', {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ map: {
-          name: postSpotName, 
-          description: postSpotDescription, 
-          lat: markers.lat, 
+          name: postSpotName,
+          description: postSpotDescription,
+          lat: markers.lat,
           lng: markers.lng,
           address_components: reverseGeocodedAddress.address_components,
-          formatted_address: reverseGeocodedAddress.formatted_address
+          formatted_address: reverseGeocodedAddress.formatted_address,
+          user_id: 1
         } }),
       });
       if (!response.ok) {

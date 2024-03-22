@@ -29,12 +29,10 @@ const SavedMarkerComponent = () => {
   //   },
   // };
 
-  useEffect((config) => {
-    // fetch('https://mapdemo-backend.onrender.com/api/v1/maps')
-    fetch('http://localhost:3000/api/v1/maps', {
-      // headers: config
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`,
+    { // headers: config
       headers: {'Content-Type': 'application/json'}
-
     })
       .then(response => response.json())
       .then(data => {
@@ -63,7 +61,7 @@ const SavedMarkerComponent = () => {
       //   map.setZoom(zoomLevel);
       // }, 300);
     }
-    
+
     if (currentZoomLevel < 5) {
       zoomToMarker(5);
     } else if (currentZoomLevel < 9) {
@@ -122,7 +120,7 @@ const SavedMarkerComponent = () => {
     <>
       {savedMarkers.map((savedMarker) => (
         <AdvancedMarker
-          key={savedMarker.id} 
+          key={savedMarker.id}
           position={{lat: savedMarker.lat, lng:savedMarker.lng}}
           onClick={() => handleMarkerClick(savedMarker.id, savedMarker.lat, savedMarker.lng)}
           // ref={(marker) => setMarkerRef(marker, savedMarker.id)}

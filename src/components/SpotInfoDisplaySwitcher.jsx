@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import SpotInfo from "./SpotInfo";
+import SpotInfo from "./spotInfomations/SpotInfo";
 import PostSpotForm from "./PostSpotForm";
 import IsNewMarkerSelectedContext from "../contexts/IsNewMarkerSelectedContext";
 import IsSavedMarkerSelectedContext from "../contexts/IsSavedMarkerSelectedContext";

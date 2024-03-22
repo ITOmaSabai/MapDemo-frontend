@@ -23,7 +23,7 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
   const [open, setOpen] = React.useState(false);
   const { isConfirmSaveSpotModalOpen, setIsConfirmSaveSpotModalOpen } = React.useContext(IsConfirmSaveSpotModalOpenContext);
   const [ postSpotModalOpen, setPostSpotModalOpen ] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     setOpen(false);
     setIsConfirmSaveSpotModalOpen(false);
@@ -32,9 +32,7 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
   // ビデオ表示ダイアログが閉じた時、モーダルを開く
   React.useEffect(() => {
     setOpen(true);
-    return 
-  }, [isConfirmSaveSpotModalOpen]) 
-  // isConfirmSaveSpotModalOpenがtrueになるのを監視した方がいい。どこかでfalseになる時にも実行されてしまう。
+  }, [isConfirmSaveSpotModalOpen])
 
   const handlePostSpot = () => {
     setOpen(false);
@@ -49,7 +47,7 @@ export default function ConfirmSaveSpotModal({searchedKeywords}) {
 
   return (
     <div>
-      {isConfirmSaveSpotModalOpen && 
+      {isConfirmSaveSpotModalOpen &&
       <>
         <Modal
           open={open}
