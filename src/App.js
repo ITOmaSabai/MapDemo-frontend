@@ -27,7 +27,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthGoogleSIgninPopup from './auth_google_signin_popup';
 import UserInfo from './components/UserInfo';
 import GetCurrentUserInfo from './components/GetCurrentUserInfo';
-import SpotInfo from './components/SpotInfo';
+import SpotInfo from './components/spotInfomations/SpotInfo';
 import AddressFetcher from './components/AddressFetcher';
 import LikeButton from './components/LikeButton';
 import SpotInfoDisplaySwitcher from './components/SpotInfoDisplaySwitcher';
