@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import { Login } from '@mui/icons-material';
 import IsAuthContext from '../contexts/IsAuthContext';
 import { useContext } from 'react';
+import SignInButton from './SignInButton';
 import AuthSignOut from '../auth_sign_out';
 
 const Search = styled('div')(({ theme }) => ({
@@ -73,7 +74,7 @@ export default function HeaderAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const useAuthSignOut = AuthSignOut();
+  // const useAuthSignOut = AuthSignOut();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,10 +95,6 @@ export default function HeaderAppBar() {
     handleMobileMenuClose();
   };
 
-  // const handleLogOut = () => {
-  //   useAuthSignOut();
-  // }
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -106,6 +103,7 @@ export default function HeaderAppBar() {
     setSidebarDrawerOpen(true);
   }
 
+  // ヘッダー右のアイコン部分
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -123,19 +121,23 @@ export default function HeaderAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {!isAuth ? (
-        <div>
-          <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
-            <MenuItem onClick={handleMenuClose}><Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>プロフィール</Typography></MenuItem>
-          </Link>
-          <MenuItem onClick={useAuthSignOut}><Typography fontWeight={"bold"}>ログアウト</Typography></MenuItem>
-        </div>
-      ) : (
-        <div>
-          <MenuItem onClick={handleSignIn}>サインイン</MenuItem>
-        </div>
-      )
-      }
+      <div>
+        <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
+          <MenuItem onClick={handleMenuClose}>
+            <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
+              プロフィール
+            </Typography>
+          </MenuItem>
+        </Link>
+        <SignInButton />
+      </div>
+      <div>
+        <MenuItem >
+          <Typography fontWeight={"bold"}>
+            <AuthSignOut />
+          </Typography>
+        </MenuItem>
+      </div>
     </Menu>
   );
 

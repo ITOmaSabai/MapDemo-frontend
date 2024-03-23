@@ -9,6 +9,7 @@ import SpotContext from '../contexts/SpotContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsTopInfoVisibleContext from '../contexts/IsTopInfoVisibleContext';
+import { auth, provider, getAuth } from "../firebase";
 
 const SavedMarkerComponent = () => {
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -19,8 +20,20 @@ const SavedMarkerComponent = () => {
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
 
+  // const auth = getAuth();
+  // const idToken = auth.getIdToken();
+  // const idToken = firebase.auth().currentUser.getIdToken();
+  // const config = {
+  //   headers: {
+  //     authorization: `Bearer ${idToken}`,
+  //   },
+  // };
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`)
+    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`,
+    { // headers: config
+      headers: {'Content-Type': 'application/json'}
+    })
       .then(response => response.json())
       .then(data => {
         setSavedMarkers(data);
