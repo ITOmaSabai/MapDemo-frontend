@@ -18,7 +18,7 @@ export function useUser() {
   const getUserInfo = async () => {
     const config = await setIdToken();
     const res = await fetch(
-      "http//:localhost:3000/api/v1/user",
+      `${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/user`,
       config,
       // `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user`,
       // config

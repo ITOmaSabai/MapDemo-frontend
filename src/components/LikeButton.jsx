@@ -74,7 +74,7 @@ const LikeButton = () => {
 
   // 1.現在のいいね数、2.ログインしているユーザーからのいいねのid の2つを取得する
   React.useEffect(() => {
-    fetch(`http://localhost:3000/api/v1/likes?map_id=${selectedMarker}`)
+    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes?map_id=${selectedMarker}`)
       .then(response => response.json())
       .then(data => {
         // 現在のいいね数を保持

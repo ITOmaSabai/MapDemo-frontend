@@ -27,7 +27,7 @@ const AuthGoogleSIgninPopup = () => {
   });
 
   const postSignInData = (config, user) => {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/users`, {
       method: 'POST',
       headers: config,
       body: JSON.stringify({ user: {
