@@ -5,7 +5,6 @@ import { auth } from "../firebase";
 export default function useFirebaseAuth() {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  // const router = useRouter();
 
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -30,6 +29,7 @@ export default function useFirebaseAuth() {
   const nextOrObserver = async (user) => {
     if (!user) {
       setLoading(false);
+      console.log("ユーザーがログアウトしました")
       return;
     }
 
@@ -38,6 +38,7 @@ export default function useFirebaseAuth() {
     setLoading(false);
   };
 
+  // Firebaseのstateの状態変化を監視する
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, nextOrObserver);
     return unsubscribe;

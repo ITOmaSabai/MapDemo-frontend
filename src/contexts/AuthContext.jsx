@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebase'
 import useFirebaseAuth from "../Hooks/useFirebasAuth";
 
+// ログイン中のユーザーの情報を保持する
 export const AuthContext = createContext('');
 
 export const AuthContextProvider = ({ children }) => {
