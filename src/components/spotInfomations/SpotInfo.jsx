@@ -26,7 +26,6 @@ const SpotInfo = () => {
       setSelectedSpotInfomation(selectedSpotInfo);
       }
   }, [selectedMarker, savedMarkers]);
-  console.log(selectedSpotInfomation)
 
   return (
     <>
@@ -55,7 +54,6 @@ const SpotInfo = () => {
             <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
-            <VideoDialog />
           </Box>
         </Box>
         <Box >

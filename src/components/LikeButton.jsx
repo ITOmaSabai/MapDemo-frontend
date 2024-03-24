@@ -11,20 +11,8 @@ const LikeButton = () => {
   const [ likedCount, setLikedCount] = React.useState(0);
   const { currentUser } = useFirebaseAuth();
 
-  // // スポットにlikeが存在すれば、ボタンをいいね済み状態にする
-  // React.useEffect(() => {
-  //   if (likeId && likeId !== null) {
-  //     setOn(true);
-  //   } else {
-  //     setOn(false);
-  //   }
-  //   // likeの数が増減した時(自分が推したかもしれない=> 人が押した時も減る？(=likedCount)
-  //   // 自分がクリックしたとき(=likeId)でいいのでは？)、違うマーカーを選択した時に発火する
-  // }, [likedCount, likeId, selectedMarker]);
-
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
-    setOn(!on);
     if (!on) {
       await createLike();
     } else {
@@ -45,6 +33,7 @@ const LikeButton = () => {
           },
           body: JSON.stringify({ like: {
             map_id: selectedMarker,
+            uid: currentUser.uid
           } })
         });
         if (!response.ok) {
@@ -92,8 +81,8 @@ const LikeButton = () => {
       .then(data => {
         // 現在のいいね数を保持
         setLikedCount(data.length);
-        //いいねの配列から、現在のユーザーのいいねidを取得
-        const likeByCurrentUser = data.find(like => like.user_id === 1);
+        //いいねの配列から、現在のユーザーがつけたいいねのidを取得
+        const likeByCurrentUser = data.find(like => like.uid === currentUser.uid);
         if (likeByCurrentUser && likeByCurrentUser !== null) {
           setLikeId(likeByCurrentUser.id);
           setOn(true);

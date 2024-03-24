@@ -112,15 +112,15 @@ export const RouteComponent = () => {
       <Box sx={{ p: 0, m: 0, height: "100vh" }}>
         <HeaderAppBar />
         <SidebarDrawer />
-        <Box sx={{ display: "flex", p: 0}}>
-          <Box sx={{flex: 1, p: 0}}>
+        <Box sx={{ display: "flex", p: 0, m: 0}}>
+          <Box sx={{flex: 1, p: 0, m: 0}}>
             {/* <VideoListComponent /> */}
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
             {/* <VideoDialog /> */}
             <SpotInfoDisplaySwitcher />
           </Box>
-          <Box sx={{flex: 3, p: 0}}>
+          <Box sx={{flex: 3, p: 0, m: 0}}>
             <MarkerPostComponent zoom={2} position={defaultPosition} />
             <VideoFetcher />
           </Box>
