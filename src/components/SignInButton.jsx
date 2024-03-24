@@ -13,8 +13,6 @@ const SignInButton = () => {
         headers: { 'Authorization': `Bearer ${token}` },
       };
 
-      console.log(config.headers);
-
       fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/authentication`, {
         method: 'POST',
         headers: config.headers,

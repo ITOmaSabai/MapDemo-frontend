@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
+import useFirebaseAuth from '../Hooks/useFirebasAuth';
 
 const LikeButton = () => {
   const [ on, setOn ] = React.useState(false);
   const { selectedMarker } = React.useContext(SelectedMarkerContext);
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
+  const { currentUser } = useFirebaseAuth();
 
   // // スポットにlikeが存在すれば、ボタンをいいね済み状態にする
   // React.useEffect(() => {
@@ -32,44 +34,55 @@ const LikeButton = () => {
 
   // いいねボタンを押した際、いいねする
   const createLike = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ like: {
-          user_id: 1,
-          map_id: selectedMarker,
-        } })
-      });
-      if (!response.ok) {
-        throw new Error('データの送信に失敗しました');
+    const verifyIdToken = async () => {
+      const token = await currentUser?.getIdToken();
+      try {
+        const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ like: {
+            map_id: selectedMarker,
+          } })
+        });
+        if (!response.ok) {
+          throw new Error('データの送信に失敗しました');
+        };
+        const data = await response.json();
+        setLikeId(data.id);
+        setOn(true);
+        console.log('保存成功:', data);
+      } catch (error) {
+        console.error('エラー:', error);
       };
-      const data = await response.json();
-      setLikeId(data.id);
-      console.log('保存成功:', data);
-    } catch (error) {
-      console.error('エラー:', error);
     };
+    verifyIdToken();
   };
 
   // いいねボタンを押した際、いいねを削除する
   const destroyLike = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes/${likeId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ like: {
-          map_id: selectedMarker
-        } })
-      });
-      console.log('削除成功');
-    } catch (error) {
-      console.error('エラー:', error);
+    const verifyIdToken = async () => {
+      const token = await currentUser?.getIdToken();
+      try {
+        const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/likes/${likeId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ like: {
+            map_id: selectedMarker
+          } })
+        });
+        console.log('削除成功');
+        setOn(false);
+      } catch (error) {
+        console.error('エラー:', error);
+      };
     };
+    verifyIdToken();
   };
 
   // 1.現在のいいね数、2.ログインしているユーザーからのいいねのid の2つを取得する
