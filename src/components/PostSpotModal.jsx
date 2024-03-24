@@ -14,6 +14,7 @@ import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
 import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
 import { useDataPosted } from '../contexts/DataPostedContext';
 import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
+import useFirebaseAuth from "../Hooks/useFirebasAuth";
 
 const style = {
   display: 'flex',
@@ -52,6 +53,7 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
   const { setSelectedMarker } = useContext(SelectedMarkerContext);
+  const { currentUser } = useFirebaseAuth();
 
   useEffect(() => {
     setOpen(postSpotModalOpen);
@@ -69,11 +71,13 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
   }
 
   const postSpotData = async () => {
+    const verifyIdToken = async () => {
+      const token = await currentUser?.getIdToken();
     try {
-      // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/maps', {
       const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ map: {
@@ -83,7 +87,6 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
           lng: markers.lng,
           address_components: reverseGeocodedAddress.address_components,
           formatted_address: reverseGeocodedAddress.formatted_address,
-          user_id: 1
         } }),
       });
       if (!response.ok) {
@@ -103,6 +106,8 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
       console.error('エラー:', error);
     }
   };
+  verifyIdToken();
+  }
 
   return (
     <div>
