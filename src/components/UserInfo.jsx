@@ -20,22 +20,6 @@ const UserInfo = (displayName, photoURL) => {
           <Typography variant="h4" component="h2" fontFamily={"Menlo"} fontWeight={"bold"} color={"primary.light"}>UserName</Typography>
         {/* </Box> */}
       </Stack>
-      <Stack 
-        direction="row"
-        spacing={1}
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: "center"
-        }}
-      >
-        {/* <Stack direction="row" spacing={1} useFlexGap flexWrap={"wrap"}> */}
-        <Card sx={{px: 5, py: 2, mx: 5, mb: 5}}><SpotCard/></Card>
-        <Card sx={{px: 5, py: 2, mx: 5, mb: 5}}><SpotCard/></Card>
-        <Card sx={{px: 5, py: 2, mx: 5, mb: 5}}><SpotCard/></Card>
-        <Card sx={{px: 5, py: 2, mx: 5, mb: 5}}>lorem ipsum</Card>
-        <Card sx={{px: 5, py: 2, mx: 5, mb: 5}}>lorem ipsum</Card>
-      </Stack>
   
     </Box>
     </>

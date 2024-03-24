@@ -12,7 +12,7 @@ export default function useFirebaseAuth() {
 
     if (result) {
       const user = result.user;
-
+      setCurrentUser(user);
       return user;
     }
   };
