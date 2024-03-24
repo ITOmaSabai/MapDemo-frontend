@@ -73,7 +73,6 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
   const postSpotData = async () => {
     const verifyIdToken = async () => {
       const token = await currentUser?.getIdToken();
-      console.log("postのトークン", token)
     try {
       const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
         method: 'POST',

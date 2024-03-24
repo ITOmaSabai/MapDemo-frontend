@@ -4,12 +4,10 @@ import IsAuthContext from "./contexts/IsAuthContext";
 import { Button } from "@mui/material";
 
 const AuthSignOut = () => {
-  const { setIsAuth } = useContext(IsAuthContext);
-
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      setIsAuth(false);
+      window.location.href = '/';
     }).catch((error) => {
     });
   };
