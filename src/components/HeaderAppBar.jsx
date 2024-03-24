@@ -25,6 +25,10 @@ import IsAuthContext from '../contexts/IsAuthContext';
 import { useContext } from 'react';
 import SignInButton from './SignInButton';
 import AuthSignOut from '../auth_sign_out';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import BackpackIcon from '@mui/icons-material/Backpack';
+import LanguageIcon from '@mui/icons-material/Language';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -218,6 +222,11 @@ export default function HeaderAppBar() {
           >
             BackHacker.
           </Typography>
+          {/* <LaptopMacIcon sx={{mr: 1}}></LaptopMacIcon>
+          <CloseIcon></CloseIcon>
+          <BackpackIcon sx={{mr: 1}}></BackpackIcon>
+          <CloseIcon></CloseIcon>
+          <LanguageIcon></LanguageIcon> */}
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

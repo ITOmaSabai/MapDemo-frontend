@@ -1,7 +1,6 @@
 
 const CreateUserByGoogleAuth = async () => {
   try {
-    // const response = await fetch('https://mapdemo-backend.onrender.com/api/v1/users', {
     const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/users`, {
       method: 'POST',
       headers: {

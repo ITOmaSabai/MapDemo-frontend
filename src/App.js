@@ -25,8 +25,8 @@ import SidebarDrawer from './components/SidebarDrawer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import AuthGoogleSIgninPopup from './auth_google_signin_popup';
-import UserInfo from './components/UserInfo';
-import GetCurrentUserInfo from './components/GetCurrentUserInfo';
+import UserInfo from './components/userInfomations/UserInfo';
+import GetCurrentUserInfo from './components/userInfomations/GetCurrentUserInfo';
 import SpotInfo from './components/spotInfomations/SpotInfo';
 import AddressFetcher from './components/AddressFetcher';
 import LikeButton from './components/LikeButton';
@@ -112,15 +112,15 @@ export const RouteComponent = () => {
       <Box sx={{ p: 0, m: 0, height: "100vh" }}>
         <HeaderAppBar />
         <SidebarDrawer />
-        <Box sx={{ display: "flex", p: 0}}>
-          <Box sx={{flex: 1, p: 0}}>
+        <Box sx={{ display: "flex", p: 0, m: 0}}>
+          <Box sx={{flex: 1, p: 0, m: 0}}>
             {/* <VideoListComponent /> */}
             {/* <StreetviewPanoramaComponent /> */}
             {/* <AutoCompleteComponent /> */}
             {/* <VideoDialog /> */}
             <SpotInfoDisplaySwitcher />
           </Box>
-          <Box sx={{flex: 3, p: 0}}>
+          <Box sx={{flex: 3, p: 0, m: 0}}>
             <MarkerPostComponent zoom={2} position={defaultPosition} />
             <VideoFetcher />
           </Box>
