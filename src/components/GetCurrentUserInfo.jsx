@@ -15,12 +15,13 @@ const GetCurrentUserInfo = () => {
   const getUserInfo = async () => {
     const verifyIdToken = async () => {
       const token = await currentUser?.getIdToken();
-      console.log("currentUserは", currentUser)
+      console.log("userのトークン", token)
       try {
         const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/profile`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
         });
         if (!response.ok) {
