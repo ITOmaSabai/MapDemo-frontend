@@ -2,7 +2,7 @@ import { Button, Typography } from "@mui/material";
 import useFirebaseAuth from "../Hooks/useFirebasAuth";
 
 const SignInButton = () => {
-  const { loginWithGoogle } = useFirebaseAuth();
+  const { loginWithGoogle, currentUser } = useFirebaseAuth();
 
   const handleGoogleLogin = () => {
     const verifyIdToken = async () => {
@@ -25,6 +25,7 @@ const SignInButton = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        console.log("ログイン時のcurrentUser2", currentUser )
         return response.json();
       })
       .then(data => console.log(data))

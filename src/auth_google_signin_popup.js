@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider } from "./firebase";
-import GetCurrentUserInfo from "./components/GetCurrentUserInfo";
+import GetCurrentUserInfo from "./components/userInfomations/GetCurrentUserInfo";
 import { useState } from "react";
 
 const AuthGoogleSIgninPopup = () => {

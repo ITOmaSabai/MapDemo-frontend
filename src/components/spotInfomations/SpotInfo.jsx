@@ -26,15 +26,20 @@ const SpotInfo = () => {
       setSelectedSpotInfomation(selectedSpotInfo);
       }
   }, [selectedMarker, savedMarkers]);
+  console.log(selectedSpotInfomation)
 
   return (
     <>
       <AddressFetcher />
       <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
-        <Box sx={{mx: 3, py: 1, display: 'flex', flexDirection: "row", justifyContent: "space-between"}} >
-          <Box sx={{display: 'flex', flexDirection: "row", height: "100%"}} >
-            <Avatar sx={{ bgcolor: "secondary.light", mr: 2 }}  >IT</Avatar>
-            <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >ito</Typography>
+        <Box sx={{mx: 1, pt: 2, mb: 2, display: 'flex', flexDirection: "row", justifyContent: "space-between"}} >
+          <Box sx={{display: 'flex', flexDirection: "row", height: "100%",}} >
+            {selectedSpotInfomation && selectedSpotInfomation.user.avatar ? (
+              <Avatar src={selectedSpotInfomation.user.avatar} sx={{mr: 2}} ></Avatar>
+            ) : (
+              <Avatar sx={{mr: 2}} ></Avatar>)
+            }
+            <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >{selectedSpotInfomation ? selectedSpotInfomation.user.name : ""}</Typography>
           </Box>
           <SpotInfoConfig />
         </Box>

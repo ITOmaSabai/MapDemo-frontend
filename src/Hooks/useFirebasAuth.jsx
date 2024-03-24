@@ -13,6 +13,7 @@ export default function useFirebaseAuth() {
     if (result) {
       const user = result.user;
       setCurrentUser(user);
+      console.log("ログイン時点のユーザー", currentUser)
       return user;
     }
   };
