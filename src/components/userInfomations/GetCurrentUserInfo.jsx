@@ -6,6 +6,7 @@ import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import { useUser } from "../../Hooks/useUser";
 import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 import HeaderAppBar from "../HeaderAppBar";
+import UserInfoTab from "./UserInfoTab";
 
 const GetCurrentUserInfo = () => {
   const { isAuth, setIsAuth } = useContext(IsAuthContext);
@@ -50,7 +51,7 @@ const GetCurrentUserInfo = () => {
     <>
       <Box sx={{textAlign: "center", height: "100vh"}} bgcolor={"primary.dark"} >
       <HeaderAppBar />
-      <Stack sx={{mt: 5, textAlign: "center", mb: 10, display: "flex", justifyContent: "center", flexDirection: "row"}}>
+      <Stack sx={{mt: 5, textAlign: "center", mb: 5, display: "flex", justifyContent: "center", flexDirection: "row"}}>
         { currentUser ? (
         <>
           <Avatar src={currentUser.photoURL} sx={{mr: 3}}></Avatar>
@@ -58,6 +59,7 @@ const GetCurrentUserInfo = () => {
         </>
         ) :(null)}
       </Stack>
+      <UserInfoTab />
 
     </Box>
     </>
