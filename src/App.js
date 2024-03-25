@@ -31,6 +31,8 @@ import SpotInfo from './components/spotInfomations/SpotInfo';
 import AddressFetcher from './components/AddressFetcher';
 import LikeButton from './components/LikeButton';
 import SpotInfoDisplaySwitcher from './components/SpotInfoDisplaySwitcher';
+import { PostButton } from './components/spotPosts/PostButton';
+import HeroTypewriter from './components/Animations/HeroTypewriter';
 
 // const color = blueGrey[800];
 
@@ -105,30 +107,31 @@ const theme = createTheme({
 });
 
 export const RouteComponent = () => {
-  const defaultPosition = { lat: 13.749999828728921, lng: 100.5027801676758 }
+  const defaultPosition = { lat: 30.749999828728921, lng: 100.5027801676758 }
+  const animationWatched = window.sessionStorage.getItem('animationWatched');
 
   return (
-    <>
-      <Box sx={{ p: 0, m: 0, height: "100vh" }}>
-        <HeaderAppBar />
-        <SidebarDrawer />
-        <Box sx={{ display: "flex", p: 0, m: 0}}>
-          <Box sx={{flex: 1, p: 0, m: 0}}>
-            {/* <VideoListComponent /> */}
-            {/* <StreetviewPanoramaComponent /> */}
-            {/* <AutoCompleteComponent /> */}
-            {/* <VideoDialog /> */}
-            <SpotInfoDisplaySwitcher />
-          </Box>
-          <Box sx={{flex: 3, p: 0, m: 0}}>
-            <MarkerPostComponent zoom={2} position={defaultPosition} />
-            <VideoFetcher />
+      <>
+        { !animationWatched && <HeroTypewriter /> }
+        <Box sx={{ p: 0, m: 0, height: "100vh" }}>
+          <HeaderAppBar />
+          <Box sx={{ display: "flex", p: 0, m: 0}}>
+            <Box sx={{flex: 1, p: 0, m: 0}}>
+              {/* <VideoListComponent /> */}
+              {/* <StreetviewPanoramaComponent /> */}
+              {/* <AutoCompleteComponent /> */}
+              {/* <VideoDialog /> */}
+              <SpotInfoDisplaySwitcher />
+            </Box>
+            <Box sx={{flex: 3, p: 0, m: 0}}>
+              <MarkerPostComponent zoom={2} position={defaultPosition} />
+              <VideoFetcher />
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </>
-  )
-}
+      </>
+    )
+  }
 
 export default function App() {
   return (
