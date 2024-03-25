@@ -8,6 +8,7 @@ import DialogOpenContext from "../contexts/DialogOpenContext";
 import ReverseGeocodedAddressContext from "../contexts/ReverseGeocodedAddressContext";
 import ConfirmSaveSpotModal from "./ConfirmSaveSpotModal";
 import PostSpotModal from "./PostSpotModal";
+import { PostButton } from "./spotPosts/PostButton";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -84,17 +85,13 @@ const SearchVideo = () => {
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
             {/* markers(クリックした地点の緯度経度)が存在すれば=マップをクリックした場合に、ボタンを表示する */}
-            {markers ? ( 
+            {markers ? (
               !isVideoSearched ? (
               <>
                 <Button
-                  variant="contained"
-                  color="info"
-                  type="submit"
-                  size='large'
-                  onClick={handleSubmit}
+                onClick={handleSubmit}
                 >
-                  動画を取得
+                  <PostButton />
                 </Button>
                 <VideoDialog
                   searchResultVideos={searchResultVideos}
