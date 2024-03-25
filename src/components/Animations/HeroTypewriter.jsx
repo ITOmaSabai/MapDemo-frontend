@@ -10,8 +10,10 @@ const HeroTypewriter = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    sessionStorage.setItem('animationWatched', true);
+
     const timer = setTimeout(() => {
-      sessionStorage.setItem('animationWatched', true);
+      window.location.redirect('/')
     }, 4500);
 
     return () => clearTimeout(timer);
