@@ -9,6 +9,8 @@ import ReverseGeocodedAddressContext from "../contexts/ReverseGeocodedAddressCon
 import ConfirmSaveSpotModal from "./ConfirmSaveSpotModal";
 import PostSpotModal from "./PostSpotModal";
 import { PostButton } from "./spotPosts/PostButton";
+import useFirebaseAuth from "../Hooks/useFirebasAuth";
+import MessageModal from "./Modals/MessageModal";
 
 const SearchVideo = () => {
   const [ addressComponents, setAddressComponents ] = useState();
@@ -22,20 +24,30 @@ const SearchVideo = () => {
   const { isDialogOpen, setIsDialogOpen } = useContext(DialogOpenContext);
   const [ isValidAddress, setIsValidAddress ] = useState();
   const [ isVideoSearched, setIsVideoSearched ] = useState(false);
+  const { currentUser } = useFirebaseAuth();
+  const [ loginModalOpen, setLoginModalOpen ] = useState(false);
+
+  const title = "ログインして街に行こう";
+  const body = "街の様子をみんなにシェアしよう！"
+  const icon = "✈️";
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const resultAddress = await ReverseGeocodeLatLng(markers, setReverseGeocodedAddress);
-    setReverseGeocodedAddress(resultAddress);
-    if (resultAddress.address_components.length > 1) {
-      await getVideoSearchResult(resultAddress);
-      setIsValidAddress(true);
-      handleClickOpen();
+    if (currentUser) {
+      e.preventDefault();
+      const resultAddress = await ReverseGeocodeLatLng(markers, setReverseGeocodedAddress);
+      setReverseGeocodedAddress(resultAddress);
+      if (resultAddress.address_components.length > 1) {
+        await getVideoSearchResult(resultAddress);
+        setIsValidAddress(true);
+        handleClickOpen();
+      } else {
+        setIsValidAddress(false);
+        setSearchResultVideos("");
+        setSearchedKeywords("");
+        handleClickOpen();
+      }
     } else {
-      setIsValidAddress(false);
-      setSearchResultVideos("");
-      setSearchedKeywords("");
-      handleClickOpen();
+      setLoginModalOpen(true);
     }
   }
 
@@ -74,6 +86,13 @@ const SearchVideo = () => {
 
   return (
     <>
+      <MessageModal
+        open={loginModalOpen}
+        setOpen={setLoginModalOpen}
+        title={title}
+        body={body}
+        icon={icon}
+      />
       <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
         <Box sx={{py: 5, md: 'flex', flexDirection: "row"}} textAlign={"center"} >
           <Box height={"15vh"} >
@@ -119,7 +138,7 @@ const SearchVideo = () => {
                   />
                 </>
               )
-               ) : (
+            ) : (
               <>
                 <Button
                   variant="contained"
@@ -130,7 +149,6 @@ const SearchVideo = () => {
                 >
                   動画を取得
                 </Button>
-                
               </> ) }
             {/* } */}
           <Box textAlign="center" sx={{px: 2, my: 2}} >

@@ -148,16 +148,6 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
                 value={postSpotDescription}
                 onChange={(e) => setPostSpotDescription(e.target.value)}
               />
-              {/* <Autocomplete 
-                options={Tags}
-                renderInput={(params) => <TextField {...params} label="タグ" />}
-                onChange={(e) => handleSetTags(e.target.value)}
-                freeSolo={"true"}
-              /> */}
-              {/* <ClickableAndDeletableChips
-                chips={chips}
-                setChips={setChips}
-              /> */}
               <Button
                 type='submit'
                 color='success'
