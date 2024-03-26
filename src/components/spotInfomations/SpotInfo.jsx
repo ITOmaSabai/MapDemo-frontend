@@ -10,7 +10,7 @@ import SelectedVideosContext from "../../contexts/SelectedVideosContext";
 import SetAddressesContext from "../../contexts/SetAddressesContext";
 import AddressFetcher from "../AddressFetcher";
 import SelectedAddressContext from "../../contexts/SelectedAddressContext";
-import LikeButton from "../LikeButton";
+import LikeButton from "../Likes/LikeButton";
 import SpotInfoConfig from "./SpotInfoConfig";
 
 const SpotInfo = () => {
@@ -30,7 +30,7 @@ const SpotInfo = () => {
   return (
     <>
       <AddressFetcher />
-      <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>
+      <Paper square sx={{bgcolor: "primary.dark", maxHeight: "90vh", minHeight: "90vh", width:"360px", m: 0, p: 0}}>
         <Box sx={{mx: 1, pt: 2, mb: 2, display: 'flex', flexDirection: "row", justifyContent: "space-between"}} >
           <Box sx={{display: 'flex', flexDirection: "row", height: "100%",}} >
             {selectedSpotInfomation && selectedSpotInfomation.user.avatar ? (
@@ -46,12 +46,14 @@ const SpotInfo = () => {
         <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         )}
         <Box >
-          <Box sx={{pt: 0, mt: 0}}>
+          <Box sx={{pt: 0, mt: 0, overflow: "auto", minHeight: 270, maxHeight: 270}}>
             <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
-            <Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{selectedAddress ? selectedAddress.formatted_address : ""}</Typography>
-            {/* <ClickableAndDeletableChips /> */}
-
-            <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
+            <Box sx={{maxHeight: "100px", overflow: "auto"}}>
+              <Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{selectedAddress ? selectedAddress.formatted_address : ""}</Typography>
+            </Box>
+            <Box sx={{maxHeight: "100px", overflow: "auto"}}>
+              <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{selectedSpotInfomation ? selectedSpotInfomation.description : ""}</Typography>
+            </Box>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
           </Box>

@@ -29,7 +29,7 @@ import UserInfo from './components/userInfomations/UserInfo';
 import GetCurrentUserInfo from './components/userInfomations/GetCurrentUserInfo';
 import SpotInfo from './components/spotInfomations/SpotInfo';
 import AddressFetcher from './components/AddressFetcher';
-import LikeButton from './components/LikeButton';
+import LikeButton from './components/Likes/LikeButton';
 import SpotInfoDisplaySwitcher from './components/SpotInfoDisplaySwitcher';
 import { PostButton } from './components/spotPosts/PostButton';
 import HeroTypewriter from './components/Animations/HeroTypewriter';

@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
-import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
-import useFirebaseAuth from '../Hooks/useFirebasAuth';
+import SelectedMarkerContext from '../../contexts/SelectedMarkerContext';
+import useFirebaseAuth from '../../Hooks/useFirebasAuth';
 
-const LikeButton = ({disabled}) => {
+const LikeButton = ({disabled, likesCount}) => {
   const [ on, setOn ] = React.useState(false);
   const { selectedMarker } = React.useContext(SelectedMarkerContext);
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
   const { currentUser } = useFirebaseAuth();
+  console.log("likesCount: ", likesCount);
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
@@ -87,6 +88,8 @@ const LikeButton = ({disabled}) => {
           if (likeByCurrentUser && likeByCurrentUser !== null) {
             setLikeId(likeByCurrentUser.id);
             setOn(true);
+          } else {
+            setOn(false);
           }
         } else {
           setOn(false);
@@ -100,8 +103,8 @@ const LikeButton = ({disabled}) => {
       <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disabled={disabled} disableRipple>
         <ClickedFavoriteIcon on={on}/>
       </Button>
-      <Typography color={"white"} sx={{pl: 3}}>
-        {likedCount}
+      <Typography color={"white"} sx={{pl: 5}} display={"flex"} justifyContent={"left"}>
+        {likesCount && likesCount !== null ? likesCount : likedCount}
       </Typography>
     </Box>
   );

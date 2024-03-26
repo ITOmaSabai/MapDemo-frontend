@@ -8,7 +8,7 @@ import SelectedAddressContext from '../../contexts/SelectedAddressContext';
 import AddressFetcher from '../AddressFetcher';
 import { Avatar, Paper, Stack } from '@mui/material';
 import SpotInfoConfig from '../spotInfomations/SpotInfoConfig';
-import LikeButton from '../LikeButton';
+import LikeButton from '../Likes/LikeButton';
 import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 
 export default function SpotInfoCard() {
@@ -64,17 +64,20 @@ export default function SpotInfoCard() {
                 <iframe width="350" height="200" src={`https://www.youtube.com/embed/${spot.videos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               )}
               <Box >
-              <Box sx={{pt: 0, mt: 0}}>
+              <Box sx={{pt: 0, mt: 0, overflow: "auto", minHeight: 190, maxHeight: 220}}>
                 <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{spot ? spot.name : ""}</Typography>
-                <Typography Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{spot ? spot.address.formatted_address : ""}</Typography>
-                <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{spot ? spot.description : ""}</Typography>
+                <Box sx={{maxHeight: 50, overflow: "auto"}}>
+                  <Typography Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{spot ? spot.address.formatted_address : ""}</Typography>
+                </Box>
+                <Box sx={{maxHeight: 90, overflow: "auto"}}>
+                  <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{spot ? spot.description : ""}</Typography>
+                </Box>
               </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
                 </Box>
               </Box>
               <Box >
-                {/* {spot ? spot.likes.length > 0 : ( */}
-                  <LikeButton disabled={true} />
+                  <LikeButton disabled={true} likesCount={spot.likes.length} />
               </Box>
             </Paper>
           ))
