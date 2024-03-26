@@ -10,13 +10,16 @@ const HeroTypewriter = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    sessionStorage.setItem('animationWatched', true);
+    const reloadTimer = setTimeout(() => {
+      const animation = sessionStorage.setItem('animationWatched', true);
+      console.log(animation);
+    }, 3700);
 
-    const timer = setTimeout(() => {
-      window.location.redirect('/')
-    }, 4500);
+    const setSettionTimer = setTimeout(() => {
+      window.location.reload();
+    }, 4000);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(setSettionTimer, reloadTimer);
   }, [navigate]);
 
   return (
