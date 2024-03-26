@@ -41,7 +41,7 @@ const SpotInfo = () => {
             }
             <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >{selectedSpotInfomation ? selectedSpotInfomation.user.name : ""}</Typography>
           </Box>
-          {selectedSpotInfomation && selectedSpotInfomation.user.uid === currentUser.uid ? <SpotInfoConfig /> : ""}
+          {selectedSpotInfomation && currentUser && selectedSpotInfomation.user.uid === currentUser.uid ? <SpotInfoConfig /> : ""}
         </Box>
         {selectedVideos && selectedVideos.length > 0 && (
         <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -60,8 +60,7 @@ const SpotInfo = () => {
           </Box>
         </Box>
         <Box >
-          {/* {selectedSpotInfomation ? selectedSpotInfomation.likes.length > 0 : ( */}
-            <LikeButton />
+          <LikeButton />
         </Box>
       </Paper>
     </>

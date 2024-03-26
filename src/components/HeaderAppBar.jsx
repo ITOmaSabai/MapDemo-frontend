@@ -189,23 +189,25 @@ export default function HeaderAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
-          <Typography
-            variant="h5"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-            fontFamily="Menlo"
-          >
-            BackHacker.
-          </Typography>
+            <Typography
+              variant="h5"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+              fontFamily="Menlo"
+            >
+              BackHacker.
+            </Typography>
           </Link>
-          <Box sx={{ml: 3, mt: 1}}>
-            <LaptopMacIcon sx={{mr: 1, fontSize: 20}}></LaptopMacIcon>
-            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
-            <BackpackIcon sx={{mr: 1, fontSize: 20}}></BackpackIcon>
-            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
-            <LanguageIcon sx={{mr: 1, fontSize: 20}}></LanguageIcon>
-          </Box>
+          <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
+            <Box sx={{ml: 3, mt: 1}}>
+              <LaptopMacIcon sx={{mr: 1, fontSize: 20}}></LaptopMacIcon>
+              <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+              <BackpackIcon sx={{mr: 1, fontSize: 20}}></BackpackIcon>
+              <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+              <LanguageIcon sx={{mr: 1, fontSize: 20}}></LanguageIcon>
+            </Box>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               {/* <SearchIconWrapper>

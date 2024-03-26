@@ -107,7 +107,7 @@ const theme = createTheme({
 });
 
 export const RouteComponent = () => {
-  const defaultPosition = { lat: 30.749999828728921, lng: 100.5027801676758 }
+  const defaultPosition = { lat: 15.637474886767327, lng: 151.47934266767578 }
   const animationWatched = window.sessionStorage.getItem('animationWatched');
 
   return (
@@ -117,10 +117,6 @@ export const RouteComponent = () => {
           <HeaderAppBar />
           <Box sx={{ display: "flex", p: 0, m: 0}}>
             <Box sx={{flex: 1, p: 0, m: 0}}>
-              {/* <VideoListComponent /> */}
-              {/* <StreetviewPanoramaComponent /> */}
-              {/* <AutoCompleteComponent /> */}
-              {/* <VideoDialog /> */}
               <SpotInfoDisplaySwitcher />
             </Box>
             <Box sx={{flex: 3, p: 0, m: 0}}>
