@@ -10,7 +10,6 @@ const LikeButton = ({disabled, likesCount}) => {
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
   const { currentUser } = useFirebaseAuth();
-  console.log("likesCount: ", likesCount);
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {

@@ -16,9 +16,6 @@ export default function LikedSpotInfoCard() {
   const [ spotsByCurrentUser, setSpotsByCurrentUser ] = useState();
   const { currentUser } = useFirebaseAuth();
 
-  console.log("SpotCardでのcurrentUser", currentUser)
-  console.log("SpotCardでのsavedMarkers", savedMarkers)
-
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0 && currentUser) {
       // mapする?
@@ -27,7 +24,6 @@ export default function LikedSpotInfoCard() {
       });
       setSpotsByCurrentUser(spotLikedByCurrentUser);
       }
-      console.log("currentUserにいいねされた:", spotsByCurrentUser)
   }, [savedMarkers, currentUser]);
 
 

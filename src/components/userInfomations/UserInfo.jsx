@@ -1,17 +1,13 @@
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import { deepPurple } from '@mui/material/colors';
 import HeaderAppBar from '../HeaderAppBar';
-import SpotCard from '../SpotCard';
 import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 
 const UserInfo = ({currentUserInfo}) => {
   const { currentUser } = useFirebaseAuth();
-  console.log("持ってきたプロフ", currentUser)
 
   return (
     <>

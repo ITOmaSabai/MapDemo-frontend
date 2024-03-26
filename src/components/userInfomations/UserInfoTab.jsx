@@ -4,9 +4,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import SpotCard from '../SpotCard';
-import { Stack } from '@mui/material';
-import SpotInfo from '../spotInfomations/SpotInfo';
 import SpotInfoCard from './SpotInfoCard';
 import LikedSpotInfoCard from './LikedSpotInfoCard';
 
@@ -22,7 +19,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 5, display: "flex", justifyContent: "center" }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -51,24 +48,22 @@ export default function UserInfoTab() {
   };
 
   return (
-    <Box sx={{ width: '100%', minHeight: "75%" }} bgcolor={"#F0F0F0"} >
-      <Box sx={{ borderBottom: 1, borderColor: 'devider', width: '40%' }} display={"flex"} alignItems={"center"} justifyContent={'center'}>
+    <Box sx={{ width: '100%', minHeight: "75%" }} bgcolor={"#F0F0F0"} display={"flex"} flexDirection={"column"} alignItems={"center"} >
+      <Box sx={{ borderBottom: "none", borderColor: 'devider', width: '40%', display: "flex", justifyContent: "center" }} >
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
           <Tab label="投稿したスポット" {...a11yProps(0)} color='"primary.light'/>
-          <Tab label="いいねしたスポット" {...a11yProps(1)} />
+          <Tab label="いいねしたスポット" {...a11yProps(1)} color='"primary.light'/>
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Typography sx={{mb: 3}}>投稿したスポット</Typography>
-        <Stack>
+        <Box display={"flex"} flexDirection={"column"} justifyContent={'space-between'} alignItems={"center"} >
           <SpotInfoCard />
-        </Stack>
+        </Box>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      <Typography sx={{mb: 3}}>いいねしたスポット</Typography>
-      <Stack>
+      <Box>
           <LikedSpotInfoCard />
-        </Stack>
+        </Box>
       </CustomTabPanel>
     </Box>
   );

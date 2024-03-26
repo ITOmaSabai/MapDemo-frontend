@@ -1,5 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import useFirebaseAuth from "../Hooks/useFirebasAuth";
+import LoginIcon from '@mui/icons-material/Login';
 
 const SignInButton = () => {
   const { loginWithGoogle } = useFirebaseAuth();
@@ -34,8 +35,9 @@ const SignInButton = () => {
 
   return (
     <Button onClick={handleGoogleLogin} >
+      <LoginIcon sx={{mr: 1}}/>
       <Typography fontWeight={"bold"} >
-        サインイン
+        ログイン
       </Typography>
     </Button>
   );

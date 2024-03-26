@@ -18,16 +18,11 @@ export default function SpotInfoCard() {
   const { selectedAddress } = useContext(SelectedAddressContext);
   const { currentUser } = useFirebaseAuth();
 
-  console.log("SpotCardでのcurrentUser", currentUser)
-  console.log("SpotCardでのsavedMarkers", savedMarkers)
-
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0 && currentUser) {
-      // mapする?
       const spotByCurrentUser = savedMarkers.filter(savedMarker => savedMarker.uid === currentUser.uid);
       setSpotsByCurrentUser(spotByCurrentUser);
       }
-      console.log("currentUserに投稿された:", spotsByCurrentUser)
   }, [savedMarkers, currentUser]);
 
 
