@@ -26,9 +26,9 @@ const ClickedFavoriteIcon = ({ on }) => {
         src={clickedFavoriteIcon}
         style={{
           position: "relative",
-          top: "50%",
+          top: "40%",
           left: "50%",
-          transform: "translate(-50%, -00%)",
+          transform: "translate(-50%, 0%)",
           height: "200px",
           width: "200px",
           zIndex: 1,

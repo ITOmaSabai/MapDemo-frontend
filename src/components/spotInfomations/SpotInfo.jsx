@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box, Card, CardMedia, Stack, Typography, Avatar, Paper } from "@mui/material";
 import ClickableAndDeletableChips from "../ClickableAndDeletableChips";
-import thumbnail from "../../mqdefault.jpg";
 import VideoListComponent from "../VideoListComponent";
 import VideoDialog from "../VideoDialog";
 import SavedMarkerContext from "../../contexts/SavedMarkerContext";
@@ -12,6 +11,7 @@ import AddressFetcher from "../AddressFetcher";
 import SelectedAddressContext from "../../contexts/SelectedAddressContext";
 import LikeButton from "../Likes/LikeButton";
 import SpotInfoConfig from "./SpotInfoConfig";
+import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 
 const SpotInfo = () => {
   const { selectedMarker, setSelectedMarker } = useContext(SelectedMarkerContext);
@@ -19,6 +19,7 @@ const SpotInfo = () => {
   const [ selectedSpotInfomation, setSelectedSpotInfomation ] = useState();
   const {selectedVideos} = useContext(SelectedVideosContext);
   const { selectedAddress } = useContext(SelectedAddressContext);
+  const { currentUser } = useFirebaseAuth();
 
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0) {
@@ -40,13 +41,13 @@ const SpotInfo = () => {
             }
             <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >{selectedSpotInfomation ? selectedSpotInfomation.user.name : ""}</Typography>
           </Box>
-          <SpotInfoConfig />
+          {selectedSpotInfomation && selectedSpotInfomation.user.uid === currentUser.uid ? <SpotInfoConfig /> : ""}
         </Box>
         {selectedVideos && selectedVideos.length > 0 && (
         <iframe width="350" height="200" src={`https://www.youtube.com/embed/${selectedVideos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         )}
         <Box >
-          <Box sx={{pt: 0, mt: 0, overflow: "auto", minHeight: 270, maxHeight: 270}}>
+          <Box sx={{pt: 0, mt: 0, overflow: "auto", minHeight: 240, maxHeight: 240}}>
             <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{selectedSpotInfomation ? selectedSpotInfomation.name : ""}</Typography>
             <Box sx={{maxHeight: "100px", overflow: "auto"}}>
               <Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{selectedAddress ? selectedAddress.formatted_address : ""}</Typography>

@@ -14,12 +14,7 @@ import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 export default function LikedSpotInfoCard() {
   const { savedMarkers, setSavedMarkers } = useContext(SavedMarkerContext);
   const [ spotsByCurrentUser, setSpotsByCurrentUser ] = useState();
-  const {selectedVideos} = useContext(SelectedVideosContext);
-  const { selectedAddress } = useContext(SelectedAddressContext);
   const { currentUser } = useFirebaseAuth();
-
-  console.log("SpotCardでのcurrentUser", currentUser)
-  console.log("SpotCardでのsavedMarkers", savedMarkers)
 
   useEffect(() => {
     if (savedMarkers && savedMarkers.length > 0 && currentUser) {
@@ -29,7 +24,6 @@ export default function LikedSpotInfoCard() {
       });
       setSpotsByCurrentUser(spotLikedByCurrentUser);
       }
-      console.log("currentUserにいいねされた:", spotsByCurrentUser)
   }, [savedMarkers, currentUser]);
 
 
@@ -60,7 +54,7 @@ export default function LikedSpotInfoCard() {
                   }
                   <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >{spot ? spot.user.name : ""}</Typography>
                 </Box>
-                <SpotInfoConfig />
+                {spot && spot.user.uid === currentUser.uid ? <SpotInfoConfig /> : ""}
               </Box>
               {spot.videos && spot.videos.length > 0 && (
                 <iframe width="350" height="200" src={`https://www.youtube.com/embed/${spot.videos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

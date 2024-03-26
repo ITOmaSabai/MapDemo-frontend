@@ -1,7 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
-import { useContext } from "react";
-import IsAuthContext from "./contexts/IsAuthContext";
 import { Button } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 const AuthSignOut = () => {
   const handleSignOut = () => {
@@ -13,7 +13,10 @@ const AuthSignOut = () => {
   };
 
   return (
-    <Button onClick={handleSignOut} >ログアウト</Button>
+    <Button onClick={handleSignOut} color="warning">
+      <LogoutIcon sx={{mr: 2}} />
+      ログアウト
+    </Button>
   );
 };
 

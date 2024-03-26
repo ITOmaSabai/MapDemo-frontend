@@ -9,26 +9,23 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import SpotSearchBox from './SpotSearchBox';
-import SidebarDrawer from './SidebarDrawer';
-import SidebarDrawerOpenContext from '../contexts/SidebarDrawerOpenContext';
 import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
 import { Link } from 'react-router-dom';
-import { Login } from '@mui/icons-material';
-import IsAuthContext from '../contexts/IsAuthContext';
-import { useContext } from 'react';
 import SignInButton from './SignInButton';
 import AuthSignOut from '../auth_sign_out';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import BackpackIcon from '@mui/icons-material/Backpack';
 import LanguageIcon from '@mui/icons-material/Language';
 import CloseIcon from '@mui/icons-material/Close';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import useFirebaseAuth from '../Hooks/useFirebasAuth';
+import { Avatar } from '@mui/material';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -73,12 +70,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function HeaderAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const { sidebarDrawerOpen, setSidebarDrawerOpen } = React.useContext(SidebarDrawerOpenContext);
-  const { isAuth } = useContext(IsAuthContext);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  // const useAuthSignOut = AuthSignOut();
+  const { currentUser } = useFirebaseAuth();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,10 +97,6 @@ export default function HeaderAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleDrawerClick = () => {
-    setSidebarDrawerOpen(true);
-  }
-
   // ヘッダー右のアイコン部分
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -125,23 +115,29 @@ export default function HeaderAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <div>
-        <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
-          <MenuItem onClick={handleMenuClose}>
+      { currentUser ? (
+        <div>
+          <Link to="/user" style={{color: "inherit", textDecoration: "none"}}>
+            <MenuItem onClick={handleMenuClose}>
+              <AccountCircleIcon sx={{ mr: 1}}/>
+              <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
+                プロフィール
+              </Typography>
+            </MenuItem>
+          </Link>
+          <MenuItem sx={{textAlign: "center"}}>
             <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
-              プロフィール
+              <AuthSignOut />
             </Typography>
           </MenuItem>
-        </Link>
-        <SignInButton />
-      </div>
-      <div>
-        <MenuItem >
-          <Typography fontWeight={"bold"}>
-            <AuthSignOut />
+        </div>
+      ) : (
+        <MenuItem sx={{textAlign: "center"}}>
+          <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
+            <SignInButton />
           </Typography>
         </MenuItem>
-      </div>
+      )}
     </Menu>
   );
 
@@ -162,14 +158,6 @@ export default function HeaderAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton> */}
-        Messages
-      </MenuItem>
       <MenuItem>
         <IconButton
           size="large"
@@ -192,7 +180,6 @@ export default function HeaderAppBar() {
         >
           <AccountCircle />
         </IconButton>
-        Profile
       </MenuItem>
     </Menu>
   );
@@ -201,16 +188,6 @@ export default function HeaderAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={handleDrawerClick}
-          >
-            <MenuIcon />
-          </IconButton>
           <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
           <Typography
             variant="h5"
@@ -218,40 +195,36 @@ export default function HeaderAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
             fontFamily="Menlo"
-            // fontWeight={"bold"}
           >
             BackHacker.
           </Typography>
-          {/* <LaptopMacIcon sx={{mr: 1}}></LaptopMacIcon>
-          <CloseIcon></CloseIcon>
-          <BackpackIcon sx={{mr: 1}}></BackpackIcon>
-          <CloseIcon></CloseIcon>
-          <LanguageIcon></LanguageIcon> */}
           </Link>
+          <Box sx={{ml: 3, mt: 1}}>
+            <LaptopMacIcon sx={{mr: 1, fontSize: 20}}></LaptopMacIcon>
+            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+            <BackpackIcon sx={{mr: 1, fontSize: 20}}></BackpackIcon>
+            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+            <LanguageIcon sx={{mr: 1, fontSize: 20}}></LanguageIcon>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <SpotSearchBox >
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            </SpotSearchBox>
-          </Search>
-            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              {/* <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <Search>
+                <SpotSearchBox >
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </SpotSearchBox>
+              </Search> */}
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -264,7 +237,7 @@ export default function HeaderAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {currentUser ? <Avatar src={`${currentUser.photoURL}`} alt={`${currentUser.displayName}`}/> : <AccountCircle />}
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -283,7 +256,6 @@ export default function HeaderAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      {/* <AuthGoogleSIgninPopup /> */}
     </Box>
   );
 }
