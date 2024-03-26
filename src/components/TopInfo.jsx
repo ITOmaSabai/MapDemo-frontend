@@ -10,7 +10,7 @@ import SelectedVideosContext from "../contexts/SelectedVideosContext";
 import SetAddressesContext from "../contexts/SetAddressesContext";
 import AddressFetcher from "./AddressFetcher";
 import SelectedAddressContext from "../contexts/SelectedAddressContext";
-import LikeButton from "./LikeButton";
+import LikeButton from "./Likes/LikeButton";
 import SearchVideo from "./SearchVideo";
 import TopAnimation from "./TopAnimation";
 

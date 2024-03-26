@@ -8,7 +8,7 @@ import SelectedAddressContext from '../../contexts/SelectedAddressContext';
 import AddressFetcher from '../AddressFetcher';
 import { Avatar, Paper, Stack } from '@mui/material';
 import SpotInfoConfig from '../spotInfomations/SpotInfoConfig';
-import LikeButton from '../LikeButton';
+import LikeButton from '../Likes/LikeButton';
 import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 
 export default function SpotInfoCard() {

@@ -1,6 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useRef, useEffect } from "react";
-import clickedFavoriteIcon from "../animations/clickedFavoriteIcon.json"
+import clickedFavoriteIcon from "../../animations/clickedFavoriteIcon.json"
 import { Box } from "@mui/material";
 
 const ClickedFavoriteIcon = ({ on }) => {

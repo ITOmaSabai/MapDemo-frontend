@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
-import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
-import useFirebaseAuth from '../Hooks/useFirebasAuth';
+import SelectedMarkerContext from '../../contexts/SelectedMarkerContext';
+import useFirebaseAuth from '../../Hooks/useFirebasAuth';
 
 const LikeButton = ({disabled}) => {
   const [ on, setOn ] = React.useState(false);
@@ -10,6 +10,8 @@ const LikeButton = ({disabled}) => {
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
   const { currentUser } = useFirebaseAuth();
+
+  console.log("クリックされた瞬間", on);
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
@@ -84,12 +86,18 @@ const LikeButton = ({disabled}) => {
         //いいねの配列から、現在のユーザーがつけたいいねのidを取得
         if (currentUser) {
           const likeByCurrentUser = data.find(like => like.uid === currentUser.uid);
+          console.log("ユーザーによって付けられたいいね", likeByCurrentUser)
           if (likeByCurrentUser && likeByCurrentUser !== null) {
             setLikeId(likeByCurrentUser.id);
             setOn(true);
+            console.log("ユーザーがいいねをしていた時のon", on)
+          } else {
+            setOn(false);
+            console.log("ユーザーがいいねをしていなかった時のon", on)
           }
         } else {
           setOn(false);
+          console.log("ユーザーがいなかった時のon", on)
         }
       })
       .catch(error => console.error('Error:', error));
