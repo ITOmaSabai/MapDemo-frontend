@@ -134,7 +134,7 @@ export default function HeaderAppBar() {
       ) : (
         <MenuItem sx={{textAlign: "center"}}>
           <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
-            <SignInButton />
+            <SignInButton variant={"none"} color={"none"} />
           </Typography>
         </MenuItem>
       )}

@@ -2,7 +2,7 @@ import { Button, Typography } from "@mui/material";
 import useFirebaseAuth from "../Hooks/useFirebasAuth";
 import LoginIcon from '@mui/icons-material/Login';
 
-const SignInButton = () => {
+const SignInButton = ({variant, color}) => {
   const { loginWithGoogle } = useFirebaseAuth();
 
   const handleGoogleLogin = () => {
@@ -22,6 +22,7 @@ const SignInButton = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        window.location.href = '/';
         return response.json();
       })
       .then(data => console.log(data))
@@ -34,7 +35,7 @@ const SignInButton = () => {
   };
 
   return (
-    <Button onClick={handleGoogleLogin} >
+    <Button onClick={handleGoogleLogin} variant={variant} color={color} size="large" >
       <LoginIcon sx={{mr: 1}}/>
       <Typography fontWeight={"bold"} >
         ログイン
