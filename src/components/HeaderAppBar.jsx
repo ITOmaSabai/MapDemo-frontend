@@ -239,7 +239,15 @@ export default function HeaderAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              {currentUser ? <Avatar src={`${currentUser.photoURL}`} alt={`${currentUser.displayName}`}/> : <AccountCircle />}
+              {currentUser ?
+                <Avatar
+                  src={`${currentUser.photoURL}`}
+                  alt={`${currentUser.displayName}`}
+                  sx={{width: "25px", height: "25px"}}
+                />
+              :
+                <AccountCircle fontSize='20px' />
+              }
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
