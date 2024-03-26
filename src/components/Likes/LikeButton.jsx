@@ -3,6 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import ClickedFavoriteIcon from './ClickedFavoriteIcon';
 import SelectedMarkerContext from '../../contexts/SelectedMarkerContext';
 import useFirebaseAuth from '../../Hooks/useFirebasAuth';
+import MessageModal from '../Modals/MessageModal';
 
 const LikeButton = ({disabled, likesCount}) => {
   const [ on, setOn ] = React.useState(false);
@@ -10,13 +11,22 @@ const LikeButton = ({disabled, likesCount}) => {
   const [ likeId, setLikeId ] = React.useState();
   const [ likedCount, setLikedCount] = React.useState(0);
   const { currentUser } = useFirebaseAuth();
+  const [ open, setOpen ] = React.useState(false);
+
+  const title = "ログインして「いいね」を伝えよう！";
+  const body = ""
+  const icon = "❤️";
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
-    if (!on) {
-      await createLike();
+    if (currentUser) {
+      if (!on) {
+        await createLike();
+      } else {
+        await destroyLike();
+      }
     } else {
-      await destroyLike();
+      setOpen(true);
     }
   };
 
@@ -98,14 +108,17 @@ const LikeButton = ({disabled, likesCount}) => {
   }, [selectedMarker, handleLikeButtonClick, currentUser]);
 
   return (
-    <Box display={"flex"} flexDirection={"column"}>
-      <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disabled={disabled} disableRipple>
-        <ClickedFavoriteIcon on={on}/>
-      </Button>
-      <Typography color={"white"} sx={{pl: 4.75}} display={"flex"} justifyContent={"left"}>
-        {likesCount && likesCount !== null ? likesCount : likedCount}
-      </Typography>
-    </Box>
+    <>
+      <MessageModal open={open} setOpen={setOpen} title={title} body={body} icon={icon}/>
+      <Box display={"flex"} flexDirection={"column"}>
+        <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disabled={disabled} disableRipple>
+          <ClickedFavoriteIcon on={on}/>
+        </Button>
+        <Typography color={"white"} sx={{pl: 4.75}} display={"flex"} justifyContent={"left"}>
+          {likesCount && likesCount !== null ? likesCount : likedCount}
+        </Typography>
+      </Box>
+    </>
   );
 }
 

@@ -29,22 +29,21 @@ const MapComponent = ({ zoom, center, onClick }) => {
   }
   return (
     <Box sx={{ height: "90vh", width: "100%", p: 0 }}>
-        <Map
-         defaultZoom={zoom}
-         defaultCenter={center}
-         onClick={handleMapOnClick}
-         clickableIcons={false}
-         disableDefaultUI
-         gestureHandling={'greedy'}
-         mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
-         minZoom={zoom + 0}
-         maxZoom={zoom + 14}
-        >
-          {/* {markers && <Marker position={markers} />} */}
-          {markers && <MarkerComponent />}
-          <SavedMarkerComponent />
-        </Map>
-      </Box>
+      <Map
+        defaultZoom={zoom}
+        defaultCenter={center}
+        onClick={handleMapOnClick}
+        clickableIcons={false}
+        disableDefaultUI
+        gestureHandling={'greedy'}
+        mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
+        minZoom={zoom + 0}
+        maxZoom={zoom + 14}
+      >
+        {markers && <MarkerComponent />}
+        <SavedMarkerComponent />
+      </Map>
+    </Box>
   );
 };
 

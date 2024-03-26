@@ -134,7 +134,7 @@ export default function HeaderAppBar() {
       ) : (
         <MenuItem sx={{textAlign: "center"}}>
           <Typography fontFamily={"Noto Sans JP"} fontWeight={"bold"}>
-            <SignInButton />
+            <SignInButton variant={"none"} color={"none"} />
           </Typography>
         </MenuItem>
       )}
@@ -189,23 +189,25 @@ export default function HeaderAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
-          <Typography
-            variant="h5"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-            fontFamily="Menlo"
-          >
-            BackHacker.
-          </Typography>
+            <Typography
+              variant="h5"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+              fontFamily="Menlo"
+            >
+              BackHacker.
+            </Typography>
           </Link>
-          <Box sx={{ml: 3, mt: 1}}>
-            <LaptopMacIcon sx={{mr: 1, fontSize: 20}}></LaptopMacIcon>
-            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
-            <BackpackIcon sx={{mr: 1, fontSize: 20}}></BackpackIcon>
-            <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
-            <LanguageIcon sx={{mr: 1, fontSize: 20}}></LanguageIcon>
-          </Box>
+          <Link to="/" style={{color: "inherit", textDecoration: "none"}}>
+            <Box sx={{ml: 3, mt: 1}}>
+              <LaptopMacIcon sx={{mr: 1, fontSize: 20}}></LaptopMacIcon>
+              <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+              <BackpackIcon sx={{mr: 1, fontSize: 20}}></BackpackIcon>
+              <CloseIcon sx={{mr: 1, fontSize: 20}}></CloseIcon>
+              <LanguageIcon sx={{mr: 1, fontSize: 20}}></LanguageIcon>
+            </Box>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               {/* <SearchIconWrapper>
@@ -237,7 +239,15 @@ export default function HeaderAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              {currentUser ? <Avatar src={`${currentUser.photoURL}`} alt={`${currentUser.displayName}`}/> : <AccountCircle />}
+              {currentUser ?
+                <Avatar
+                  src={`${currentUser.photoURL}`}
+                  alt={`${currentUser.displayName}`}
+                  sx={{width: "25px", height: "25px"}}
+                />
+              :
+                <AccountCircle fontSize='20px' />
+              }
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
