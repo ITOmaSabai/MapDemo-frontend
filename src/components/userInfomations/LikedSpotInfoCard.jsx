@@ -50,7 +50,7 @@ export default function LikedSpotInfoCard() {
       <AddressFetcher />
         <Stack direction="row" spacing={5} useFlexGap flexWrap={"wrap"} alignItems={"center"}>
           {spotsByCurrentUser ? (spotsByCurrentUser.map(spot => (
-            <Paper square sx={{bgcolor: "primary.dark", minHeight: "80vh", width:"360px", m: 0, p: 0}}>
+            <Paper square sx={{bgcolor: "primary.dark", minHeight: "80vh", maxHeight: "80vh", width:"360px", m: 0, p: 0}}>
               <Box sx={{mx: 1, pt: 2, mb: 2, display: 'flex', flexDirection: "row", justifyContent: "space-between"}} >
                 <Box sx={{display: 'flex', flexDirection: "row", height: "100%",}} >
                   {spot && spot.user.avatar ? (
@@ -66,22 +66,25 @@ export default function LikedSpotInfoCard() {
                 <iframe width="350" height="200" src={`https://www.youtube.com/embed/${spot.videos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               )}
               <Box >
-              <Box sx={{pt: 0, mt: 0}}>
+              <Box sx={{pt: 0, mt: 0, overflow: "auto", minHeight: 190, maxHeight: 220}}>
                 <Typography fontFamily="Menlo" variant="h3" fontWeight={"bold"} sx={{pt: 2, px: 2, color: "white" }}>{spot ? spot.name : ""}</Typography>
-                <Typography Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{spot ? spot.address.formatted_address : ""}</Typography>
-                <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{spot ? spot.description : ""}</Typography>
+                <Box sx={{maxHeight: 50, overflow: "auto"}}>
+                  <Typography Typography fontFamily="Menlo" fontSize={14} sx={{px: 2, py: 1, color: "white" }}>{spot ? spot.address.formatted_address : ""}</Typography>
+                </Box>
+                <Box sx={{maxHeight: 90, overflow: "auto"}}>
+                  <Typography fontFamily="Noto Sans JP" sx={{p: 2, color: "primary.light" }}>{spot ? spot.description : ""}</Typography>
+                </Box>
               </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
                 </Box>
               </Box>
               <Box >
-                {/* {spot ? spot.likes.length > 0 : ( */}
-                  <LikeButton disabled={true} />
+                <LikeButton disabled={true} likesCount={spot.likes.length}/>
               </Box>
             </Paper>
           ))
         ) : (
-          <Typography>投稿したスポットはありません</Typography>
+          <Typography>いいねしたスポットはありません</Typography>
         )}
       </Stack>
     </>
