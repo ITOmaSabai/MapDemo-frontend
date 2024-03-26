@@ -103,7 +103,7 @@ const LikeButton = ({disabled, likesCount}) => {
       <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disabled={disabled} disableRipple>
         <ClickedFavoriteIcon on={on}/>
       </Button>
-      <Typography color={"white"} sx={{pl: 5}} display={"flex"} justifyContent={"left"}>
+      <Typography color={"white"} sx={{pl: 4.75}} display={"flex"} justifyContent={"left"}>
         {likesCount && likesCount !== null ? likesCount : likedCount}
       </Typography>
     </Box>

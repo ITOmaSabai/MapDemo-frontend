@@ -58,7 +58,7 @@ export default function SpotInfoCard() {
                   }
                   <Typography color="primary.light" fontFamily="Menlo" display="flex" alignItems="center" >{spot ? spot.user.name : ""}</Typography>
                 </Box>
-                <SpotInfoConfig />
+                {spot && spot.user.uid === currentUser.uid ? <SpotInfoConfig /> : ""}
               </Box>
               {spot.videos && spot.videos.length > 0 && (
                 <iframe width="350" height="200" src={`https://www.youtube.com/embed/${spot.videos[0].youtube_video_id}`} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
