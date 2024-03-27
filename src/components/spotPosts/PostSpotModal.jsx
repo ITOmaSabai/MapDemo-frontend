@@ -4,17 +4,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Autocomplete, FormControl, FormGroup, Icon, Input, TextField } from '@mui/material';
-import { Tags } from './Tags';
+import { Tags } from '../Tags';
 import { Tag } from '@mui/icons-material';
-import ClickableAndDeletableChips from './ClickableAndDeletableChips';
+import ClickableAndDeletableChips from '../ClickableAndDeletableChips';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
-import SpotContext from '../contexts/SpotContext';
-import ReverseGeocodedAddressContext from '../contexts/ReverseGeocodedAddressContext';
-import IsNewMarkerSelectedContext from '../contexts/IsNewMarkerSelectedContext';
-import IsSavedMarkerSelectedContext from '../contexts/IsSavedMarkerSelectedContext';
-import { useDataPosted } from '../contexts/DataPostedContext';
-import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
-import useFirebaseAuth from "../Hooks/useFirebasAuth";
+import SpotContext from '../../contexts/SpotContext';
+import ReverseGeocodedAddressContext from '../../contexts/ReverseGeocodedAddressContext';
+import IsNewMarkerSelectedContext from '../../contexts/IsNewMarkerSelectedContext';
+import IsSavedMarkerSelectedContext from '../../contexts/IsSavedMarkerSelectedContext';
+import { useDataPosted } from '../../contexts/DataPostedContext';
+import SelectedMarkerContext from '../../contexts/SelectedMarkerContext';
+import useFirebaseAuth from "../../Hooks/useFirebasAuth";
 
 const style = {
   display: 'flex',

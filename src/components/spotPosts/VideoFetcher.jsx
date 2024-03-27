@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useContext } from 'react';
-import VideosContext from '../contexts/VideosContext';
-import SelectedVideosContext from '../contexts/SelectedVideosContext';
-import SelectedMarkerContext from '../contexts/SelectedMarkerContext';
-import { useDataPosted } from '../contexts/DataPostedContext';
+import VideosContext from '../../contexts/VideosContext';
+import SelectedVideosContext from '../../contexts/SelectedVideosContext';
+import SelectedMarkerContext from '../../contexts/SelectedMarkerContext';
+import { useDataPosted } from '../../contexts/DataPostedContext';
 
 const VideoFetcher = () => {
   const {videos, setVideos} = useContext(VideosContext);
