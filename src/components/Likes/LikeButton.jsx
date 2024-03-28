@@ -13,8 +13,8 @@ const LikeButton = ({disabled, likesCount}) => {
   const { currentUser } = useFirebaseAuth();
   const [ open, setOpen ] = React.useState(false);
 
-  const title = "ログインして「いいね」を伝えよう！";
-  const body = ""
+  const title = "ログインすると「いいね」ができます！";
+  const body = "投稿者に気持ちを伝えましょう！"
   const icon = "❤️";
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する

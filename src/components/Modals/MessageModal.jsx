@@ -35,10 +35,10 @@ export default function MessageModal({open, setOpen, title, body, icon}) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {title}
           </Typography>
-          <Typography >{body}</Typography>
           <Typography id="modal-modal-description" variant='h3' sx={{ mt: 2 }}>
             {icon}
           </Typography>
+          <Typography >{body}</Typography>
           <Box sx={{pt: 2}} textAlign={"center"}>
             <SignInButton variant={"contained"} color={"info"} />
           </Box>

@@ -5,7 +5,7 @@ import MarkerPostComponent from './components/MarkerPostComponent';
 import { SpotProvider } from './contexts/SpotContext';
 import PostSpotForm from './components/PostSpotForm';
 import VideoListComponent from './components/VideoListComponent';
-import VideoFetcher from './components/VideoFetcher';
+import VideoFetcher from './components/spotPosts/VideoFetcher';
 import { SelectedMarkerProvider } from './contexts/SelectedMarkerContext';
 import { SelectedVideosProvider } from './contexts/SelectedVideosContext';
 import { VideosProvider } from './contexts/VideosContext';
