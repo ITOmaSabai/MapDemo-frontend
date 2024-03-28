@@ -19,11 +19,13 @@ const SpotInfoDisplaySwitcher = () => {
     setIsSavedMarkerSelected(false);
   }, []);
 
+  const isFeedbackSubmitted = window.sessionStorage.getItem("isFeedbackSubmitted");
+
   return (
     <>
-      {isTopInfoVisible && <Feedback/>}
-      {isSavedMarkerSelected && <SpotInfo /> }
-      {isNewMarkerSelected && <SearchVideo /> }
+      {isTopInfoVisible && <TopInfo />}
+      {isSavedMarkerSelected && <SpotInfo />}
+      {isNewMarkerSelected && isFeedbackSubmitted ? <SearchVideo /> : <Feedback />}
     </>
   );
 };

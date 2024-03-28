@@ -13,8 +13,6 @@ import useFirebaseAuth from "../Hooks/useFirebasAuth";
 import MessageModal from "./Modals/MessageModal";
 
 const SearchVideo = () => {
-  const [ addressComponents, setAddressComponents ] = useState();
-  const [ formattedAddress, setFormattedAddress ] = useState();
   const [ searchResultVideos, setSearchResultVideos ] = useState();
   const [ searchedKeywords, setSearchedKeywords ] = useState();
   const { markers } = useContext(SpotContext);
@@ -27,15 +25,17 @@ const SearchVideo = () => {
   const { currentUser } = useFirebaseAuth();
   const [ loginModalOpen, setLoginModalOpen ] = useState(false);
 
-  const title = "ログインすると動画が見れます！";
+  const title = "ログインすると動画を取得できます";
   const body = "街の様子をみんなにシェアしよう！"
   const icon = "✈️";
 
+  // ボタンを押した際のアクション
   const handleSubmit = async (e) => {
     if (currentUser) {
       e.preventDefault();
       const resultAddress = await ReverseGeocodeLatLng(markers, setReverseGeocodedAddress);
       setReverseGeocodedAddress(resultAddress);
+
       if (resultAddress.address_components.length > 1) {
         await getVideoSearchResult(resultAddress);
         setIsValidAddress(true);
@@ -57,6 +57,27 @@ const SearchVideo = () => {
     setSearchResultVideos(null);
   }, [markers])
 
+  useEffect(() => {
+    if (!currentUser) return;
+    const verifyIdToken = async () => {
+      const token = await currentUser?.getIdToken();
+      try {
+        const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/search`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        const data = await response.json();
+        console.log(data)
+      } catch (error) {
+        console.error('エラー:', error);
+      }
+    };
+    verifyIdToken();
+  }, [currentUser])
+
   const getVideoSearchResult = async (resultAddress) => {
     const verifyIdToken = async () => {
       const token = await currentUser?.getIdToken();
@@ -72,9 +93,6 @@ const SearchVideo = () => {
             formatted_address: resultAddress.formatted_address
           } }),
         });
-        // if (!response.ok) {
-        //   throw new Error('データの送信に失敗しました');
-        // }
         const data = await response.json();
         console.log(data)
         setSearchResultVideos(data.videos_data.items);
@@ -110,12 +128,9 @@ const SearchVideo = () => {
           </Box>
           <Box sx={{px: 2, py: 4}} textAlign={"center"}>
             {/* markers(クリックした地点の緯度経度)が存在すれば=マップをクリックした場合に、ボタンを表示する */}
-            {markers ? (
-              !isVideoSearched ? (
+            {markers && !isVideoSearched ? (
               <>
-                <Button
-                onClick={handleSubmit}
-                >
+                <Button onClick={handleSubmit} >
                   <PostButton />
                 </Button>
                 <VideoDialog
@@ -125,25 +140,6 @@ const SearchVideo = () => {
                   setIsVideoSearched={setIsVideoSearched}
                 />
               </>
-              ) : (
-                <>
-                  <Button
-                    variant="contained"
-                    color="info"
-                    type="submit"
-                    size='large'
-                    onClick={handleClickOpen}
-                  >
-                    動画を見る
-                  </Button>
-                  <VideoDialog
-                    searchResultVideos={searchResultVideos}
-                    searchedKeywords={searchedKeywords}
-                    isValidAddress={isValidAddress}
-                    setIsVideoSearched={setIsVideoSearched}
-                  />
-                </>
-              )
             ) : (
               <>
                 <Button
@@ -151,23 +147,24 @@ const SearchVideo = () => {
                   color="info"
                   type="submit"
                   size='large'
-                  disabled
+                  onClick={handleClickOpen}
                 >
-                  動画を取得
+                  もう一度見る
                 </Button>
-              </> ) }
-            {/* } */}
+                <VideoDialog
+                  searchResultVideos={searchResultVideos}
+                  searchedKeywords={searchedKeywords}
+                  isValidAddress={isValidAddress}
+                  setIsVideoSearched={setIsVideoSearched}
+                />
+              </>
+            )}
           <Box textAlign="center" sx={{px: 2, my: 2}} >
-            {/* <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"} color={"white"}>
-              {searchedKeywords && `"${searchedKeywords}"`}
-            </Typography> */}
-            {/* <Typography fontFamily="Menlo" fontSize={14} color={"white"}>
-              {searchedKeywords && "の動画を表示しています"}
-            </Typography> */}
+
           </Box>
         </Box>
           <Box>
-            <ConfirmSaveSpotModal searchedKeywords={searchedKeywords} />
+            <ConfirmSaveSpotModal searchedKeywords={searchedKeywords} open={open} />
             <PostSpotModal />
           </Box>
         </Box>

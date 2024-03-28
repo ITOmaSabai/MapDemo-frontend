@@ -2,6 +2,7 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
+import { Typography } from '@mui/material';
 
 const labels = {
   1: '改善して 😡',
@@ -45,7 +46,11 @@ export default function HoverRating({setAction}) {
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
       {value !== null && (
-        <Box sx={{ ml: 2, height: "1.5rem" }}>{labels[hover !== -1 ? hover : value]}</Box>
+        <Box sx={{ ml: 2, height: "1.5rem" }}>
+          <Typography  fontSize="14px">
+            {labels[hover !== -1 ? hover : value]}
+          </Typography>
+        </Box>
       )}
     </Box>
   );
