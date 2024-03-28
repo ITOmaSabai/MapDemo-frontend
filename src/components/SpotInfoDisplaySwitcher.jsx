@@ -6,7 +6,6 @@ import IsSavedMarkerSelectedContext from "../contexts/IsSavedMarkerSelectedConte
 import SearchVideo from "./SearchVideo";
 import TopInfo from "./TopInfo";
 import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
-import { Feedback } from "./spotInfomations/Feedback";
 
 const SpotInfoDisplaySwitcher = () => {
   const { isNewMarkerSelected, setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
@@ -19,13 +18,11 @@ const SpotInfoDisplaySwitcher = () => {
     setIsSavedMarkerSelected(false);
   }, []);
 
-  const isFeedbackSubmitted = window.sessionStorage.getItem("isFeedbackSubmitted");
-
   return (
     <>
       {isTopInfoVisible && <TopInfo />}
       {isSavedMarkerSelected && <SpotInfo />}
-      {isNewMarkerSelected && isFeedbackSubmitted ? <SearchVideo /> : <Feedback />}
+      {isNewMarkerSelected && <SearchVideo />}
     </>
   );
 };
