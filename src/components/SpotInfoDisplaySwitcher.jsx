@@ -6,6 +6,7 @@ import IsSavedMarkerSelectedContext from "../contexts/IsSavedMarkerSelectedConte
 import SearchVideo from "./SearchVideo";
 import TopInfo from "./TopInfo";
 import IsTopInfoVisibleContext from "../contexts/IsTopInfoVisibleContext";
+import { Feedback } from "./spotInfomations/Feedback";
 
 const SpotInfoDisplaySwitcher = () => {
   const { isNewMarkerSelected, setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
@@ -20,7 +21,7 @@ const SpotInfoDisplaySwitcher = () => {
 
   return (
     <>
-      {isTopInfoVisible && <TopInfo />}
+      {isTopInfoVisible && <Feedback/>}
       {isSavedMarkerSelected && <SpotInfo /> }
       {isNewMarkerSelected && <SearchVideo /> }
     </>

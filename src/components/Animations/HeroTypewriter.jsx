@@ -31,7 +31,7 @@ const HeroTypewriter = () => {
         <Close sx={{color: "#F0F0F0", fontSize: 110}} ></Close>
         <Language sx={{color: "#F0F0F0", fontSize: 110}} ></Language>
       </Box>
-      <Typography variant='h1' fontSize={"100px"} fontFamily={'Menlo'} color={"#F0F0F0"} sx={{pr: 10}}>
+      <Typography variant='h1' fontSize={"100px"} fontFamily={'Menlo'} color={"#F0F0F0"} sx={{pr: 10}} bgcolor={grey[800]}>
         <Typewriter
           options={{
             autoStart: true,
