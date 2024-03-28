@@ -33,12 +33,12 @@ export const Feedback = () => {
     e.preventDefault();
     setIsSubmitDisabled(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/maps`, {
+      const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/feedbacks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ opinion: {
+        body: JSON.stringify({ feedback: {
           usability_rating: usabilityRating,
           design_rating: designRating,
           body: opinionBody
