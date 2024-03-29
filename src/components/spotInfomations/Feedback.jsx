@@ -30,6 +30,11 @@ export const Feedback = () => {
 
   const handleChangeOpinion = (e) => setOpinionBody(e.target.value);
 
+  const handleClosed = () => {
+    window.sessionStorage.setItem("isFeedbackSubmitted", true);
+    setIsFeedbackSubmitted(true);
+  }
+
   const handlePostFeedback = async(e) => {
     e.preventDefault();
     setIsSubmitDisabled(true);
@@ -75,7 +80,7 @@ export const Feedback = () => {
       {!isFeedbackSubmitted ? (
         <>
           <Box sx={{textAlign: "right", pb: 7}}>
-          <IconButton  onClick={() => setIsFeedbackSubmitted(true)}>
+          <IconButton  onClick={handleClosed}>
             <CloseIcon />
           </IconButton>
           </Box>
