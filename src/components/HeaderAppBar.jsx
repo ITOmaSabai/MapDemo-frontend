@@ -98,9 +98,10 @@ export default function HeaderAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-  const URL = "https://map-demo-frontend.vercel.app/"
-  const url = `https://twitter.com/share?url=${URL}&text=【BackHacker.】%0a%0a`
+  const URL = "https://map-demo-frontend.vercel.app/";
+  const url = !currentUser ?
+  `https://twitter.com/share?url=${URL} (※PC💻環境より閲覧してください)&text=【BackHacker.】世界を飛び回ろう✈️%0a%0a` :
+  `https://twitter.com/share?url=${URL} (※PC💻環境より閲覧してください)&text=${currentUser.displayName}は【BackHacker.】で旅をしています🌎%0a%0a`;
 
   // ヘッダー右のアイコン部分
   const menuId = 'primary-search-account-menu';
@@ -242,8 +243,8 @@ export default function HeaderAppBar() {
                 aria-label="share this App on X."
                 color="inherit"
                 alignItems="center"
+                sx={{mr: 2}}
               >
-                <Typography fontSize={10} pr={1}>share on</Typography>
                 <ShareButton url={url} fontSize={'5px'} />
               </IconButton>
             <IconButton
