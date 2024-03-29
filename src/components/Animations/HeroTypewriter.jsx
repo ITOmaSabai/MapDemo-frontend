@@ -12,11 +12,11 @@ const HeroTypewriter = () => {
   useEffect(() => {
     const reloadTimer = setTimeout(() => {
       const animation = sessionStorage.setItem('animationWatched', true);
-    }, 3700);
+    }, 3200);
 
     const setSettionTimer = setTimeout(() => {
       window.location.reload();
-    }, 4000);
+    }, 3500);
 
     return () => clearTimeout(setSettionTimer, reloadTimer);
   }, [navigate]);
