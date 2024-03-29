@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
-import PostSpotForm from './PostSpotForm';
 import PostSpotModal from './spotPosts/PostSpotModal';
 
 const style = {

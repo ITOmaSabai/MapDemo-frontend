@@ -15,7 +15,7 @@ const LikeButton = ({disabled, likesCount}) => {
 
   const title = "ログインすると「いいね」ができます！";
   const body = "投稿者に気持ちを伝えましょう！"
-  const icon = "❤️";
+  const icon = "😘 ❤️";
 
   // いいねボタンをクリックした際、onの状態に応じていいねする、またはいいねを削除する
   const handleLikeButtonClick = async () => {
@@ -109,7 +109,7 @@ const LikeButton = ({disabled, likesCount}) => {
 
   return (
     <>
-      <MessageModal open={open} setOpen={setOpen} title={title} body={body} icon={icon}/>
+      <MessageModal open={open} setOpen={setOpen} title={title} body={body} icon={icon} button={"login"}/>
       <Box display={"flex"} flexDirection={"column"}>
         <Button onClick={handleLikeButtonClick} sx={{height: "30px", width: "10px", pl: 4}} disabled={disabled} disableRipple>
           <ClickedFavoriteIcon on={on}/>

@@ -27,14 +27,21 @@ const SearchVideo = () => {
   const { currentUser } = useFirebaseAuth();
   const [ loginModalOpen, setLoginModalOpen ] = useState(false);
   const [ isSearchedToday, setIsSearchedToday ] = useState(false);
+  const [ searchFailureModalOpen, setSearchFailureModalOpen ] = useState(false);
 
-  const title = "ログインすると動画を取得できます";
-  const body = "街の様子をみんなにシェアしよう！"
-  const icon = "✈️";
+  const searchVideoModal = {
+    title: "ログインすると動画を取得できます",
+    body: "街の様子をみんなにシェアしよう！",
+    icon: "✈️"
+  };
 
-  useEffect(() => {
+  const searchFailureModal = {
+    title: "動画を取得できませんでした",
+    body: "山、砂漠、海などは避け、都市部をクリックして再度試してみてください 🙇‍♂️",
+    icon: "😭",
+    button: "close"
+  };
 
-  }, [])
   const isFeedbackSubmitted = window.sessionStorage.getItem("isFeedbackSubmitted");
 
   // ボタンを押した際のアクション
@@ -50,9 +57,7 @@ const SearchVideo = () => {
         handleClickOpen();
       } else {
         setIsValidAddress(false);
-        setSearchResultVideos("");
-        setSearchedKeywords("");
-        handleClickOpen();
+        setSearchFailureModalOpen(true)
       }
     } else {
       setLoginModalOpen(true);
@@ -119,11 +124,20 @@ const SearchVideo = () => {
   return (
     <>
       <MessageModal
+        open={searchFailureModalOpen}
+        setOpen={setSearchFailureModalOpen}
+        title={searchFailureModal.title}
+        body={searchFailureModal.body}
+        icon={searchFailureModal.icon}
+        button={"close"}
+      />
+      <MessageModal
         open={loginModalOpen}
         setOpen={setLoginModalOpen}
-        title={title}
-        body={body}
-        icon={icon}
+        title={searchVideoModal.title}
+        body={searchVideoModal.body}
+        icon={searchVideoModal.icon}
+        button={"login"}
       />
       {isSearchedToday ? (
         isFeedbackSubmitted ? <TopInfo /> : <Feedback />
@@ -144,7 +158,11 @@ const SearchVideo = () => {
                     <Button onClick={handleSubmit} >
                       <PostButton />
                     </Button>
-                    <Typography color={"white"}>１日１回まで、ピンを刺した場所の動画を見ることができます</Typography>
+                    <Box sx={{pt: 4}} textAlign={"left"}>
+                      <Typography color={"white"}>１日１回まで、ピンを刺した場所の動画を</Typography>
+                      <Typography color={"white"}>自動で取得します🤖</Typography>
+                      <Typography color={"white"}>取得した動画は、投稿してシェアすることができます</Typography>
+                    </Box>
                     <VideoDialog
                       searchResultVideos={searchResultVideos}
                       searchedKeywords={searchedKeywords}

@@ -19,9 +19,10 @@ const style = {
   textAlign: "center"
 };
 
-export default function MessageModal({open, setOpen, title, body, icon}) {
+export default function MessageModal({open, setOpen, title, body, icon, button}) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const buttonType = button;
 
   return (
     <div>
@@ -40,7 +41,7 @@ export default function MessageModal({open, setOpen, title, body, icon}) {
           </Typography>
           <Typography >{body}</Typography>
           <Box sx={{pt: 2}} textAlign={"center"}>
-            <SignInButton variant={"contained"} color={"info"} />
+            {buttonType === "login" && <SignInButton variant={"contained"} color={"info"} />}
           </Box>
         </Box>
       </Modal>
