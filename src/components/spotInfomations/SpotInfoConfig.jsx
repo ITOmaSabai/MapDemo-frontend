@@ -41,7 +41,7 @@ export default function SpotInfoConfig() {
         TransitionComponent={Fade}
       >
         <MenuItem onClick={handleClose}><MapDeleteButton /></MenuItem>
-        <MenuItem onClick={handleClose}><MapEditButton /></MenuItem>
+        <MenuItem onClick={handleClose} disabled ><MapEditButton /></MenuItem>
       </Menu>
     </div>
   );

@@ -13,9 +13,12 @@ import SelectedAddressContext from "../contexts/SelectedAddressContext";
 import LikeButton from "./Likes/LikeButton";
 import SearchVideo from "./SearchVideo";
 import TopAnimation from "./TopAnimation";
+import { ShareButton } from "./ShareButton";
 
 const TopInfo = () => {
-  
+  const URL = "https://map-demo-frontend.vercel.app/"
+  const url = `https://twitter.com/share?url=${URL}&text=【BackHacker.】%0a%0a`
+
   return (
     <>
       <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0, alignItems: "center", justifyContent: "center"}}>
@@ -30,13 +33,6 @@ const TopInfo = () => {
           <TopAnimation />
           <Typography color={"primary.light"} sx={{mt: 3}}>スポットを訪問してみよう</Typography>
         </Box>
-        <Box sx={{pt: 0, mt: 0}}>
-        </Box>
-        {/* <Box >
-
-        </Box>
-        <Box >
-        </Box> */}
       </Paper>
     </>
   )
