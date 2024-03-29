@@ -25,7 +25,7 @@ const SignInButton = ({variant, color}) => {
         window.location.href = '/';
         return response.json();
       })
-      .then(data => console.log(data))
+      // .then(data => console.log(data))
       .catch(err => {
         console.error('Error:', err);
       });

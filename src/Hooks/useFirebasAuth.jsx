@@ -13,7 +13,6 @@ export default function useFirebaseAuth() {
     if (result) {
       const user = result.user;
       setCurrentUser(user);
-      console.log("ログイン時点のユーザー", currentUser)
       return user;
     }
   };
@@ -30,7 +29,6 @@ export default function useFirebaseAuth() {
   const nextOrObserver = async (user) => {
     if (!user) {
       setLoading(false);
-      console.log("ユーザーがログアウトしました")
       return;
     }
 

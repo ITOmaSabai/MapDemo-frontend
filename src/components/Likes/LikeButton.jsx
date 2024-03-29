@@ -52,7 +52,7 @@ const LikeButton = ({disabled, likesCount}) => {
         const data = await response.json();
         setLikeId(data.id);
         setOn(true);
-        console.log('保存成功:', data);
+        // console.log('保存成功:', data);
       } catch (error) {
         console.error('エラー:', error);
       };
@@ -75,7 +75,7 @@ const LikeButton = ({disabled, likesCount}) => {
             map_id: selectedMarker
           } })
         });
-        console.log('削除成功');
+        // console.log('削除成功');
         setOn(false);
       } catch (error) {
         console.error('エラー:', error);

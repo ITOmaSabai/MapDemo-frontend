@@ -32,7 +32,7 @@ const SearchVideo = () => {
   const searchVideoModal = {
     title: "ログインすると動画を取得できます",
     body: "街の様子をみんなにシェアしよう！",
-    icon: "✈️"
+    icon: "📺 👀"
   };
 
   const searchFailureModal = {
@@ -107,7 +107,6 @@ const SearchVideo = () => {
           } }),
         });
         const data = await response.json();
-        console.log(data)
         setSearchResultVideos(data.videos_data.items);
         setSearchedKeywords(data.search_keywords);
       } catch (error) {
