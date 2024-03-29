@@ -13,7 +13,7 @@ const MapComponent = ({ zoom, center, onClick }) => {
   const { setIsNewMarkerSelected } = useContext(IsNewMarkerSelectedContext);
   const { setIsSavedMarkerSelected } = useContext(IsSavedMarkerSelectedContext);
   const { setIsTopInfoVisible } = useContext(IsTopInfoVisibleContext);
-  
+
   const handleMapOnClick = (e) => {
     onClick(e);
     // 新規投稿用の画面を表示する
