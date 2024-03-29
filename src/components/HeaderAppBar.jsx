@@ -14,7 +14,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import SpotSearchBox from './SpotSearchBox';
-import AuthGoogleSIgninPopup from '../auth_google_signin_popup';
 import { Link } from 'react-router-dom';
 import SignInButton from './SignInButton';
 import AuthSignOut from '../auth_sign_out';
@@ -85,12 +84,6 @@ export default function HeaderAppBar() {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleSignIn = () => {
-    AuthGoogleSIgninPopup();
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -251,7 +244,6 @@ export default function HeaderAppBar() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              sx={{mb: 0.5}}
             >
               <Badge color="error">
                 <NotificationsIcon />

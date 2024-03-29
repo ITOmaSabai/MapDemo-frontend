@@ -17,7 +17,6 @@ const GetCurrentUserInfo = () => {
   const getUserInfo = async () => {
     const verifyIdToken = async () => {
       const token = await currentUser?.getIdToken();
-      console.log(token)
       try {
         const response = await fetch(`${process.env.REACT_APP_RAILS_API_ENDPOINT}/api/v1/profile`, {
           method: 'GET',
@@ -30,7 +29,7 @@ const GetCurrentUserInfo = () => {
           throw new Error('データの送信に失敗しました');
         }
         const data = await response.json();
-        console.log('ユーザー情報を取得しました:', data);
+        // console.log('ユーザー情報を取得しました:', data);
         return data;
       } catch (error) {
         console.error('エラー:', error);
@@ -43,7 +42,6 @@ const GetCurrentUserInfo = () => {
     getUserInfo().then(data => {
       // dataを使って画面に表示する処理をここに書く
       setCurrentUserInfo(data);
-      console.log(data);
     });
   }, [])
 

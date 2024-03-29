@@ -12,7 +12,6 @@ const HeroTypewriter = () => {
   useEffect(() => {
     const reloadTimer = setTimeout(() => {
       const animation = sessionStorage.setItem('animationWatched', true);
-      console.log(animation);
     }, 3700);
 
     const setSettionTimer = setTimeout(() => {

@@ -21,7 +21,6 @@ const MapDeleteButton = () => {
   const modalAction = "delete";
 
   const handleSpotDelete = () => {
-    console.log("削除ボタンが押されました")
     deleteSpotData();
 
     setOpen(true);
@@ -43,7 +42,7 @@ const MapDeleteButton = () => {
       }
       const newMarkers = savedMarkers.filter(marker => marker.id !== selectedMarker);
       setSavedMarkers(newMarkers);
-      console.log('削除成功');
+      // console.log('削除成功');
     } catch (error) {
       console.error('エラー:', error);
     }

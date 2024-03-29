@@ -93,7 +93,7 @@ export default function PostSpotModal({postSpotModalOpen, setPostSpotModalOpen})
         throw new Error('データの送信に失敗しました');
       }
       const data = await response.json();
-      console.log('保存成功:', data);
+      // console.log('保存成功:', data);
       setIsDataPosted(true);
       setSelectedMarker(data.map.id);
       // 情報欄の表示を変更する
