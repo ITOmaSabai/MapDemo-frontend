@@ -68,15 +68,17 @@ export const Feedback = () => {
         minHeight: "90vh",
         width:"360px",
         m: 0,
-        pt: 7
+        pt: 0
       }}
       elevation={0}
     >
       {!isFeedbackSubmitted ? (
         <>
-          <IconButton onClick={() => setIsFeedbackSubmitted(true)}>
+          <Box sx={{textAlign: "right", pb: 7}}>
+          <IconButton  onClick={() => setIsFeedbackSubmitted(true)}>
             <CloseIcon />
           </IconButton>
+          </Box>
           <form onSubmit={handlePostFeedback} >
             <Box sx={style} >
               <Typography fontSize="14px">アプリの使いやすさ、操作性は</Typography>
@@ -131,7 +133,8 @@ export const Feedback = () => {
           alignItems: "center",
           textAlign: "center",
           flexDirection: "column",
-          height: "100%"
+          height: "100%",
+          pt: 30
         }}>
           <Typography>ご協力ありがとうございました</Typography>
           <Typography variant="h1">🙇</Typography>
