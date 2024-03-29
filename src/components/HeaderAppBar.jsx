@@ -25,6 +25,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useFirebaseAuth from '../Hooks/useFirebasAuth';
 import { Avatar } from '@mui/material';
+import { ShareButton } from './ShareButton';
+import XIcon from '@mui/icons-material/X';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -97,6 +99,9 @@ export default function HeaderAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const URL = "https://map-demo-frontend.vercel.app/"
+  const url = `https://twitter.com/share?url=${URL}&text=【BackHacker.】%0a%0a`
+
   // ヘッダー右のアイコン部分
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -161,6 +166,17 @@ export default function HeaderAppBar() {
       <MenuItem>
         <IconButton
           size="large"
+          aria-label="share this App on X."
+          color="inherit"
+        >
+          <XIcon />
+          {/* <ShareButton /> */}
+        </IconButton>
+        Notifications
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
@@ -221,10 +237,20 @@ export default function HeaderAppBar() {
                   />
                 </SpotSearchBox>
               </Search> */}
+              <IconButton
+                size="small"
+                aria-label="share this App on X."
+                color="inherit"
+                alignItems="center"
+              >
+                <Typography fontSize={10} pr={1}>share on</Typography>
+                <ShareButton url={url} fontSize={'5px'} />
+              </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              sx={{mb: 0.5}}
             >
               <Badge color="error">
                 <NotificationsIcon />
