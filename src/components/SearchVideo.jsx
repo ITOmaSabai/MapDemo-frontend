@@ -138,7 +138,7 @@ const SearchVideo = () => {
         icon={searchVideoModal.icon}
         button={"login"}
       />
-      {isSearchedToday ? (
+      {!isSearchedToday ? (
         isFeedbackSubmitted ? <TopInfo /> : <Feedback />
       ) : (
         <Paper square sx={{bgcolor: "primary.dark", height: "90vh", width:"360px", m: 0, p: 0}}>

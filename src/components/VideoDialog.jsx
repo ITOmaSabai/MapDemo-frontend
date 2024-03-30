@@ -6,13 +6,14 @@ import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
 import DialogContent from '@mui/material/DialogContent';
 import SelectedVideosContext from '../contexts/SelectedVideosContext';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import FloatingActionButtonSize from './ScrollToBottomButton';
 import ScrollToBottomButton from './ScrollToBottomButton';
 import VideoListComponent from './VideoListComponent';
 import DialogOpenContext from '../contexts/DialogOpenContext';
 import { ReactComponent as AddressNotFoundImage } from '../undraw_working_late_re_0c3y.svg'
 import IsConfirmSaveSpotModalOpenContext from '../contexts/IsConfirmSaveSpotModalOpenContext';
+import CloseIcon from '@mui/icons-material/Close';
 
 function SimpleDialog(props) {
   const {selectedVideos} = useContext(SelectedVideosContext);
@@ -31,6 +32,11 @@ function SimpleDialog(props) {
 
   return (
     <Dialog PaperProps={{sx: {maxHeight: "95vh"}}} maxWidth={'xl'} fullWidth onClose={handleClose} open={open}>
+      <Box display="flex" justifyContent="right" pr="1">
+        <IconButton onClick={()=>setIsDialogOpen(false)}>
+          <CloseIcon color='warning' />
+        </IconButton>
+      </Box>
       <DialogContent sx={{height: "100vh", p: 0, m: 0}}>
         <Box textAlign="center" sx={{px: 2, py: 1}} display={"flex"} justifyContent={"center"}>
           <Typography fontFamily="Menlo" fontSize={15} fontWeight={"bold"}>
