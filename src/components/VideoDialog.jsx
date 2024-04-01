@@ -33,7 +33,7 @@ function SimpleDialog(props) {
   return (
     <Dialog PaperProps={{sx: {maxHeight: "95vh"}}} maxWidth={'xl'} fullWidth onClose={handleClose} open={open}>
       <Box display="flex" justifyContent="right" pr="1">
-        <IconButton onClick={()=>setIsDialogOpen(false)}>
+        <IconButton onClick={handleClose}>
           <CloseIcon color='warning' />
         </IconButton>
       </Box>
